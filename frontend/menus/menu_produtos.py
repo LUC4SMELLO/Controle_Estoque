@@ -13,7 +13,7 @@ botao_excluir_produto = tk.Button(janela, text="Excluir", font=("Arial", 10, "bo
 
 botoes_sendo_mostrados = False
 
-def mostrar_botoes_produtos(botao_estoque):
+def mostrar_botoes_produtos(botao_estoque, botao_apartados):
     global botoes_sendo_mostrados
 
     if botoes_sendo_mostrados:
@@ -23,6 +23,7 @@ def mostrar_botoes_produtos(botao_estoque):
         botoes_sendo_mostrados = False
 
         botao_estoque.place(x=10, y=60)
+        botao_apartados.place(x=10, y=110)
 
     else:
         botao_cadastrar_produto.place(x=50, y=55)
@@ -31,4 +32,5 @@ def mostrar_botoes_produtos(botao_estoque):
         botoes_sendo_mostrados = True
 
         botao_estoque.place(x=10, y=150)
+        botao_apartados.place(x=10, y=200)
         
