@@ -1,7 +1,5 @@
 import tkinter as tk
 
-from frontend.janela import janela
-
 from backend.menu_controller import organizar_botoes
 
 import frontend.menu_state as state
