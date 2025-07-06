@@ -1,59 +1,19 @@
 import tkinter as tk
+
 from frontend.janela import janela
 
-import frontend.menus.menu_produtos as menu_produtos
+from backend.menu_controller import organizar_botoes
 
-botao_nota_fiscal_estoque = tk.Button(janela, text="Nota Fiscal", font=("Arial", 10, "bold"))
-botao_entrada_estoque = tk.Button(janela, text="Entrada", font=("Arial", 10, "bold"))
-botao_saida_estoque = tk.Button(janela, text="Saída", font=("Arial", 10, "bold"))
+import frontend.menu_state as state
 
-botoes_sendo_mostrados_estoque = False
-espacamento = 90
+def criar_botao_estoque(janela_pai):
 
-def mostrar_botoes_estoque(botao_apartados):
+    botao_estoque = tk.Button(janela_pai, text="Estoque", font=("Arial", 15, "bold"), command=lambda: organizar_botoes("estoque"))
+    botao_estoque.place(x=10, y=60)
 
-    global botoes_sendo_mostrados_estoque
+    botao_entrada_nota_fiscal = tk.Button(janela_pai, text="Entrada Nota Fiscal")
+    botao_entrada_estoque = tk.Button(janela_pai, text="Entrada")
+    botao_saida = tk.Button(janela_pai, text="Saída")
 
-
-    if menu_produtos.botoes_sendo_mostrados_produtos and botoes_sendo_mostrados_estoque:
-        botao_nota_fiscal_estoque.place_forget()
-        botao_entrada_estoque.place_forget()
-        botao_saida_estoque.place_forget()
-
-        botoes_sendo_mostrados_estoque = False
-
-        botao_apartados.place(x=10, y=200)
-        return
-    
-    if botoes_sendo_mostrados_estoque:
-        botao_nota_fiscal_estoque.place_forget()
-        botao_entrada_estoque.place_forget()
-        botao_saida_estoque.place_forget()
-
-        botoes_sendo_mostrados_estoque = False
-
-        botao_apartados.place(x=10, y=110)
-        return
-    
-    if menu_produtos.botoes_sendo_mostrados_produtos:
-        botao_nota_fiscal_estoque.place(x=50, y=105 + 90)
-        botao_entrada_estoque.place(x=50, y=135 + 90)
-        botao_saida_estoque.place(x=50, y=165 + 90)
-
-        botoes_sendo_mostrados_estoque = True
-
-        botao_apartados.place(x=10, y=290)
-        return
-    
-    
-
-    
-    if botoes_sendo_mostrados_estoque == False:
-        botao_nota_fiscal_estoque.place(x=50, y=105)
-        botao_entrada_estoque.place(x=50, y=135)
-        botao_saida_estoque.place(x=50, y=165)
-
-        botoes_sendo_mostrados_estoque = True
-
-        botao_apartados.place(x=10, y=200)
-        return
+    state.botoes_principais["estoque"] = botao_estoque
+    state.botoes_submenus["estoque"] = [botao_entrada_nota_fiscal, botao_entrada_estoque, botao_saida]
