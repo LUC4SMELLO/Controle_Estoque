@@ -11,9 +11,9 @@ def criar_botao_estoque(janela_pai):
     botao_estoque = tk.Button(janela_pai, text="Estoque", font=("Arial", 15, "bold"), command=lambda: organizar_botoes("estoque"))
     botao_estoque.place(x=10, y=60)
 
-    botao_entrada_nota_fiscal = tk.Button(janela_pai, text="Entrada Nota Fiscal")
-    botao_entrada_estoque = tk.Button(janela_pai, text="Entrada")
-    botao_saida = tk.Button(janela_pai, text="Saída")
+    botao_entrada_nota_fiscal = tk.Button(janela_pai, text="Entrada Nota Fiscal", font=("Arial", 10, "bold"))
+    botao_entrada_estoque = tk.Button(janela_pai, text="Entrada", font=("Arial", 10, "bold"))
+    botao_saida = tk.Button(janela_pai, text="Saída", font=("Arial", 10, "bold"))
 
     state.botoes_principais["estoque"] = botao_estoque
     state.botoes_submenus["estoque"] = [botao_entrada_nota_fiscal, botao_entrada_estoque, botao_saida]

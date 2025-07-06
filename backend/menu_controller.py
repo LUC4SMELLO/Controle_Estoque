@@ -12,7 +12,7 @@ def organizar_botoes(menu_ativo):
 
         if nome == menu_ativo:
             for sub in state.botoes_submenus[nome]:
-                sub.place(x=30, y=y)
-                y += 30
+                sub.place(x=40, y=y)
+                y += 35
 
     state.submenu_ativo = menu_ativo
