@@ -11,6 +11,7 @@ from frontend.menus.menu_relatorios import criar_botao_relatorios
 from frontend.menus.menu_inventario import criar_botao_inventario
 from frontend.menus.menu_fornecedores import criar_botao_fornecedores
 from frontend.menus.menu_notificacoes import criar_botao_notificacoes
+from frontend.menus.menu_validades import criar_botao_validades
 
 
 def inicializar_interface():
@@ -23,6 +24,7 @@ def inicializar_interface():
     criar_botao_inventario(janela)
     criar_botao_fornecedores(janela)
     criar_botao_notificacoes(janela)
+    criar_botao_validades(janela)
 
 
     janela.mainloop()
