@@ -9,9 +9,8 @@ from frontend.menus.menu_pendencias import criar_botao_pendencias
 from frontend.menus.menu_movimentações import criar_botao_movimentacoes
 from frontend.menus.menu_relatorios import criar_botao_relatorios
 from frontend.menus.menu_inventario import criar_botao_inventario
+from frontend.menus.menu_fornecedores import criar_botao_fornecedores
 
-def mostrar_frame(frame):
-    frame.place(x=100, y=10)
 
 def inicializar_interface():
     criar_botao_produtos(janela)
@@ -21,6 +20,7 @@ def inicializar_interface():
     criar_botao_movimentacoes(janela)
     criar_botao_relatorios(janela)
     criar_botao_inventario(janela)
+    criar_botao_fornecedores(janela)
 
 
 
