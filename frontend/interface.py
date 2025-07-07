@@ -26,5 +26,8 @@ def inicializar_interface():
     criar_botao_notificacoes(janela)
     criar_botao_validades(janela)
 
+    linha_vertical = tk.Frame(janela, width=6, height=1080, background="silver")
+    linha_vertical.place(x=185, y=0)
+
 
     janela.mainloop()
