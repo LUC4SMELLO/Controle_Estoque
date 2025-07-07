@@ -12,7 +12,8 @@ def criar_botao_produtos(janela_pai):
     botao_cadastrar_produto = tk.Button(janela_pai, text="Cadastrar", font=("Arial", 10, "bold"))
     botao_alterar_produto = tk.Button(janela_pai, text="Alterar", font=("Arial", 10, "bold"))
     botao_excluir_produto = tk.Button(janela_pai, text="Excluir", font=("Arial", 10, "bold"))
+    botao_consultar_produto = tk.Button(janela_pai, text="Consultar", font=("Arial", 10, "bold"))
 
     state.botoes_principais["produtos"] = botao_produtos
-    state.botoes_submenus["produtos"] = [botao_cadastrar_produto, botao_alterar_produto, botao_excluir_produto]
+    state.botoes_submenus["produtos"] = [botao_cadastrar_produto, botao_alterar_produto, botao_excluir_produto, botao_consultar_produto]
     
