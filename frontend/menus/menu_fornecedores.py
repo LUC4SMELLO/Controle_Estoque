@@ -6,7 +6,7 @@ import frontend.menu_state as state
 
 def criar_botao_fornecedores(janela_pai):
 
-    botao_fornecedores = tk.Button(janela_pai, text="Fornecedores", font=("Arial", 15, "bold"), command=lambda: organizar_botoes("fornecedores"))
+    botao_fornecedores = tk.Button(janela_pai, text="Fornecedores", font=("Arial", 15, "bold"), width=13, command=lambda: organizar_botoes("fornecedores"))
     botao_fornecedores.place(x=10, y=360)
 
     botao_cadastrar_fornecedores = tk.Button(janela_pai, text="Cadastrar", font=("Arial", 10, "bold"))

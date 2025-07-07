@@ -6,7 +6,7 @@ import frontend.menu_state as state
 
 def criar_botao_movimentacoes(janela_pai):
 
-    botao_movimentacoes = tk.Button(janela_pai, text="Movimentações", font=("Arial", 15, "bold"), command=lambda: organizar_botoes("movimentacoes"))
+    botao_movimentacoes = tk.Button(janela_pai, text="Movimentações", font=("Arial", 15, "bold"), width=13, command=lambda: organizar_botoes("movimentacoes"))
     botao_movimentacoes.place(x=10, y=210)
 
     botao_entradas_movimentacoes = tk.Button(janela_pai, text="Entradas", font=("Arial", 10, "bold"))

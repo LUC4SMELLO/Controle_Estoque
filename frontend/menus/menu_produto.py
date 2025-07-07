@@ -6,7 +6,7 @@ import frontend.menu_state as state
 
 def criar_botao_produtos(janela_pai):
 
-    botao_produtos = tk.Button(janela_pai, text="Produtos", font=("Arial", 15, "bold"), command=lambda: organizar_botoes("produtos"))
+    botao_produtos = tk.Button(janela_pai, text="Produtos", font=("Arial", 15, "bold"), width=13, command=lambda: organizar_botoes("produtos"))
     botao_produtos.place(x=10, y=10)
 
     botao_cadastrar_produto = tk.Button(janela_pai, text="Cadastrar", font=("Arial", 10, "bold"))

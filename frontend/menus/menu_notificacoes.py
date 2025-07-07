@@ -6,7 +6,7 @@ import frontend.menu_state as state
 
 def criar_botao_notificacoes(janela_pai):
 
-    botao_notificacoes = tk.Button(janela_pai, text="Notificações", font=("Arial", 15, "bold"), command=lambda: organizar_botoes("notificacoes"))
+    botao_notificacoes = tk.Button(janela_pai, text="Notificações", font=("Arial", 15, "bold"), width=13, command=lambda: organizar_botoes("notificacoes"))
     botao_notificacoes.place(x=10, y=410)
 
     botao_estoque_baixo_notificacoes = tk.Button(janela_pai, text="Estoque Baixo", font=("Arial", 10, "bold"))

@@ -6,7 +6,7 @@ import frontend.menu_state as state
 
 def criar_botao_pendencias(janela_pai):
 
-    botao_pendencias = tk.Button(janela_pai, text="Pendências", font=("Arial", 15, "bold"), command=lambda: organizar_botoes("pendencias"))
+    botao_pendencias = tk.Button(janela_pai, text="Pendências", font=("Arial", 15, "bold"), width=13, command=lambda: organizar_botoes("pendencias"))
     botao_pendencias.place(x=10, y=160)
 
     botao_cadastrar_pendencia = tk.Button(janela_pai, text="Cadastrar", font=("Arial", 10, "bold"))

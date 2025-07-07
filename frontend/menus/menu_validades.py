@@ -6,7 +6,7 @@ import frontend.menu_state as state
 
 def criar_botao_validades(janela_pai):
 
-    botao_validades = tk.Button(janela_pai, text="Validades", font=("Arial", 15, "bold"), command=lambda: organizar_botoes("validades"))
+    botao_validades = tk.Button(janela_pai, text="Validades", font=("Arial", 15, "bold"), width=13, command=lambda: organizar_botoes("validades"))
     botao_validades.place(x=10, y=460)
 
     botao_cadastrar_validades = tk.Button(janela_pai, text="Cadastrar", font=("Arial", 10, "bold"))
