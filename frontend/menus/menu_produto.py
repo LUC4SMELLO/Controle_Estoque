@@ -2,9 +2,9 @@ import tkinter as tk
 
 from backend.menu_controller import organizar_botoes
 
-from frontend.janelas.produtos.cadastrar_produto import criar_janela_cadastrar_produto
-from frontend.janelas.produtos.alterar_produto import criar_janela_alterar_produto
-from frontend.janelas.produtos.excluir_produto import criar_janela_excluir_produto
+from frontend.janelas.produtos.janela_cadastrar_produto import criar_janela_cadastrar_produto
+from frontend.janelas.produtos.janela_alterar_produto import criar_janela_alterar_produto
+from frontend.janelas.produtos.janela_excluir_produto import criar_janela_excluir_produto
 
 import frontend.menu_state as state
 
