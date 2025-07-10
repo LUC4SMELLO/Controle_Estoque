@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 
+from backend.binds.configuracao_binds import configurar_binds
+
 def criar_janela_consultar_produto():
 
     janela_consultar_produtos = tk.Toplevel()
@@ -72,8 +74,8 @@ def criar_janela_consultar_produto():
     label_subdescricao_consultar = tk.Label(janela_consultar_produtos, text="Subdescrição:", font=("Arial", 10, "bold"))
     label_subdescricao_consultar.place(x=10, y=150)
 
-    entry_subdescricao_cadastar = tk.Entry(janela_consultar_produtos, width=50, font=("Arial", 10, "bold"))
-    entry_subdescricao_cadastar.place(x=110, y=150)
+    entry_subdescricao_consultar = tk.Entry(janela_consultar_produtos, width=50, font=("Arial", 10, "bold"))
+    entry_subdescricao_consultar.place(x=110, y=150)
 
     label_codigo_barras_consultar = tk.Label(janela_consultar_produtos, text="Código Barras:", font=("Arial", 10, "bold"))
     label_codigo_barras_consultar.place(x=520, y=150)
@@ -217,14 +219,39 @@ def criar_janela_consultar_produto():
     )
     entry_marca_produtos_consultar.place(x=110, y=260)
 
+    def confirmado():
+        print("Cofirmado")
 
+    def buscado():
+        print("Buscado")
 
 
     linha_horizontal_inferior = tk.Frame(janela_consultar_produtos, background="silver", height=5, width=800)
     linha_horizontal_inferior.place(x=0, y=550)
 
-    bota_confirmar_consultar = tk.Button(janela_consultar_produtos, text="Confirmar", font=("Arial", 10, "bold"))
-    bota_confirmar_consultar.place(x=600, y=565)
+    botao_confirmar_consultar = tk.Button(janela_consultar_produtos, text="Confirmar", font=("Arial", 10, "bold"))
+    botao_confirmar_consultar.place(x=600, y=565)
 
     botao_cancelar_consultar = tk.Button(janela_consultar_produtos, text="Cancelar", font=("Arial", 10, "bold"))
     botao_cancelar_consultar.place(x=700, y=565)
+
+
+    lista_entrys = [
+        entry_codigo_produto_consultar,
+        botao_buscar_produto_consultar,
+        entry_descricao_consultar,
+        entry_unidade_medida_consultar,
+        entry_itens_embalagem_produtos_consultar,
+        entry_subdescricao_consultar,
+        entry_codigo_barras_consultar,
+        entry_grupo_produtos_consultar,
+        entry_categorias_produtos_consultar,
+        entry_marca_produtos_consultar,
+        entry_itens_pallete_consultar,
+        entry_itens_lastro_consultar,
+        botao_confirmar_consultar
+    ]
+
+    acoes_intermediarias = [None, buscado, None, None, None, None, None, None, None, None, None, None, None, None]
+
+    configurar_binds(lista_entrys, acoes_intermediarias, confirmado)
