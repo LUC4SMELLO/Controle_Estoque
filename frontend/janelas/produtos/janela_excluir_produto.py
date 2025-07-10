@@ -4,10 +4,10 @@ from tkinter import ttk
 from backend.binds.configuracao_binds import configurar_binds
 
 def excluir_produto_gui():
-    print("produto excluido")
+    pass
 
 def buscar_produto_excluir_gui():
-    print("produto buscado")
+    pass
 
 def criar_janela_excluir_produto():
 

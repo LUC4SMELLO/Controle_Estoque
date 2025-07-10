@@ -3,6 +3,9 @@ from tkinter import ttk
 
 from backend.binds.configuracao_binds import configurar_binds
 
+def consultar_produto_gui():
+    pass
+
 def criar_janela_consultar_produto():
 
     janela_consultar_produtos = tk.Toplevel()
@@ -18,7 +21,7 @@ def criar_janela_consultar_produto():
     entry_codigo_produto_consultar = tk.Entry(janela_consultar_produtos, width=7, font=("Arial", 10))
     entry_codigo_produto_consultar.place(x=110, y=10)
 
-    botao_buscar_produto_consultar = tk.Button(janela_consultar_produtos, text="Buscar", font=("Arial", 10, "bold"))
+    botao_buscar_produto_consultar = tk.Button(janela_consultar_produtos, text="Buscar", font=("Arial", 10, "bold"), command=consultar_produto_gui)
     botao_buscar_produto_consultar.place(x=170, y=6)
 
     label_descricao_consultar = tk.Label(janela_consultar_produtos, text="Descrição:", font=("Arial", 10, "bold"))
@@ -219,13 +222,6 @@ def criar_janela_consultar_produto():
     )
     entry_marca_produtos_consultar.place(x=110, y=260)
 
-    def confirmado():
-        print("Cofirmado")
-
-    def buscado():
-        print("Buscado")
-
-
     linha_horizontal_inferior = tk.Frame(janela_consultar_produtos, background="silver", height=5, width=800)
     linha_horizontal_inferior.place(x=0, y=550)
 
@@ -252,6 +248,7 @@ def criar_janela_consultar_produto():
         botao_confirmar_consultar
     ]
 
-    acoes_intermediarias = [None, buscado, None, None, None, None, None, None, None, None, None, None, None, None]
+    acoes_intermediarias = [None, consultar_produto_gui, None, None, None, None, None, None, None, None, None, None, None, None]
 
-    configurar_binds(lista_entrys, acoes_intermediarias, confirmado)
+    configurar_binds(lista_entrys, acoes_intermediarias, None)
+    
