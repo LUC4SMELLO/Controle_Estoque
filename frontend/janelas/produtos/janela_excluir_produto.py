@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 
+from backend.binds.configuracao_binds import configurar_binds
+
 def criar_janela_excluir_produto():
 
     janela_excluir_produtos = tk.Toplevel()
@@ -72,8 +74,8 @@ def criar_janela_excluir_produto():
     label_subdescricao_excluir = tk.Label(janela_excluir_produtos, text="Subdescrição:", font=("Arial", 10, "bold"))
     label_subdescricao_excluir.place(x=10, y=150)
 
-    entry_subdescricao_cadastar = tk.Entry(janela_excluir_produtos, width=50, font=("Arial", 10, "bold"))
-    entry_subdescricao_cadastar.place(x=110, y=150)
+    entry_subdescricao_excluir = tk.Entry(janela_excluir_produtos, width=50, font=("Arial", 10, "bold"))
+    entry_subdescricao_excluir.place(x=110, y=150)
 
     label_codigo_barras_excluir = tk.Label(janela_excluir_produtos, text="Código Barras:", font=("Arial", 10, "bold"))
     label_codigo_barras_excluir.place(x=520, y=150)
@@ -217,14 +219,38 @@ def criar_janela_excluir_produto():
     )
     entry_marca_produtos_excluir.place(x=110, y=260)
 
+    def confirmar():
+        print("Confirmado")
 
+    def buscado():
+        print("Buscado")
 
 
     linha_horizontal_inferior = tk.Frame(janela_excluir_produtos, background="silver", height=5, width=800)
     linha_horizontal_inferior.place(x=0, y=550)
 
-    bota_confirmar_excluir = tk.Button(janela_excluir_produtos, text="Confirmar", font=("Arial", 10, "bold"))
-    bota_confirmar_excluir.place(x=600, y=565)
+    botao_confirmar_excluir = tk.Button(janela_excluir_produtos, text="Confirmar", font=("Arial", 10, "bold"))
+    botao_confirmar_excluir.place(x=600, y=565)
 
     botao_cancelar_excluir = tk.Button(janela_excluir_produtos, text="Cancelar", font=("Arial", 10, "bold"))
     botao_cancelar_excluir.place(x=700, y=565)
+
+    lista_entrys = [
+        entry_codigo_produto_excluir,
+        botao_buscar_produto_excluir,
+        entry_descricao_excluir,
+        entry_unidade_medida_excluir,
+        entry_itens_embalagem_produtos_excluir,
+        entry_subdescricao_excluir,
+        entry_codigo_barras_excluir,
+        entry_grupo_produtos_excluir,
+        entry_categorias_produtos_excluir,
+        entry_marca_produtos_excluir,
+        entry_itens_pallete_excluir,
+        entry_itens_lastro_excluir,
+        botao_confirmar_excluir
+    ]
+
+    acoes_intermediarias = [None, buscado, None, None, None, None, None, None, None, None, None, None, None, None]
+
+    configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultimas_acoes=confirmar)
