@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from backend.menu_controller import organizar_botoes
+from backend.menu_controlador import organizar_botoes
 
 import frontend.menu_state as state
 

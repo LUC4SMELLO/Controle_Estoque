@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from backend.menu_controller import organizar_botoes
+from backend.menu_controlador import organizar_botoes
 
 from frontend.janelas.produtos.janela_cadastrar_produto import criar_janela_cadastrar_produto
 from frontend.janelas.produtos.janela_alterar_produto import criar_janela_alterar_produto
