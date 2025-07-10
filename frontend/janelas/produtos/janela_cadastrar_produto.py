@@ -4,6 +4,9 @@ from tkinter import ttk
 from backend.binds.configuracao_binds import configurar_binds
 from backend.binds.configuracao_binds import configurar_binds
 
+def cadastrar_produto_gui():
+    pass
+
 def criar_janela_cadastrar_produto():
 
     janela_cadastrar_produtos = tk.Toplevel()
@@ -223,7 +226,7 @@ def criar_janela_cadastrar_produto():
     linha_horizontal_inferior = tk.Frame(janela_cadastrar_produtos, background="silver", height=5, width=800)
     linha_horizontal_inferior.place(x=0, y=550)
 
-    botao_confirmar_cadastrar = tk.Button(janela_cadastrar_produtos, text="Confirmar", font=("Arial", 10, "bold"))
+    botao_confirmar_cadastrar = tk.Button(janela_cadastrar_produtos, text="Confirmar", font=("Arial", 10, "bold"), command=cadastrar_produto_gui)
     botao_confirmar_cadastrar.place(x=600, y=565)
 
     botao_cancelar_cadastrar = tk.Button(janela_cadastrar_produtos, text="Cancelar", font=("Arial", 10, "bold"))
@@ -244,4 +247,4 @@ def criar_janela_cadastrar_produto():
         botao_confirmar_cadastrar
     ]
 
-    configurar_binds(lista_entrys, acoes_intermediarias=None, ultima_acao=None)
+    configurar_binds(lista_entrys, acoes_intermediarias=None, ultima_acao=cadastrar_produto_gui)
