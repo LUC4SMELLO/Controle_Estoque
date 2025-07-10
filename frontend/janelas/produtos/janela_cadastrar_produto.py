@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
 
+from backend.binds.configuracao_binds import configurar_binds
+from backend.binds.configuracao_binds import configurar_binds
+
 def criar_janela_cadastrar_produto():
 
     janela_cadastrar_produtos = tk.Toplevel()
@@ -220,8 +223,25 @@ def criar_janela_cadastrar_produto():
     linha_horizontal_inferior = tk.Frame(janela_cadastrar_produtos, background="silver", height=5, width=800)
     linha_horizontal_inferior.place(x=0, y=550)
 
-    bota_confirmar_cadastrar = tk.Button(janela_cadastrar_produtos, text="Confirmar", font=("Arial", 10, "bold"))
-    bota_confirmar_cadastrar.place(x=600, y=565)
+    botao_confirmar_cadastrar = tk.Button(janela_cadastrar_produtos, text="Confirmar", font=("Arial", 10, "bold"))
+    botao_confirmar_cadastrar.place(x=600, y=565)
 
     botao_cancelar_cadastrar = tk.Button(janela_cadastrar_produtos, text="Cancelar", font=("Arial", 10, "bold"))
     botao_cancelar_cadastrar.place(x=700, y=565)
+
+    lista_entrys = [
+        entry_codigo_produto_cadastrar,
+        entry_descricao_cadastrar,
+        entry_unidade_medida_cadastrar,
+        entry_itens_embalagem_produtos_cadastrar,
+        entry_subdescricao_cadastar,
+        entry_codigo_barras_cadastrar,
+        entry_grupo_produtos_cadastrar,
+        entry_categorias_produtos_cadastrar,
+        entry_marca_produtos_cadastrar,
+        entry_itens_pallete_cadastrar,
+        entry_itens_lastro_cadastrar,
+        botao_confirmar_cadastrar
+    ]
+
+    configurar_binds(lista_entrys, acoes_intermediarias=None, ultimas_acoes=None)
