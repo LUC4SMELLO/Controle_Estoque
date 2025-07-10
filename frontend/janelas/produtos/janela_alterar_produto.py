@@ -3,6 +3,12 @@ from tkinter import ttk
 
 from backend.binds.configuracao_binds import configurar_binds
 
+def alterar_produto_gui():
+    print("produto alterado")
+
+def buscar_produto_alterar_gui():
+    print("produto buscado")
+
 def criar_janela_alterar_produto():
 
     janela_alterar_produtos = tk.Toplevel()
@@ -18,7 +24,7 @@ def criar_janela_alterar_produto():
     entry_codigo_produto_alterar = tk.Entry(janela_alterar_produtos, width=7, font=("Arial", 10))
     entry_codigo_produto_alterar.place(x=110, y=10)
 
-    botao_buscar_produto_alterar = tk.Button(janela_alterar_produtos, text="Buscar", font=("Arial", 10, "bold"))
+    botao_buscar_produto_alterar = tk.Button(janela_alterar_produtos, text="Buscar", font=("Arial", 10, "bold"), command=buscar_produto_alterar_gui)
     botao_buscar_produto_alterar.place(x=170, y=6)
 
     label_descricao_alterar = tk.Label(janela_alterar_produtos, text="Descrição:", font=("Arial", 10, "bold"))
@@ -225,14 +231,7 @@ def criar_janela_alterar_produto():
     linha_horizontal_inferior = tk.Frame(janela_alterar_produtos, background="silver", height=5, width=800)
     linha_horizontal_inferior.place(x=0, y=550)
 
-    def confirmado():
-        print("Cofirmado")
-
-    def buscado():
-        print("Buscado")
-    
-
-    botao_confirmar_alterar = tk.Button(janela_alterar_produtos, text="Confirmar", font=("Arial", 10, "bold"))
+    botao_confirmar_alterar = tk.Button(janela_alterar_produtos, text="Confirmar", font=("Arial", 10, "bold"), command=alterar_produto_gui)
     botao_confirmar_alterar.place(x=600, y=565)
 
     botao_cancelar_alterar = tk.Button(janela_alterar_produtos, text="Cancelar", font=("Arial", 10, "bold"))
@@ -254,6 +253,6 @@ def criar_janela_alterar_produto():
         botao_confirmar_alterar
     ]
 
-    acoes_intermediarias = [None, buscado, None, None, None, None, None, None, None, None, None, None, None, None]
+    acoes_intermediarias = [None, buscar_produto_alterar_gui, None, None, None, None, None, None, None, None, None, None, None, None]
 
-    configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultima_acao=confirmado)
+    configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultima_acao=alterar_produto_gui)
