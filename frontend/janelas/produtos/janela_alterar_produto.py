@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 
+from backend.binds.configuracao_binds import configurar_binds
+
 def criar_janela_alterar_produto():
 
     janela_alterar_produtos = tk.Toplevel()
@@ -72,8 +74,8 @@ def criar_janela_alterar_produto():
     label_subdescricao_alterar = tk.Label(janela_alterar_produtos, text="Subdescrição:", font=("Arial", 10, "bold"))
     label_subdescricao_alterar.place(x=10, y=150)
 
-    entry_subdescricao_cadastar = tk.Entry(janela_alterar_produtos, width=50, font=("Arial", 10, "bold"))
-    entry_subdescricao_cadastar.place(x=110, y=150)
+    entry_subdescricao_alterar = tk.Entry(janela_alterar_produtos, width=50, font=("Arial", 10, "bold"))
+    entry_subdescricao_alterar.place(x=110, y=150)
 
     label_codigo_barras_alterar = tk.Label(janela_alterar_produtos, text="Código Barras:", font=("Arial", 10, "bold"))
     label_codigo_barras_alterar.place(x=520, y=150)
@@ -223,8 +225,35 @@ def criar_janela_alterar_produto():
     linha_horizontal_inferior = tk.Frame(janela_alterar_produtos, background="silver", height=5, width=800)
     linha_horizontal_inferior.place(x=0, y=550)
 
-    bota_confirmar_alterar = tk.Button(janela_alterar_produtos, text="Confirmar", font=("Arial", 10, "bold"))
-    bota_confirmar_alterar.place(x=600, y=565)
+    def confirmado():
+        print("Cofirmado")
+
+    def buscado():
+        print("Buscado")
+    
+
+    botao_confirmar_alterar = tk.Button(janela_alterar_produtos, text="Confirmar", font=("Arial", 10, "bold"))
+    botao_confirmar_alterar.place(x=600, y=565)
 
     botao_cancelar_alterar = tk.Button(janela_alterar_produtos, text="Cancelar", font=("Arial", 10, "bold"))
     botao_cancelar_alterar.place(x=700, y=565)
+
+    lista_entrys = [
+        entry_codigo_produto_alterar,
+        botao_buscar_produto_alterar,
+        entry_descricao_alterar,
+        entry_unidade_medida_alterar,
+        entry_itens_embalagem_produtos_alterar,
+        entry_subdescricao_alterar,
+        entry_codigo_barras_alterar,
+        entry_grupo_produtos_alterar,
+        entry_categorias_produtos_alterar,
+        entry_marca_produtos_alterar,
+        entry_itens_pallete_alterar,
+        entry_itens_lastro_alterar,
+        botao_confirmar_alterar
+    ]
+
+    acoes_intermediarias = [None, buscado, None, None, None, None, None, None, None, None, None, None, None, None]
+
+    configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultimas_acoes=confirmado)
