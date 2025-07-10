@@ -256,4 +256,4 @@ def criar_janela_alterar_produto():
 
     acoes_intermediarias = [None, buscado, None, None, None, None, None, None, None, None, None, None, None, None]
 
-    configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultimas_acoes=confirmado)
+    configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultima_acao=confirmado)

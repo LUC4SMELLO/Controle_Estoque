@@ -244,4 +244,4 @@ def criar_janela_cadastrar_produto():
         botao_confirmar_cadastrar
     ]
 
-    configurar_binds(lista_entrys, acoes_intermediarias=None, ultimas_acoes=None)
+    configurar_binds(lista_entrys, acoes_intermediarias=None, ultima_acao=None)

@@ -253,4 +253,4 @@ def criar_janela_excluir_produto():
 
     acoes_intermediarias = [None, buscado, None, None, None, None, None, None, None, None, None, None, None, None]
 
-    configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultimas_acoes=confirmar)
+    configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultima_acao=confirmar)

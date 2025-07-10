@@ -1,4 +1,4 @@
-def configurar_binds(entries: list, acoes_intermediarias=None, ultimas_acoes=None):
+def configurar_binds(entries: list, acoes_intermediarias=None, ultima_acao=None):
     """
     Aplica binds para navegar com Enter, e executar ações intermediárias.
 
@@ -15,7 +15,7 @@ def configurar_binds(entries: list, acoes_intermediarias=None, ultimas_acoes=Non
                 acoes_intermediarias[i]()
             if i < total - 1:
                 entries[i + 1].focus_set()
-            elif ultimas_acoes:
-                ultimas_acoes()
+            elif ultima_acao:
+                ultima_acao()
 
         entry.bind("<Return>", acao)
