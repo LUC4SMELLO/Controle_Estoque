@@ -148,3 +148,21 @@ class Produto:
         conexao.close()
 
         return resultado
+    
+    @staticmethod
+    def listar_todos_produtos():
+        conexao = conectar_banco_de_dados_produtos()
+        cursor = conexao.cursor()
+
+        cursor.execute(
+        """
+        SELECT * FROM TabelaProdutos
+        """
+        )
+
+        resultado = cursor.fetchall()
+
+        conexao.commit()
+        conexao.close()
+
+        return resultado
