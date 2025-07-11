@@ -115,3 +115,36 @@ class Produto:
 
         conexao.commit()
         conexao.close()
+    
+    def excluir_produto(self):
+        conexao = conectar_banco_de_dados_produtos()
+        cursor = conexao.cursor()
+
+        cursor.execute(
+        """
+        DELETE FROM TabelaProdutos
+        WHERE codigo_produto = ?
+        """, (self.codigo_produto)
+        )
+
+        conexao.commit()
+        conexao.close()
+    
+    @staticmethod
+    def buscar_produto(codigo_produto):
+        conexao = conectar_banco_de_dados_produtos()
+        cursor = conexao.cursor()
+
+        cursor.execute(
+        """
+        SELECT * FROM TabelaProdutos
+        WHERE codigo_produto = ?
+        """, (codigo_produto,)
+        )
+
+        resultado = cursor.fetchone()
+
+        conexao.commit()
+        conexao.close()
+
+        return resultado
