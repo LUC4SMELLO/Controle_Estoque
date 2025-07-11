@@ -27,6 +27,9 @@ produto2 = Produto(2,
                   45
                 )
 
-todos_produtos = Produto.listar_todos_produtos()
 
+
+produto.excluir_produto()
+
+todos_produtos = Produto.listar_todos_produtos()
 print(todos_produtos)

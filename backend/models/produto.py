@@ -124,7 +124,7 @@ class Produto:
         """
         DELETE FROM TabelaProdutos
         WHERE codigo_produto = ?
-        """, (self.codigo_produto)
+        """, (self.codigo_produto,)
         )
 
         conexao.commit()
