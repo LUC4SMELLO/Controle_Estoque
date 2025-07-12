@@ -4,7 +4,7 @@ from tkinter import messagebox
 
 
 from backend.binds.configuracao_binds import configurar_binds
-from backend.validadores.produtos.cadastrar_produto import validar_formulario_produto
+from backend.validadores.produtos.formulario_produto import validar_formulario_produto
 from servicos.servico_produtos import produto_exite
 from backend.models.produto import Produto
 
