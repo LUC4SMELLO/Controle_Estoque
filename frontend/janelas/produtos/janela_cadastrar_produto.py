@@ -1,13 +1,37 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
+
 
 from backend.binds.configuracao_binds import configurar_binds
-from backend.binds.configuracao_binds import configurar_binds
 
-def cadastrar_produto_gui():
-    pass
+from backend.validadores.produtos.cadastrar_produto import validar_formulario_cadastro_produto
+
+
 
 def criar_janela_cadastrar_produto():
+
+    def cadastrar_produto_gui():
+        
+        valido, mensagem = validar_formulario_cadastro_produto(
+            entry_codigo_produto_cadastrar.get().strip(),
+            entry_descricao_cadastrar.get().strip(),
+            entry_subdescricao_cadastar.get().strip(),
+            entry_unidade_medida_cadastrar.get().strip(),
+            entry_itens_embalagem_produtos_cadastrar.get().strip(),
+            entry_codigo_barras_cadastrar.get().strip(),
+            entry_grupo_produtos_cadastrar.get().strip(),
+            entry_categorias_produtos_cadastrar.get().strip(),
+            entry_marca_produtos_cadastrar.get().strip(),
+            entry_itens_pallete_cadastrar.get().strip(),
+            entry_itens_pallete_cadastrar.get().strip()
+        )
+        if not valido:
+            messagebox.showerror("Erro", mensagem)
+            entry_codigo_produto_cadastrar.focus_set()
+            return None
+
+
 
     janela_cadastrar_produtos = tk.Toplevel()
     janela_cadastrar_produtos.title("Cadastrar Produto")
