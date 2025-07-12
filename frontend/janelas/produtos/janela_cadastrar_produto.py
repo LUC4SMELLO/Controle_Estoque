@@ -7,12 +7,19 @@ from backend.binds.configuracao_binds import configurar_binds
 
 from backend.validadores.produtos.cadastrar_produto import validar_formulario_cadastro_produto
 
+from servicos.servico_produtos import produto_exite
 
 
 def criar_janela_cadastrar_produto():
 
     def cadastrar_produto_gui():
         
+        valido, mensagem = produto_exite(entry_codigo_produto_cadastrar.get().strip())
+        if valido:
+            messagebox.showerror("Erro", mensagem)
+            entry_codigo_produto_cadastrar.focus_set()
+            return None
+    
         valido, mensagem = validar_formulario_cadastro_produto(
             entry_codigo_produto_cadastrar.get().strip(),
             entry_descricao_cadastrar.get().strip(),

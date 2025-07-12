@@ -18,7 +18,7 @@ def produto_exite(codigo_produto):
     conexao.close()
 
     if existe:
-        return True, "Produto Existe."
+        return True, "Produto Já Existe."
     else:
         return False, "Produto Não Encontrado."
     
