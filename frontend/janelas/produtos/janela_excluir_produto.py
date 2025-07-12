@@ -8,8 +8,8 @@ from backend.validadores.produtos.formulario_produto import validar_formulario_p
 
 from backend.controladores.produto.excluir_controlador import limpar_entradas_excluir_produto
 from backend.controladores.produto.excluir_controlador import excluir_produto_back
+from backend.controladores.produto.excluir_controlador import buscar_produto_back
 
-from backend.models.produto import Produto
 
 botao_buscar_apertado = False
 
@@ -17,35 +17,26 @@ def criar_janela_excluir_produto():
 
     def buscar_produto_gui():
 
-        if not entry_codigo_produto_excluir.get().split():
-            messagebox.showerror("Erro", "Preencha o Código do Produto.")
-            entry_codigo_produto_excluir.focus_set()
-            return None
-
         global botao_buscar_apertado
 
-        resultados = Produto.buscar_produto(entry_codigo_produto_excluir.get().strip())
+        codigo_produto = entry_codigo_produto_excluir
 
-        
-
-        if resultados:
-            pass
-        else:
-            messagebox.showinfo("Aviso!", "Produto Não Encontrado.")
-            entry_codigo_produto_excluir.focus_set()
+        valido, resposta = buscar_produto_back(codigo_produto.get().strip())
+        if not valido:
+            messagebox.showerror("Erro", resposta)
+            codigo_produto.focus_set()
             return None
-
-
-        entry_descricao_excluir.insert(0, resultados[1])
-        entry_subdescricao_excluir.insert(0, resultados[2])
-        entry_unidade_medida_excluir.insert(0, resultados[4])
-        entry_itens_embalagem_produtos_excluir.insert(0, resultados[5])
-        entry_codigo_barras_excluir.insert(0, resultados[6])
-        entry_grupo_produtos_excluir.insert(0, resultados[7])
-        entry_categorias_produtos_excluir.insert(0, resultados[8])
-        entry_marca_produtos_excluir.insert(0, resultados[9])
-        entry_itens_pallete_excluir.insert(0, resultados[10])
-        entry_itens_lastro_excluir.insert(0, resultados[11])
+        
+        entry_descricao_excluir.insert(0, resposta[1])
+        entry_subdescricao_excluir.insert(0, resposta[2])
+        entry_unidade_medida_excluir.insert(0, resposta[4])
+        entry_itens_embalagem_produtos_excluir.insert(0, resposta[5])
+        entry_codigo_barras_excluir.insert(0, resposta[6])
+        entry_grupo_produtos_excluir.insert(0, resposta[7])
+        entry_categorias_produtos_excluir.insert(0, resposta[8])
+        entry_marca_produtos_excluir.insert(0, resposta[9])
+        entry_itens_pallete_excluir.insert(0, resposta[10])
+        entry_itens_lastro_excluir.insert(0, resposta[11])
 
         botao_buscar_apertado = True
 
@@ -89,7 +80,7 @@ def criar_janela_excluir_produto():
             return None
         
         excluir_produto_back(codigo_produto)
-        
+
         
         limpar_entradas_excluir_produto([
             codigo_produto,
