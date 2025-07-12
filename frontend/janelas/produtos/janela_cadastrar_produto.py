@@ -4,7 +4,7 @@ from tkinter import messagebox
 
 
 from backend.binds.configuracao_binds import configurar_binds
-from backend.validadores.produtos.cadastrar_produto import validar_formulario_cadastro_produto
+from backend.validadores.produtos.cadastrar_produto import validar_formulario_produto
 from servicos.servico_produtos import produto_exite
 from backend.models.produto import Produto
 
@@ -19,7 +19,7 @@ def criar_janela_cadastrar_produto():
             entry_codigo_produto_cadastrar.focus_set()
             return None
     
-        valido, mensagem = validar_formulario_cadastro_produto(
+        valido, mensagem = validar_formulario_produto(
             entry_codigo_produto_cadastrar.get().strip(),
             entry_descricao_cadastrar.get().strip(),
             entry_subdescricao_cadastar.get().strip(),

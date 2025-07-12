@@ -1,4 +1,4 @@
-def validar_formulario_cadastro_produto(
+def validar_formulario_produto(
         codigo_produto,
         descricao,
         subdescricao,
