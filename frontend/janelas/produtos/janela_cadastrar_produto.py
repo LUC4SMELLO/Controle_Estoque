@@ -57,6 +57,21 @@ def criar_janela_cadastrar_produto():
         messagebox.showinfo("Sucesso!", "Produto Cadastrado.")
         entry_codigo_produto_cadastrar.focus_set()
 
+        limpar_entradas_cadastro_produto()
+
+    def limpar_entradas_cadastro_produto():
+        entry_codigo_produto_cadastrar.delete(0, tk.END)
+        entry_descricao_cadastrar.delete(0, tk.END)
+        entry_subdescricao_cadastar.delete(0, tk.END)
+        entry_unidade_medida_cadastrar.delete(0, tk.END)
+        entry_itens_embalagem_produtos_cadastrar.delete(0, tk.END)
+        entry_codigo_barras_cadastrar.delete(0, tk.END)
+        entry_grupo_produtos_cadastrar.delete(0, tk.END)
+        entry_categorias_produtos_cadastrar.delete(0, tk.END)
+        entry_marca_produtos_cadastrar.delete(0, tk.END)
+        entry_itens_pallete_cadastrar.delete(0, tk.END)
+        entry_itens_lastro_cadastrar.delete(0, tk.END)
+
 
 
     janela_cadastrar_produtos = tk.Toplevel()
