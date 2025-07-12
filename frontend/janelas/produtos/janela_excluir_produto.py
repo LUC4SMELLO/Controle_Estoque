@@ -1,15 +1,73 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 
 from backend.binds.configuracao_binds import configurar_binds
 
-def excluir_produto_gui():
-    pass
+from backend.validadores.produtos.formulario_produto import validar_formulario_produto
 
-def buscar_produto_excluir_gui():
-    pass
+from backend.models.produto import Produto
+
+botao_buscar_apertado = False
 
 def criar_janela_excluir_produto():
+
+    def buscar_produto_gui():
+
+        if not entry_codigo_produto_excluir.get().split():
+            messagebox.showerror("Erro", "Preencha o Código do Produto.")
+            entry_codigo_produto_excluir.focus_set()
+            return None
+
+        global botao_buscar_apertado
+
+        resultados = Produto.buscar_produto(entry_codigo_produto_excluir.get().strip())
+
+        entry_descricao_excluir.insert(0, resultados[1])
+        entry_subdescricao_excluir.insert(0, resultados[2])
+        entry_unidade_medida_excluir.insert(0, resultados[4])
+        entry_itens_embalagem_produtos_excluir.insert(0, resultados[5])
+        entry_codigo_barras_excluir.insert(0, resultados[6])
+        entry_grupo_produtos_excluir.insert(0, resultados[7])
+        entry_categorias_produtos_excluir.insert(0, resultados[8])
+        entry_marca_produtos_excluir.insert(0, resultados[9])
+        entry_itens_pallete_excluir.insert(0, resultados[10])
+        entry_itens_lastro_excluir.insert(0, resultados[11])
+
+        botao_buscar_apertado = True
+
+    def excluir_produto_gui():
+
+        global botao_buscar_apertado
+
+        valido, mensagem = validar_formulario_produto(
+            entry_codigo_produto_excluir,
+            entry_descricao_excluir,
+            entry_subdescricao_excluir,
+            entry_unidade_medida_excluir,
+            entry_itens_embalagem_produtos_excluir,
+            entry_codigo_barras_excluir,
+            entry_grupo_produtos_excluir,
+            entry_categorias_produtos_excluir,
+            entry_marca_produtos_excluir,
+            entry_itens_pallete_excluir,
+            entry_itens_lastro_excluir
+        )
+        if not valido:
+            messagebox.showerror("Erro", mensagem)
+            entry_codigo_produto_excluir.focus_set()
+            return None
+
+        if botao_buscar_apertado:
+            pass
+        if not botao_buscar_apertado:
+            messagebox.showerror("Erro", "Busque o Produto Primeiro.")
+            entry_codigo_produto_excluir.focus_set()
+            return None
+        
+        botao_buscar_apertado = False
+        
+            
 
     janela_excluir_produtos = tk.Toplevel()
     janela_excluir_produtos.title("Excluir Produto")
@@ -24,7 +82,7 @@ def criar_janela_excluir_produto():
     entry_codigo_produto_excluir = tk.Entry(janela_excluir_produtos, width=7, font=("Arial", 10))
     entry_codigo_produto_excluir.place(x=110, y=10)
 
-    botao_buscar_produto_excluir = tk.Button(janela_excluir_produtos, text="Buscar", font=("Arial", 10, "bold"), command=buscar_produto_excluir_gui)
+    botao_buscar_produto_excluir = tk.Button(janela_excluir_produtos, text="Buscar", font=("Arial", 10, "bold"), command=buscar_produto_gui)
     botao_buscar_produto_excluir.place(x=170, y=6)
 
     label_descricao_excluir = tk.Label(janela_excluir_produtos, text="Descrição:", font=("Arial", 10, "bold"))
@@ -250,6 +308,6 @@ def criar_janela_excluir_produto():
         botao_confirmar_excluir
     ]
 
-    acoes_intermediarias = [None, buscar_produto_excluir_gui, None, None, None, None, None, None, None, None, None, None, None, None]
+    acoes_intermediarias = [None, None, None, None, None, None, None, None, None, None, None, None, None, None]
 
     configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultima_acao=excluir_produto_gui)

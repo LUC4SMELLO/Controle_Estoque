@@ -29,4 +29,6 @@ produto2 = Produto(2,
 
 
 todos_produtos = Produto.listar_todos_produtos()
-print(todos_produtos)
+
+
+print(Produto.buscar_produto(1))
