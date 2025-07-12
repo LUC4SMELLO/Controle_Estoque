@@ -65,6 +65,9 @@ def criar_janela_excluir_produto():
             entry_codigo_produto_excluir.focus_set()
             return None
         
+        Produto.excluir_produto(entry_codigo_produto_excluir.get().strip())
+        messagebox.showinfo("Sucesso!", "Produto Excluído.")
+
         botao_buscar_apertado = False
         
             
