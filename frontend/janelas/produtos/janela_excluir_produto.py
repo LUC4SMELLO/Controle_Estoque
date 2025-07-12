@@ -22,8 +22,16 @@ def criar_janela_excluir_produto():
         global botao_buscar_apertado
 
         resultados = Produto.buscar_produto(entry_codigo_produto_excluir.get().strip())
-
+        
         limpar_entradas_excluir_produto(limpar_codigo_produto=False)
+
+        if resultados:
+            pass
+        else:
+            messagebox.showinfo("Aviso!", "Produto Não Encontrado.")
+            entry_codigo_produto_excluir.focus_set()
+            return None
+
 
         entry_descricao_excluir.insert(0, resultados[1])
         entry_subdescricao_excluir.insert(0, resultados[2])
@@ -332,6 +340,6 @@ def criar_janela_excluir_produto():
         botao_confirmar_excluir
     ]
 
-    acoes_intermediarias = [None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+    acoes_intermediarias = [None, buscar_produto_gui, None, None, None, None, None, None, None, None, None, None, None, None]
 
     configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultima_acao=excluir_produto_gui)
