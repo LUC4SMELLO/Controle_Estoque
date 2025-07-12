@@ -116,7 +116,8 @@ class Produto:
         conexao.commit()
         conexao.close()
     
-    def excluir_produto(self):
+    @staticmethod
+    def excluir_produto(codigo_produto):
         conexao = conectar_banco_de_dados_produtos()
         cursor = conexao.cursor()
 
@@ -124,7 +125,7 @@ class Produto:
         """
         DELETE FROM TabelaProdutos
         WHERE codigo_produto = ?
-        """, (self.codigo_produto,)
+        """, (codigo_produto,)
         )
 
         conexao.commit()
