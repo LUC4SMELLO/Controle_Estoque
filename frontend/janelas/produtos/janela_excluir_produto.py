@@ -6,6 +6,7 @@ from backend.binds.configuracao_binds import configurar_binds
 
 from backend.validadores.produtos.formulario_produto import validar_formulario_produto
 
+from backend.controladores.produto.excluir_controlador import limpar_entradas_excluir_produto
 from backend.controladores.produto.excluir_controlador import excluir_produto_back
 
 from backend.models.produto import Produto
@@ -25,7 +26,7 @@ def criar_janela_excluir_produto():
 
         resultados = Produto.buscar_produto(entry_codigo_produto_excluir.get().strip())
 
-        limpar_entradas_excluir_produto(limpar_codigo_produto=False)
+        
 
         if resultados:
             pass
@@ -52,17 +53,17 @@ def criar_janela_excluir_produto():
 
         global botao_buscar_apertado
 
-        codigo_produto = entry_codigo_produto_excluir.get().strip()
-        descricao = entry_descricao_excluir.get().strip()
-        subdescricao = entry_subdescricao_excluir.get().strip()
-        unidade_medida = entry_unidade_medida_excluir.get().strip()
-        itens_embalagem = entry_itens_embalagem_produtos_excluir.get().strip()
-        codigo_barras = entry_codigo_barras_excluir.get().strip()
-        grupo = entry_grupo_produtos_excluir.get().strip()
-        categoria = entry_categorias_produtos_excluir.get().strip()
-        marca = entry_marca_produtos_excluir.get().strip()
-        itens_pallete = entry_itens_pallete_excluir.get().strip()
-        itens_lastro = entry_itens_lastro_excluir.get().strip()
+        codigo_produto = entry_codigo_produto_excluir
+        descricao = entry_descricao_excluir
+        subdescricao = entry_subdescricao_excluir
+        unidade_medida = entry_unidade_medida_excluir
+        itens_embalagem = entry_itens_embalagem_produtos_excluir
+        codigo_barras = entry_codigo_barras_excluir
+        grupo = entry_grupo_produtos_excluir
+        categoria = entry_categorias_produtos_excluir
+        marca = entry_marca_produtos_excluir
+        itens_pallete = entry_itens_pallete_excluir
+        itens_lastro = entry_itens_lastro_excluir
 
         valido, mensagem = validar_formulario_produto(
             codigo_produto,
@@ -88,29 +89,25 @@ def criar_janela_excluir_produto():
             return None
         
         excluir_produto_back(codigo_produto)
-        messagebox.showinfo("Sucesso!", "Produto Excluído.")
-        entry_codigo_produto_excluir.focus_set()
-
-        limpar_entradas_excluir_produto(limpar_codigo_produto=True)
+        
+        
+        limpar_entradas_excluir_produto([
+            codigo_produto,
+            descricao,
+            subdescricao,
+            unidade_medida,
+            itens_embalagem,
+            codigo_barras,
+            grupo,
+            categoria,
+            marca,
+            itens_pallete,
+            itens_lastro
+        ])        
 
         botao_buscar_apertado = False
         
-    def limpar_entradas_excluir_produto(limpar_codigo_produto: bool):
 
-        if limpar_codigo_produto:
-            entry_codigo_produto_excluir.delete(0, tk.END)
-        else:
-            pass
-        entry_descricao_excluir.delete(0, tk.END)
-        entry_subdescricao_excluir.delete(0, tk.END)
-        entry_unidade_medida_excluir.delete(0, tk.END)
-        entry_itens_embalagem_produtos_excluir.delete(0, tk.END)
-        entry_codigo_barras_excluir.delete(0, tk.END)
-        entry_grupo_produtos_excluir.delete(0, tk.END)
-        entry_categorias_produtos_excluir.delete(0, tk.END)
-        entry_marca_produtos_excluir.delete(0, tk.END)
-        entry_itens_pallete_excluir.delete(0, tk.END)
-        entry_itens_lastro_excluir.delete(0, tk.END)
 
 
     janela_excluir_produtos = tk.Toplevel()
