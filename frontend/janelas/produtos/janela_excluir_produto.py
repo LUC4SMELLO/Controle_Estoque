@@ -23,6 +23,8 @@ def criar_janela_excluir_produto():
 
         resultados = Produto.buscar_produto(entry_codigo_produto_excluir.get().strip())
 
+        limpar_entradas_excluir_produto(limpar_codigo_produto=False)
+
         entry_descricao_excluir.insert(0, resultados[1])
         entry_subdescricao_excluir.insert(0, resultados[2])
         entry_unidade_medida_excluir.insert(0, resultados[4])
@@ -67,10 +69,29 @@ def criar_janela_excluir_produto():
         
         Produto.excluir_produto(entry_codigo_produto_excluir.get().strip())
         messagebox.showinfo("Sucesso!", "Produto Excluído.")
+        entry_codigo_produto_excluir.focus_set()
+
+        limpar_entradas_excluir_produto(limpar_codigo_produto=True)
 
         botao_buscar_apertado = False
         
-            
+    def limpar_entradas_excluir_produto(limpar_codigo_produto: bool):
+
+        if limpar_codigo_produto:
+            entry_codigo_produto_excluir.delete(0, tk.END)
+        else:
+            pass
+        entry_descricao_excluir.delete(0, tk.END)
+        entry_subdescricao_excluir.delete(0, tk.END)
+        entry_unidade_medida_excluir.delete(0, tk.END)
+        entry_itens_embalagem_produtos_excluir.delete(0, tk.END)
+        entry_codigo_barras_excluir.delete(0, tk.END)
+        entry_grupo_produtos_excluir.delete(0, tk.END)
+        entry_categorias_produtos_excluir.delete(0, tk.END)
+        entry_marca_produtos_excluir.delete(0, tk.END)
+        entry_itens_pallete_excluir.delete(0, tk.END)
+        entry_itens_lastro_excluir.delete(0, tk.END)
+
 
     janela_excluir_produtos = tk.Toplevel()
     janela_excluir_produtos.title("Excluir Produto")
