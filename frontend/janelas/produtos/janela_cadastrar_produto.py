@@ -4,10 +4,9 @@ from tkinter import messagebox
 
 
 from backend.binds.configuracao_binds import configurar_binds
-
 from backend.validadores.produtos.cadastrar_produto import validar_formulario_cadastro_produto
-
 from servicos.servico_produtos import produto_exite
+from backend.models.produto import Produto
 
 
 def criar_janela_cadastrar_produto():
@@ -31,12 +30,32 @@ def criar_janela_cadastrar_produto():
             entry_categorias_produtos_cadastrar.get().strip(),
             entry_marca_produtos_cadastrar.get().strip(),
             entry_itens_pallete_cadastrar.get().strip(),
-            entry_itens_pallete_cadastrar.get().strip()
+            entry_itens_lastro_cadastrar.get().strip()
         )
         if not valido:
             messagebox.showerror("Erro", mensagem)
             entry_codigo_produto_cadastrar.focus_set()
             return None
+
+        novo_produto = Produto(
+            entry_codigo_produto_cadastrar.get().strip(),
+            entry_descricao_cadastrar.get().strip(),
+            entry_subdescricao_cadastar.get().strip(),
+            produto_ativo.get(),
+            entry_unidade_medida_cadastrar.get().strip(),
+            entry_itens_embalagem_produtos_cadastrar.get().strip(),
+            entry_codigo_barras_cadastrar.get().strip(),
+            entry_grupo_produtos_cadastrar.get().strip(),
+            entry_categorias_produtos_cadastrar.get().strip(),
+            entry_marca_produtos_cadastrar.get().strip(),
+            entry_itens_pallete_cadastrar.get().strip(),
+            entry_itens_lastro_cadastrar.get().strip()
+            )
+        
+        novo_produto.salvar_produto()
+
+        messagebox.showinfo("Sucesso!", "Produto Cadastrado.")
+        entry_codigo_produto_cadastrar.focus_set()
 
 
 
