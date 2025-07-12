@@ -6,6 +6,8 @@ from backend.binds.configuracao_binds import configurar_binds
 
 from backend.validadores.produtos.formulario_produto import validar_formulario_produto
 
+from backend.controladores.produto.excluir_controlador import excluir_produto_back
+
 from backend.models.produto import Produto
 
 botao_buscar_apertado = False
@@ -22,7 +24,7 @@ def criar_janela_excluir_produto():
         global botao_buscar_apertado
 
         resultados = Produto.buscar_produto(entry_codigo_produto_excluir.get().strip())
-        
+
         limpar_entradas_excluir_produto(limpar_codigo_produto=False)
 
         if resultados:
@@ -50,32 +52,42 @@ def criar_janela_excluir_produto():
 
         global botao_buscar_apertado
 
+        codigo_produto = entry_codigo_produto_excluir.get().strip()
+        descricao = entry_descricao_excluir.get().strip()
+        subdescricao = entry_subdescricao_excluir.get().strip()
+        unidade_medida = entry_unidade_medida_excluir.get().strip()
+        itens_embalagem = entry_itens_embalagem_produtos_excluir.get().strip()
+        codigo_barras = entry_codigo_barras_excluir.get().strip()
+        grupo = entry_grupo_produtos_excluir.get().strip()
+        categoria = entry_categorias_produtos_excluir.get().strip()
+        marca = entry_marca_produtos_excluir.get().strip()
+        itens_pallete = entry_itens_pallete_excluir.get().strip()
+        itens_lastro = entry_itens_lastro_excluir.get().strip()
+
         valido, mensagem = validar_formulario_produto(
-            entry_codigo_produto_excluir,
-            entry_descricao_excluir,
-            entry_subdescricao_excluir,
-            entry_unidade_medida_excluir,
-            entry_itens_embalagem_produtos_excluir,
-            entry_codigo_barras_excluir,
-            entry_grupo_produtos_excluir,
-            entry_categorias_produtos_excluir,
-            entry_marca_produtos_excluir,
-            entry_itens_pallete_excluir,
-            entry_itens_lastro_excluir
+            codigo_produto,
+            descricao,
+            subdescricao,
+            unidade_medida,
+            itens_embalagem,
+            codigo_barras,
+            grupo,
+            categoria,
+            marca,
+            itens_pallete,
+            itens_lastro
         )
         if not valido:
             messagebox.showerror("Erro", mensagem)
             entry_codigo_produto_excluir.focus_set()
             return None
 
-        if botao_buscar_apertado:
-            pass
         if not botao_buscar_apertado:
             messagebox.showerror("Erro", "Busque o Produto Primeiro.")
             entry_codigo_produto_excluir.focus_set()
             return None
         
-        Produto.excluir_produto(entry_codigo_produto_excluir.get().strip())
+        excluir_produto_back(codigo_produto)
         messagebox.showinfo("Sucesso!", "Produto Excluído.")
         entry_codigo_produto_excluir.focus_set()
 
