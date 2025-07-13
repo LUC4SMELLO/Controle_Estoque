@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 
 from backend.constantes.produtos import (
     UNIDADE_MEDIDA_PRODUTOS,
@@ -8,16 +9,56 @@ from backend.constantes.produtos import (
     MARCAS_PRODUTOS
 )
 
+from backend.controladores.produto.alterar_controlador import alterar_produto_back, buscar_produto_back
+
 
 from backend.binds.configuracao_binds import configurar_binds
 
-def alterar_produto_gui():
-    print("produto alterado")
-
-def buscar_produto_alterar_gui():
-    print("produto buscado")
 
 def criar_janela_alterar_produto():
+
+    def buscar_produto_alterar_gui():
+
+        global botao_buscar_apertado
+
+        codigo_produto = entry_codigo_produto_alterar
+
+        valido, resposta = buscar_produto_back(codigo_produto.get().strip())
+        if not valido:
+            messagebox.showerror("Erro", resposta)
+            codigo_produto.focus_set()
+            return None
+        
+        entry_descricao_alterar.insert(0, resposta[1])
+        entry_subdescricao_alterar.insert(0, resposta[2])
+        entry_unidade_medida_alterar.insert(0, resposta[4])
+        entry_itens_embalagem_produtos_alterar.insert(0, resposta[5])
+        entry_codigo_barras_alterar.insert(0, resposta[6])
+        entry_grupo_produtos_alterar.insert(0, resposta[7])
+        entry_categorias_produtos_alterar.insert(0, resposta[8])
+        entry_marca_produtos_alterar.insert(0, resposta[9])
+        entry_itens_pallete_alterar.insert(0, resposta[10])
+        entry_itens_lastro_alterar.insert(0, resposta[11])
+
+        botao_buscar_apertado = True
+        
+
+    def alterar_produto_gui():
+
+        alterar_produto_back(
+        entry_codigo_produto_alterar,
+        entry_descricao_alterar,
+        entry_subdescricao_alterar,
+        entry_produto_ativo_alterar,
+        entry_unidade_medida_alterar,
+        entry_itens_embalagem_produtos_alterar,
+        entry_codigo_barras_alterar,
+        entry_grupo_produtos_alterar,
+        entry_categorias_produtos_alterar,
+        entry_marca_produtos_alterar,
+        entry_itens_pallete_alterar,
+        entry_itens_lastro_alterar,
+    )
 
     janela_alterar_produtos = tk.Toplevel()
     janela_alterar_produtos.title("Alterar Produto")
