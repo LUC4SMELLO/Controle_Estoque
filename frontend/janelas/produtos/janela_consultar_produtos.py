@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 
 from backend.constantes.produtos import (
     UNIDADE_MEDIDA_PRODUTOS,
@@ -10,10 +11,46 @@ from backend.constantes.produtos import (
 
 from backend.binds.configuracao_binds import configurar_binds
 
-def consultar_produto_gui():
-    pass
+from backend.controladores.produto.consultar_controlador import buscar_produto_back
+
 
 def criar_janela_consultar_produto():
+
+    def consultar_produto_gui():
+
+        codigo_produto = entry_codigo_produto_consultar
+
+        entry_descricao_consultar.delete(0, tk.END)
+        entry_subdescricao_consultar.delete(0, tk.END)
+        entry_unidade_medida_consultar.delete(0, tk.END)
+        entry_itens_embalagem_produtos_consultar.delete(0, tk.END)
+        entry_codigo_barras_consultar.delete(0, tk.END)
+        entry_grupo_produtos_consultar.delete(0, tk.END)
+        entry_categorias_produtos_consultar.delete(0, tk.END)
+        entry_marca_produtos_consultar.delete(0, tk.END)
+        entry_itens_pallete_consultar.delete(0, tk.END)
+        entry_itens_lastro_consultar.delete(0, tk.END)
+        
+        valido, resposta = buscar_produto_back(codigo_produto.get().strip())
+        if not valido:
+            messagebox.showerror("Erro", resposta)
+            codigo_produto.focus_set()
+            return None
+        
+        
+        entry_descricao_consultar.insert(0, resposta[1])
+        entry_subdescricao_consultar.insert(0, resposta[2])
+        entry_unidade_medida_consultar.insert(0, resposta[4])
+        entry_itens_embalagem_produtos_consultar.insert(0, resposta[5])
+        entry_codigo_barras_consultar.insert(0, resposta[6])
+        entry_grupo_produtos_consultar.insert(0, resposta[7])
+        entry_categorias_produtos_consultar.insert(0, resposta[8])
+        entry_marca_produtos_consultar.insert(0, resposta[9])
+        entry_itens_pallete_consultar.insert(0, resposta[10])
+        entry_itens_lastro_consultar.insert(0, resposta[11])
+
+
+        
 
     janela_consultar_produtos = tk.Toplevel()
     janela_consultar_produtos.title("Consultar Produto")
