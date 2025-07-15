@@ -9,11 +9,12 @@ from backend.constantes.produtos import (
     MARCAS_PRODUTOS
 )
 
-from backend.binds.configuracao_binds import configurar_binds
 from backend.validadores.produtos.formulario_produto import validar_formulario_produto
-from servicos.servico_produtos import produto_exite
-from backend.models.produto import Produto
 
+from backend.controladores.produto.cadastrar_controlador import cadastrar_produto_back
+from servicos.servico_produtos import produto_exite
+
+from backend.binds.configuracao_binds import configurar_binds
 
 def criar_janela_cadastrar_produto():
 
@@ -43,25 +44,22 @@ def criar_janela_cadastrar_produto():
             entry_codigo_produto_cadastrar.focus_set()
             return None
 
-        novo_produto = Produto(
-            entry_codigo_produto_cadastrar.get().strip(),
-            entry_descricao_cadastrar.get().strip(),
-            entry_subdescricao_cadastar.get().strip(),
-            produto_ativo.get(),
-            entry_unidade_medida_cadastrar.get().strip(),
-            entry_itens_embalagem_produtos_cadastrar.get().strip(),
-            entry_codigo_barras_cadastrar.get().strip(),
-            entry_grupo_produtos_cadastrar.get().strip(),
-            entry_categorias_produtos_cadastrar.get().strip(),
-            entry_marca_produtos_cadastrar.get().strip(),
-            entry_itens_pallete_cadastrar.get().strip(),
-            entry_itens_lastro_cadastrar.get().strip()
-            )
-        
-        novo_produto.salvar_produto()
+        cadastrar_produto_back(
+            entry_codigo_produto_cadastrar,
+            entry_descricao_cadastrar,
+            entry_subdescricao_cadastar,
+            produto_ativo,
+            entry_unidade_medida_cadastrar,
+            entry_itens_embalagem_produtos_cadastrar,
+            entry_codigo_barras_cadastrar,
+            entry_grupo_produtos_cadastrar,
+            entry_categorias_produtos_cadastrar,
+            entry_marca_produtos_cadastrar,
+            entry_itens_pallete_cadastrar,
+            entry_itens_lastro_cadastrar
 
-        messagebox.showinfo("Sucesso!", "Produto Cadastrado.")
-        entry_codigo_produto_cadastrar.focus_set()
+        )
+        
 
         limpar_entradas_cadastro_produto()
 
@@ -69,6 +67,7 @@ def criar_janela_cadastrar_produto():
         entry_codigo_produto_cadastrar.delete(0, tk.END)
         entry_descricao_cadastrar.delete(0, tk.END)
         entry_subdescricao_cadastar.delete(0, tk.END)
+        produto_ativo.set(False)
         entry_unidade_medida_cadastrar.delete(0, tk.END)
         entry_itens_embalagem_produtos_cadastrar.delete(0, tk.END)
         entry_codigo_barras_cadastrar.delete(0, tk.END)
