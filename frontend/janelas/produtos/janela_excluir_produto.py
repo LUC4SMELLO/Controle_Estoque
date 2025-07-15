@@ -9,14 +9,12 @@ from backend.constantes.produtos import (
     MARCAS_PRODUTOS
 )
 
-from backend.binds.configuracao_binds import configurar_binds
-
 from backend.validadores.produtos.formulario_produto import validar_formulario_produto
 
-from backend.controladores.produto.excluir_controlador import limpar_entradas_excluir_produto
 from backend.controladores.produto.excluir_controlador import excluir_produto_back
-from backend.controladores.produto.excluir_controlador import buscar_produto_back
+from backend.controladores.produto.consultar_controlador import buscar_produto_back
 
+from backend.binds.configuracao_binds import configurar_binds
 
 botao_buscar_apertado = False
 
@@ -28,6 +26,8 @@ def criar_janela_excluir_produto():
 
         codigo_produto = entry_codigo_produto_excluir
 
+        limpar_entradas_excluir_produto()
+
         valido, resposta = buscar_produto_back(codigo_produto.get().strip())
         if not valido:
             messagebox.showerror("Erro", resposta)
@@ -36,6 +36,7 @@ def criar_janela_excluir_produto():
         
         entry_descricao_excluir.insert(0, resposta[1])
         entry_subdescricao_excluir.insert(0, resposta[2])
+        produto_ativo.set(resposta[3])
         entry_unidade_medida_excluir.insert(0, resposta[4])
         entry_itens_embalagem_produtos_excluir.insert(0, resposta[5])
         entry_codigo_barras_excluir.insert(0, resposta[6])
@@ -89,22 +90,22 @@ def criar_janela_excluir_produto():
         excluir_produto_back(codigo_produto)
 
         
-        limpar_entradas_excluir_produto([
-            codigo_produto,
-            descricao,
-            subdescricao,
-            unidade_medida,
-            itens_embalagem,
-            codigo_barras,
-            grupo,
-            categoria,
-            marca,
-            itens_pallete,
-            itens_lastro
-        ])        
+        limpar_entradas_excluir_produto()
 
         botao_buscar_apertado = False
         
+    def limpar_entradas_excluir_produto():
+        entry_descricao_excluir.delete(0, tk.END)
+        entry_subdescricao_excluir.delete(0, tk.END)
+        produto_ativo.set(False)
+        entry_unidade_medida_excluir.delete(0, tk.END)
+        entry_itens_embalagem_produtos_excluir.delete(0, tk.END)
+        entry_codigo_barras_excluir.delete(0, tk.END)
+        entry_grupo_produtos_excluir.delete(0, tk.END)
+        entry_categorias_produtos_excluir.delete(0, tk.END)
+        entry_marca_produtos_excluir.delete(0, tk.END)
+        entry_itens_pallete_excluir.delete(0, tk.END)
+        entry_itens_lastro_excluir.delete(0, tk.END)
 
 
 
