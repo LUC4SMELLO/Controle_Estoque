@@ -150,6 +150,9 @@ class Produto:
 
         return resultado
     
+    def entrada_estoque_produto(self, valor: int):
+        self.quantidade_estoque += valor
+    
     @staticmethod
     def listar_todos_produtos():
         conexao = conectar_banco_de_dados_produtos()
