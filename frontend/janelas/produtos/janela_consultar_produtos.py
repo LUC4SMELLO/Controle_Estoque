@@ -22,6 +22,7 @@ def criar_janela_consultar_produto():
 
         entry_descricao_consultar.delete(0, tk.END)
         entry_subdescricao_consultar.delete(0, tk.END)
+        produto_ativo.set(False)
         entry_unidade_medida_consultar.delete(0, tk.END)
         entry_itens_embalagem_produtos_consultar.delete(0, tk.END)
         entry_codigo_barras_consultar.delete(0, tk.END)
@@ -40,6 +41,7 @@ def criar_janela_consultar_produto():
         
         entry_descricao_consultar.insert(0, resposta[1])
         entry_subdescricao_consultar.insert(0, resposta[2])
+        produto_ativo.set(resposta[3])
         entry_unidade_medida_consultar.insert(0, resposta[4])
         entry_itens_embalagem_produtos_consultar.insert(0, resposta[5])
         entry_codigo_barras_consultar.insert(0, resposta[6])
