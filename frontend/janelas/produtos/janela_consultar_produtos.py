@@ -9,9 +9,9 @@ from backend.constantes.produtos import (
     MARCAS_PRODUTOS
 )
 
-from backend.binds.configuracao_binds import configurar_binds
-
 from backend.controladores.produto.consultar_controlador import buscar_produto_back
+
+from backend.binds.configuracao_binds import configurar_binds
 
 
 def criar_janela_consultar_produto():

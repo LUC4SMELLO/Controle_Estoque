@@ -9,9 +9,10 @@ from backend.constantes.produtos import (
     MARCAS_PRODUTOS
 )
 
+from backend.validadores.produtos.formulario_produto import validar_formulario_produto
+
 from backend.controladores.produto.alterar_controlador import alterar_produto_back
 from backend.controladores.produto.consultar_controlador import buscar_produto_back
-from backend.validadores.produtos.formulario_produto import validar_formulario_produto
 
 from backend.binds.configuracao_binds import configurar_binds
 
