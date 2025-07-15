@@ -26,6 +26,7 @@ def criar_janela_alterar_produto():
 
         entry_descricao_alterar.delete(0, tk.END)
         entry_subdescricao_alterar.delete(0, tk.END)
+        produto_ativo.set(False)
         entry_unidade_medida_alterar.delete(0, tk.END)
         entry_itens_embalagem_produtos_alterar.delete(0, tk.END)
         entry_codigo_barras_alterar.delete(0, tk.END)
@@ -43,6 +44,7 @@ def criar_janela_alterar_produto():
         
         entry_descricao_alterar.insert(0, resposta[1])
         entry_subdescricao_alterar.insert(0, resposta[2])
+        produto_ativo.set(resposta[3])
         entry_unidade_medida_alterar.insert(0, resposta[4])
         entry_itens_embalagem_produtos_alterar.insert(0, resposta[5])
         entry_codigo_barras_alterar.insert(0, resposta[6])
