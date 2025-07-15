@@ -152,6 +152,9 @@ class Produto:
     
     def entrada_estoque_produto(self, valor: int):
         self.quantidade_estoque += valor
+
+    def saida_estoque_produto(self, valor: int):
+        self.quantidade_estoque -= valor
     
     @staticmethod
     def listar_todos_produtos():
