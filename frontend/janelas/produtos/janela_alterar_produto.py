@@ -9,8 +9,9 @@ from backend.constantes.produtos import (
     MARCAS_PRODUTOS
 )
 
-from backend.controladores.produto.alterar_controlador import alterar_produto_back, buscar_produto_back
-
+from backend.controladores.produto.alterar_controlador import alterar_produto_back
+from backend.controladores.produto.consultar_controlador import buscar_produto_back
+from backend.validadores.produtos.formulario_produto import validar_formulario_produto
 
 from backend.binds.configuracao_binds import configurar_binds
 
@@ -22,6 +23,17 @@ def criar_janela_alterar_produto():
         global botao_buscar_apertado
 
         codigo_produto = entry_codigo_produto_alterar
+
+        entry_descricao_alterar.delete(0, tk.END)
+        entry_subdescricao_alterar.delete(0, tk.END)
+        entry_unidade_medida_alterar.delete(0, tk.END)
+        entry_itens_embalagem_produtos_alterar.delete(0, tk.END)
+        entry_codigo_barras_alterar.delete(0, tk.END)
+        entry_grupo_produtos_alterar.delete(0, tk.END)
+        entry_categorias_produtos_alterar.delete(0, tk.END)
+        entry_marca_produtos_alterar.delete(0, tk.END)
+        entry_itens_pallete_alterar.delete(0, tk.END)
+        entry_itens_lastro_alterar.delete(0, tk.END)
 
         valido, resposta = buscar_produto_back(codigo_produto.get().strip())
         if not valido:
@@ -45,11 +57,29 @@ def criar_janela_alterar_produto():
 
     def alterar_produto_gui():
 
+        valido, mensagem = validar_formulario_produto(
+            entry_codigo_produto_alterar.get(),
+            entry_descricao_alterar.get(),
+            entry_subdescricao_alterar.get(),
+            entry_unidade_medida_alterar.get(),
+            entry_itens_embalagem_produtos_alterar.get(),
+            entry_codigo_barras_alterar.get(),
+            entry_grupo_produtos_alterar.get(),
+            entry_categorias_produtos_alterar.get(),
+            entry_marca_produtos_alterar.get(),
+            entry_itens_pallete_alterar.get(),
+            entry_itens_lastro_alterar.get()    
+        )
+        if not valido:
+            messagebox.showerror("Erro", mensagem)
+            entry_codigo_produto_alterar.focus_set()
+            return None
+
         alterar_produto_back(
         entry_codigo_produto_alterar,
         entry_descricao_alterar,
         entry_subdescricao_alterar,
-        entry_produto_ativo_alterar,
+        produto_ativo,
         entry_unidade_medida_alterar,
         entry_itens_embalagem_produtos_alterar,
         entry_codigo_barras_alterar,
@@ -58,7 +88,18 @@ def criar_janela_alterar_produto():
         entry_marca_produtos_alterar,
         entry_itens_pallete_alterar,
         entry_itens_lastro_alterar,
-    )
+    )   
+        entry_codigo_produto_alterar.delete(0, tk.END)
+        entry_descricao_alterar.delete(0, tk.END)
+        entry_subdescricao_alterar.delete(0, tk.END)
+        entry_unidade_medida_alterar.delete(0, tk.END)
+        entry_itens_embalagem_produtos_alterar.delete(0, tk.END)
+        entry_codigo_barras_alterar.delete(0, tk.END)
+        entry_grupo_produtos_alterar.delete(0, tk.END)
+        entry_categorias_produtos_alterar.delete(0, tk.END)
+        entry_marca_produtos_alterar.delete(0, tk.END)
+        entry_itens_pallete_alterar.delete(0, tk.END)
+        entry_itens_lastro_alterar.delete(0, tk.END)
 
     janela_alterar_produtos = tk.Toplevel()
     janela_alterar_produtos.title("Alterar Produto")

@@ -23,7 +23,7 @@ def alterar_produto_back(
         codigo_produto.get().strip(),
         descricao.get().strip(),
         subdescrica.get().strip(),
-        produto_ativo,
+        produto_ativo.get(),
         unidade_medida.get().strip(),
         itens_embalagem_produtos.get().strip(),
         codigo_barras.get().strip(),
@@ -37,16 +37,3 @@ def alterar_produto_back(
 
     messagebox.showinfo("Sucesso!", "Produto Alterado.")
     codigo_produto.focus_set()
-
-
-def buscar_produto_back(codigo: str):
-    
-    if not codigo.strip():
-        return False, "Preencha o Código do Produto."
-
-    resultado = Produto.buscar_produto(codigo.strip())
-
-    if not resultado:
-        return False, "Produto Não Encontrado."
-
-    return True, resultado
