@@ -172,6 +172,20 @@ class Produto:
 
     def saida_estoque_produto(self, valor: int):
         self.quantidade_estoque -= valor
+
+        conexao = conectar_banco_de_dados_produtos()
+        cursor = conexao.cursor()
+
+        cursor.execute(
+        """
+        UPDATE TabelaProdutos
+        SET quantidade_estoque = ?
+        WHERE codigo_produto = ?
+        """, (self.quantidade_estoque, self.codigo_produto)
+        )
+
+        conexao.commit()
+        conexao.close()
     
     @staticmethod
     def listar_todos_produtos():
