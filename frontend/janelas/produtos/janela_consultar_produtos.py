@@ -31,6 +31,7 @@ def criar_janela_consultar_produto():
         entry_marca_produtos_consultar.delete(0, tk.END)
         entry_itens_pallete_consultar.delete(0, tk.END)
         entry_itens_lastro_consultar.delete(0, tk.END)
+        entry_estoque_consultar.delete(0, tk.END)
         
         valido, resposta = buscar_produto_back(codigo_produto.get().strip())
         if not valido:
@@ -50,6 +51,7 @@ def criar_janela_consultar_produto():
         entry_marca_produtos_consultar.insert(0, resposta[9])
         entry_itens_pallete_consultar.insert(0, resposta[10])
         entry_itens_lastro_consultar.insert(0, resposta[11])
+        entry_estoque_consultar.insert(0, resposta[12])
 
 
         
