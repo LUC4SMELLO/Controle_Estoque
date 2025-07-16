@@ -54,7 +54,8 @@ class Produto:
         categoria,
         marca,
         itens_pallete,
-        itens_lastro)
+        itens_lastro,
+        quantidade_estoque)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
             (
@@ -70,6 +71,7 @@ class Produto:
                 self.marca,
                 self.itens_pallete,
                 self.itens_lastro,
+                self.quantidade_estoque
             ),
         )
 
