@@ -141,6 +141,12 @@ def criar_janela_consultar_produto():
     entry_marca_produtos_consultar["values"] = MARCAS_PRODUTOS
     entry_marca_produtos_consultar.place(x=110, y=260)
 
+    label_estoque_consultar = tk.Label(janela_consultar_produtos, text="Estoque:", font=("Arial", 10, "bold"))
+    label_estoque_consultar.place(x=558, y=260)
+
+    entry_estoque_consultar = tk.Entry(janela_consultar_produtos, width=9, font=("Arial", 10, "bold"))
+    entry_estoque_consultar.place(x=625, y=260)
+
     linha_horizontal_inferior = tk.Frame(janela_consultar_produtos, background="silver", height=5, width=800)
     linha_horizontal_inferior.place(x=0, y=550)
 
