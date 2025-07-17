@@ -1,6 +1,6 @@
 from backend.models.produto import Produto
 
-produto = Produto(1,
+produto = Produto(2,
                   "Refrigerante",
                   "Lata",
                   True,
@@ -27,8 +27,8 @@ produto2 = Produto(2,
                   45
                 )
 
+produto.entrada_estoque_produto(1000)
 
-todos_produtos = Produto.listar_todos_produtos()
 
 
-print(Produto.buscar_produto(1))
+print(Produto.buscar_produto(2))
