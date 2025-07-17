@@ -2,12 +2,18 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 
+from backend.controladores.estoque.saida_controlador import saida_produto_back
+
 from backend.binds.configuracao_binds import configurar_binds 
 
 def criar_janela_saida_produtos():
 
     def saida_produto_gui():
-        pass
+        
+        codigo_produto = entry_codigo_produto_saida
+        quantidade = entry_quantidade_saida
+
+        saida_produto_back(codigo_produto, quantidade)
 
     janela_saida_produtos = tk.Toplevel()
     janela_saida_produtos.title("Saída Produto")
@@ -41,7 +47,7 @@ def criar_janela_saida_produtos():
     linha_horizontal_inferior = tk.Frame(janela_saida_produtos,  background="silver", width=500, height=5)
     linha_horizontal_inferior.place(x=0, y=250)
 
-    botao_confirmar_saida = tk.Button(janela_saida_produtos, text="Confirmar", font=("Arial", 10, "bold"))
+    botao_confirmar_saida = tk.Button(janela_saida_produtos, text="Confirmar", font=("Arial", 10, "bold"), command=saida_produto_gui)
     botao_confirmar_saida.place(x=300, y=265)
 
     botao_cancelar_saida = tk.Button(janela_saida_produtos, text="Cancelar", font=("Arial", 10, "bold"))
