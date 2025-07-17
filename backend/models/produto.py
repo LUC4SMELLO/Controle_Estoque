@@ -21,6 +21,7 @@ class Produto:
         marca,
         itens_pallete,
         itens_lastro,
+        quantidade_estoque = 0
     ):
         self.codigo_produto = codigo_produto
         self.descricao = descricao
@@ -34,7 +35,7 @@ class Produto:
         self.marca = marca
         self.itens_pallete = itens_pallete
         self.itens_lastro = itens_lastro
-        self.quantidade_estoque = 0
+        self.quantidade_estoque = quantidade_estoque
 
     def salvar_produto(self):
 
@@ -150,7 +151,7 @@ class Produto:
         conexao.commit()
         conexao.close()
 
-        return resultado
+        return Produto(*resultado)
     
     def entrada_estoque_produto(self, valor: int):
         self.quantidade_estoque += valor
