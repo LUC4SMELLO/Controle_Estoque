@@ -20,12 +20,20 @@ def criar_janela_entrada_produtos():
         )
         if not valido:
             messagebox.showerror("Erro", mensagem)
+            entry_data_entrada.focus_set()
             return None
 
         codigo_produto = entry_codigo_produto_entrada
         quantidade = entry_quantidade_entrada
         
         entrada_produto_back(codigo_produto, quantidade)
+        entry_data_entrada.focus_set()
+
+        entry_data_entrada.delete(0, tk.END)
+        entry_codigo_produto_entrada.delete(0, tk.END)
+        entry_quantidade_entrada.delete(0, tk.END)
+        entry_motivo_entrada.delete("1.0", tk.END)
+
 
 
     janela_entrada_produtos = tk.Toplevel()
