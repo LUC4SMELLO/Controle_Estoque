@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 
+from backend.validadores.estoque.formulario_entrada_saida import validar_formulario_entrada_saida_estoque
+
 from backend.controladores.estoque.saida_controlador import saida_produto_back
 
 from backend.binds.configuracao_binds import configurar_binds 
@@ -9,11 +11,23 @@ from backend.binds.configuracao_binds import configurar_binds
 def criar_janela_saida_produtos():
 
     def saida_produto_gui():
+
+        valido, mensagem = validar_formulario_entrada_saida_estoque(
+            entry_data_saida.get().strip(),
+            entry_codigo_produto_saida.get().strip(),
+            entry_quantidade_saida.get().strip(),
+            entry_motivo_saida.get("1.0", tk.END)
+        )
+        if not valido:
+            messagebox.showerror("Erro", mensagem)
+            entry_data_saida.focus_set()
+            return None
         
         codigo_produto = entry_codigo_produto_saida
         quantidade = entry_quantidade_saida
 
         saida_produto_back(codigo_produto, quantidade)
+        entry_data_saida.focus_set()
 
     janela_saida_produtos = tk.Toplevel()
     janela_saida_produtos.title("Saída Produto")
