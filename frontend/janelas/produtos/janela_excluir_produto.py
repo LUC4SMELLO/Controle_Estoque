@@ -34,17 +34,17 @@ def criar_janela_excluir_produto():
             codigo_produto.focus_set()
             return None
         
-        entry_descricao_excluir.insert(0, resposta[1])
-        entry_subdescricao_excluir.insert(0, resposta[2])
-        produto_ativo.set(resposta[3])
-        entry_unidade_medida_excluir.insert(0, resposta[4])
-        entry_itens_embalagem_produtos_excluir.insert(0, resposta[5])
-        entry_codigo_barras_excluir.insert(0, resposta[6])
-        entry_grupo_produtos_excluir.insert(0, resposta[7])
-        entry_categorias_produtos_excluir.insert(0, resposta[8])
-        entry_marca_produtos_excluir.insert(0, resposta[9])
-        entry_itens_pallete_excluir.insert(0, resposta[10])
-        entry_itens_lastro_excluir.insert(0, resposta[11])
+        entry_descricao_excluir.insert(0, resposta.descricao)
+        entry_subdescricao_excluir.insert(0, resposta.subdescricao)
+        produto_ativo.set(resposta.produto_ativo)
+        entry_unidade_medida_excluir.insert(0, resposta.unidade_medida)
+        entry_itens_embalagem_produtos_excluir.insert(0, resposta.itens_embalagem)
+        entry_codigo_barras_excluir.insert(0, resposta.codigo_barras)
+        entry_grupo_produtos_excluir.insert(0, resposta.grupo)
+        entry_categorias_produtos_excluir.insert(0, resposta.categoria)
+        entry_marca_produtos_excluir.insert(0, resposta.marca)
+        entry_itens_pallete_excluir.insert(0, resposta.itens_pallete)
+        entry_itens_lastro_excluir.insert(0, resposta.itens_lastro)
 
         botao_buscar_apertado = True
 
