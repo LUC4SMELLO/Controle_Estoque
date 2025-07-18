@@ -18,7 +18,7 @@ def criar_janela_entrada_produtos():
 
     janela_entrada_produtos = tk.Toplevel()
     janela_entrada_produtos.title("Entrada Produto")
-    janela_entrada_produtos.geometry("500x300")
+    janela_entrada_produtos.geometry("400x300")
 
 
     label_data_entrada = tk.Label(janela_entrada_produtos, text="Data Entrada:", font=("Arial", 10, "bold"))
@@ -49,10 +49,10 @@ def criar_janela_entrada_produtos():
     linha_horizontal_inferior.place(x=0, y=250)
 
     botao_confirmar_entrada = tk.Button(janela_entrada_produtos, text="Confirmar", font=("Arial", 10, "bold"), command=entrada_produto_gui)
-    botao_confirmar_entrada.place(x=300, y=265)
+    botao_confirmar_entrada.place(x=200, y=265)
 
     botao_cancelar_entrada = tk.Button(janela_entrada_produtos, text="Cancelar", font=("Arial", 10, "bold"))
-    botao_cancelar_entrada.place(x=400, y=265)
+    botao_cancelar_entrada.place(x=300, y=265)
 
 
     lista_entrys = [entry_data_entrada,
