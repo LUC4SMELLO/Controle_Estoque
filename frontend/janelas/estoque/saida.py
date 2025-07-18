@@ -29,6 +29,12 @@ def criar_janela_saida_produtos():
         saida_produto_back(codigo_produto, quantidade)
         entry_data_saida.focus_set()
 
+        entry_data_saida.delete(0, tk.END)
+        entry_codigo_produto_saida.delete(0, tk.END)
+        entry_quantidade_saida.delete(0, tk.END)
+        entry_motivo_saida.delete("1.0", tk.END)
+
+
     janela_saida_produtos = tk.Toplevel()
     janela_saida_produtos.title("Saída Produto")
     janela_saida_produtos.geometry("400x300")
