@@ -1,13 +1,7 @@
-import subprocess
-import platform
+import os
+import tkinter as tk
+from tkinter.filedialog import askopenfilename
 
-sistema_operacional = platform.system()
+arquivo_escolhido = askopenfilename()
 
-if sistema_operacional == "Windows":
-    subprocess.run(["explorer", "."])
-elif sistema_operacional == "Linux":
-    subprocess.run(["xdg-open", "."])
-elif sistema_operacional == "Darwin":  # macOS
-    subprocess.run(["open", "."])
-else:
-    print("Sistema operacional não suportado")
+print(arquivo_escolhido)

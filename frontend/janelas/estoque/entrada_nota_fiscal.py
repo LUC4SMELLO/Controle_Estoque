@@ -9,6 +9,29 @@ from backend.controladores.estoque.entrada_controlador import entrada_produto_ba
 from backend.binds.configuracao_binds import configurar_binds 
 
 def criar_janela_entrada_nota_fiscal():
+    def mostrar_nota_fiscal():
+
+
+        resultados = buscar_nota_fiscal_back() 
+
+        for item in treeview_nota_fiscal.get_children():
+            treeview_nota_fiscal.delete(item)
+
+        if not resultados:
+            messagebox.showinfo("Aviso", "Não há produtos a serem listados ou um erro ocorreu na leitura.")
+            return None 
+        
+        for produto_dict in resultados:
+
+            valores_para_treeview = (
+                produto_dict.get("codigo", ""),
+                produto_dict.get("descricao", ""),
+                produto_dict.get("unidade", ""),
+                produto_dict.get("quantidade", 0)
+            )
+            treeview_nota_fiscal.insert("", "end", values=valores_para_treeview)
+
+        messagebox.showinfo("Sucesso", f"{len(resultados)} produtos listados na tabela.") 
 
     janela_entrada_nota_fiscal = tk.Toplevel()
     janela_entrada_nota_fiscal.title("Entrada Nota Fiscal")
@@ -53,7 +76,7 @@ def criar_janela_entrada_nota_fiscal():
     entry_numero_nota_fiscal = tk.Entry(janela_entrada_nota_fiscal, width=10, font=("Arial", 10, "bold"))
     entry_numero_nota_fiscal.place(x=120, y=40)
 
-    botao_buscar_nota_fiscal = tk.Button(janela_entrada_nota_fiscal, text="Buscar\nNota Fiscal", font=("Arial", 10, "bold"), command=buscar_nota_fiscal_back)
+    botao_buscar_nota_fiscal = tk.Button(janela_entrada_nota_fiscal, text="Buscar\nNota Fiscal", font=("Arial", 10, "bold"), command=mostrar_nota_fiscal)
     botao_buscar_nota_fiscal.place(x=1000, y=10)
 
     linha_horizontal_superior = tk.Frame(janela_entrada_nota_fiscal, background="silver", width=1100, height=5)
