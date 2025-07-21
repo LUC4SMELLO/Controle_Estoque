@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
+
+from backend.controladores.estoque.entrada_nota_fiscal_controlador import buscar_nota_fiscal_back
+
 from backend.controladores.estoque.entrada_controlador import entrada_produto_back
 
 from backend.binds.configuracao_binds import configurar_binds 
@@ -50,7 +53,7 @@ def criar_janela_entrada_nota_fiscal():
     entry_numero_nota_fiscal = tk.Entry(janela_entrada_nota_fiscal, width=10, font=("Arial", 10, "bold"))
     entry_numero_nota_fiscal.place(x=120, y=40)
 
-    botao_buscar_nota_fiscal = tk.Button(janela_entrada_nota_fiscal, text="Buscar\nNota Fiscal", font=("Arial", 10, "bold"))
+    botao_buscar_nota_fiscal = tk.Button(janela_entrada_nota_fiscal, text="Buscar\nNota Fiscal", font=("Arial", 10, "bold"), command=buscar_nota_fiscal_back)
     botao_buscar_nota_fiscal.place(x=1000, y=10)
 
     linha_horizontal_superior = tk.Frame(janela_entrada_nota_fiscal, background="silver", width=1100, height=5)
@@ -58,7 +61,7 @@ def criar_janela_entrada_nota_fiscal():
 
     scrollbar_vertical = ttk.Scrollbar(janela_entrada_nota_fiscal, orient="vertical")
     scrollbar_vertical.place(x=1062, y=110, height=270)
-    
+
     style = ttk.Style()
     style.configure("Treeview.Heading", font=("Arial", 10, "bold"))
 

@@ -1,34 +1,13 @@
-from backend.models.produto import Produto
+import subprocess
+import platform
 
-produto = Produto(2,
-                  "Refrigerante",
-                  "Lata",
-                  True,
-                  "Unidade",
-                  1,
-                  123456789101213,
-                  "Refrigerante",
-                  "Bebida",
-                  "Coca Cola",
-                  294,
-                  45
-                )
-produto2 = Produto(2,
-                  "Café",
-                  "Pó de Café",
-                  True,
-                  "Unidade",
-                  1,
-                  123456789101213,
-                  "Café",
-                  "Pó",
-                  "Menino da Porteira",
-                  294,
-                  45
-                )
+sistema_operacional = platform.system()
 
-produto.entrada_estoque_produto(1000)
-
-
-
-print(Produto.buscar_produto(2))
+if sistema_operacional == "Windows":
+    subprocess.run(["explorer", "."])
+elif sistema_operacional == "Linux":
+    subprocess.run(["xdg-open", "."])
+elif sistema_operacional == "Darwin":  # macOS
+    subprocess.run(["open", "."])
+else:
+    print("Sistema operacional não suportado")
