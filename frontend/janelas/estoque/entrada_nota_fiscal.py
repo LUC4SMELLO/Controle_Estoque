@@ -56,6 +56,19 @@ def criar_janela_entrada_nota_fiscal():
     linha_horizontal_superior = tk.Frame(janela_entrada_nota_fiscal, background="silver", width=1100, height=5)
     linha_horizontal_superior.place(x=0, y=80)
 
+    # TREEVIEW
+
+    treeview = ttk.Treeview()
+    treeview.column("numero_item", "codigo_item", "descricao", "quantidade")
+    treeview.heading("numero_item", text="Nº ITEM")
+    treeview.heading("codigo_item", text="CÓDIGO ITEM")
+    treeview.heading("descricao", text="DESCRIÇÃO")
+    treeview.heading("quantidade", text="QUANTIDADE")   
+    treeview.place(x=10, y=110)
+
+
+
+
     linha_horizontal_inferior = tk.Frame(janela_entrada_nota_fiscal, background="silver", width=1100, height=5)
     linha_horizontal_inferior.place(x=0, y=550)
 

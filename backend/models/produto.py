@@ -136,22 +136,26 @@ class Produto:
     
     @staticmethod
     def buscar_produto(codigo_produto):
-        conexao = conectar_banco_de_dados_produtos()
-        cursor = conexao.cursor()
+        try:
+            conexao = conectar_banco_de_dados_produtos()
+            cursor = conexao.cursor()
 
-        cursor.execute(
-        """
-        SELECT * FROM TabelaProdutos
-        WHERE codigo_produto = ?
-        """, (codigo_produto,)
-        )
+            cursor.execute(
+            """
+            SELECT * FROM TabelaProdutos
+            WHERE codigo_produto = ?
+            """, (codigo_produto,)
+            )
 
-        resultado = cursor.fetchone()
+            resultado = cursor.fetchone()
 
-        conexao.commit()
-        conexao.close()
+            conexao.commit()
+            conexao.close()
 
-        return Produto(*resultado)
+            return Produto(*resultado)
+        
+        except TypeError:
+            return False
     
     def entrada_estoque_produto(self, valor: int):
         self.quantidade_estoque += valor
