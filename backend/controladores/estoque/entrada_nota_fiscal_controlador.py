@@ -35,6 +35,26 @@ def buscar_nota_fiscal_back():
         razao_social = ""
         fantasia = ""
 
+        ide_node = root.find(".//nfe:ide", namespaces=ns)
+        if ide_node is not None:
+            numero_nota = ide_node.find("nfe:nNF", namespaces=ns)
+            if numero_nota is not None:
+                numero_nota = numero_nota.text
+
+        ender_emit_node = root.find(".//nfe:enderEmit", namespaces=ns)
+        if ender_emit_node is not None:
+            cidade_node = ender_emit_node.find("nfe:xMun", namespaces=ns)
+            if cidade_node is not None:
+                cidade = cidade_node.text
+    
+            uf_node = ender_emit_node.find("nfe:UF", namespaces=ns)
+            if uf_node is not None:
+                uf = uf_node.text
+
+            bairro_node = ender_emit_node.find("nfe:xBairro", namespaces=ns)
+            if bairro_node is not None:
+                bairro = bairro_node.text
+
         emit_node = root.find(".//nfe:emit", namespaces=ns)
         if emit_node is not None:
             cnpj_node = emit_node.find("nfe:CNPJ", namespaces=ns)
@@ -53,7 +73,7 @@ def buscar_nota_fiscal_back():
             prod = det.find("nfe:prod", namespaces=ns)
 
             if prod is not None:
-                codigo = prod.find("nfe:cProd", namespaces=ns).text if prod.find("nfe:cProd", namespaces=ns) is not None else ""
+                codigo_produto = prod.find("nfe:cProd", namespaces=ns).text if prod.find("nfe:cProd", namespaces=ns) is not None else ""
                 descricao = prod.find("nfe:xProd", namespaces=ns).text if prod.find("nfe:xProd", namespaces=ns) is not None else ""
                 unidade = prod.find("nfe:uCom", namespaces=ns).text if prod.find("nfe:uCom", namespaces=ns) is not None else ""
                 quantidade_text = prod.find("nfe:qCom", namespaces=ns).text if prod.find("nfe:qCom", namespaces=ns) is not None else "0"
@@ -65,10 +85,14 @@ def buscar_nota_fiscal_back():
 
                 # Adiciona os dados do produto atual à lista
                 todos_os_produtos.append({
+                    "numero_nota": numero_nota,
+                    "cidade": cidade,
+                    "uf": uf,
+                    "bairro": bairro,
                     "cnpj": cnpj,
                     "razao_social": razao_social,
                     "fantasia": fantasia,
-                    "codigo": codigo,
+                    "codigo_produto": codigo_produto,
                     "descricao": descricao,
                     "unidade": unidade,
                     "quantidade": quantidade

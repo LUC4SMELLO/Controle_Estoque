@@ -21,15 +21,20 @@ def criar_janela_entrada_nota_fiscal():
             messagebox.showinfo("Aviso", "Não há produtos a serem listados ou um erro ocorreu na leitura.")
             return None 
         
+        print(resultados[0])
+        
+        numero_item = 1
         for produto_dict in resultados:
 
             valores_para_treeview = (
-                produto_dict.get("codigo", ""),
+                numero_item,
+                produto_dict.get("codigo_produto", ""),
                 produto_dict.get("descricao", ""),
-                produto_dict.get("unidade", ""),
                 produto_dict.get("quantidade", 0)
             )
             treeview_nota_fiscal.insert("", "end", values=valores_para_treeview)
+
+            numero_item += 1
 
         messagebox.showinfo("Sucesso", f"{len(resultados)} produtos listados na tabela.") 
 
