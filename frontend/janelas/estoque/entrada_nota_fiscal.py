@@ -56,15 +56,34 @@ def criar_janela_entrada_nota_fiscal():
     linha_horizontal_superior = tk.Frame(janela_entrada_nota_fiscal, background="silver", width=1100, height=5)
     linha_horizontal_superior.place(x=0, y=80)
 
-    # TREEVIEW
+    scrollbar_vertical = ttk.Scrollbar(janela_entrada_nota_fiscal, orient="vertical")
+    scrollbar_vertical.place(x=1062, y=110, height=270)
+    
+    style = ttk.Style()
+    style.configure("Treeview.Heading", font=("Arial", 10, "bold"))
 
-    treeview = ttk.Treeview()
-    treeview.column("numero_item", "codigo_item", "descricao", "quantidade")
-    treeview.heading("numero_item", text="Nº ITEM")
-    treeview.heading("codigo_item", text="CÓDIGO ITEM")
-    treeview.heading("descricao", text="DESCRIÇÃO")
-    treeview.heading("quantidade", text="QUANTIDADE")   
-    treeview.place(x=10, y=110)
+    colunas = ("numero_item", "codigo_produto", "descricao", "quantidade")
+    treeview_nota_fiscal = ttk.Treeview(
+        janela_entrada_nota_fiscal,
+        columns=colunas,
+        show="headings",
+        height=12,
+        yscrollcommand=scrollbar_vertical.set
+    )
+    treeview_nota_fiscal.place(x=26, y=110, width=1035, height=270)
+
+    scrollbar_vertical.config(command=treeview_nota_fiscal.yview)
+
+    treeview_nota_fiscal.heading("numero_item", text="Nº ITEM", anchor="center")
+    treeview_nota_fiscal.heading("codigo_produto", text="CÓDIGO PRODUTO", anchor="center")
+    treeview_nota_fiscal.heading("descricao", text="DESCRIÇÃO", anchor="center")
+    treeview_nota_fiscal.heading("quantidade", text="QUANTIDADE", anchor="center")
+
+    treeview_nota_fiscal.column("numero_item", width=120, anchor="center")
+    treeview_nota_fiscal.column("codigo_produto", width=160, anchor="center")
+    treeview_nota_fiscal.column("descricao", width=220, anchor="center")
+    treeview_nota_fiscal.column("quantidade", width=120, anchor="center")
+    # endregion
 
 
 
