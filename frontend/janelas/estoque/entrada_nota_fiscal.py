@@ -23,11 +23,45 @@ def criar_janela_entrada_nota_fiscal():
     entry_codigo_fornecedor = tk.Entry(janela_entrada_nota_fiscal, width=6, font=("Arial", 10, "bold"))
     entry_codigo_fornecedor.place(x=285, y=10)
 
-    entry_descricao_fornecedor = tk.Entry(janela_entrada_nota_fiscal, width=30, font=("Arial", 10, "bold"))
+    entry_descricao_fornecedor = tk.Entry(janela_entrada_nota_fiscal, width=53, font=("Arial", 10, "bold"))
     entry_descricao_fornecedor.place(x=335, y=10)
+
+    label_uf = tk.Label(janela_entrada_nota_fiscal, text="UF:", font=("Arial", 10, "bold"))
+    label_uf.place(x=256, y=40)
+
+    entry_uf = tk.Entry(janela_entrada_nota_fiscal, width=6, font=("Arial", 10, "bold"))
+    entry_uf.place(x=285, y=40)
+
+    label_municipio = tk.Label(janela_entrada_nota_fiscal, text="Município:", font=("Arial", 10, "bold"))
+    label_municipio.place(x=332, y=40)
+
+    entry_municipio = tk.Entry(janela_entrada_nota_fiscal, font=("Arial", 10, "bold"))
+    entry_municipio.place(x=405, y=40)
+
+    label_bairro = tk.Label(janela_entrada_nota_fiscal, text="Bairro:", font=("Arial", 10, "bold"))
+    label_bairro.place(x=515, y=40)
+
+    entry_bairro = tk.Entry(janela_entrada_nota_fiscal, font=("Arial", 10, "bold"))
+    entry_bairro.place(x=565, y=40)
 
     label_numero_nota_fiscal = tk.Label(janela_entrada_nota_fiscal, text="Número NF-e:", font=("Arial", 10, "bold"))
     label_numero_nota_fiscal.place(x=24, y=40)
 
     entry_numero_nota_fiscal = tk.Entry(janela_entrada_nota_fiscal, width=10, font=("Arial", 10, "bold"))
     entry_numero_nota_fiscal.place(x=120, y=40)
+
+    botao_buscar_nota_fiscal = tk.Button(janela_entrada_nota_fiscal, text="Buscar\nNota Fiscal", font=("Arial", 10, "bold"))
+    botao_buscar_nota_fiscal.place(x=1000, y=10)
+
+    linha_horizontal_superior = tk.Frame(janela_entrada_nota_fiscal, background="silver", width=1100, height=5)
+    linha_horizontal_superior.place(x=0, y=80)
+
+    linha_horizontal_inferior = tk.Frame(janela_entrada_nota_fiscal, background="silver", width=1100, height=5)
+    linha_horizontal_inferior.place(x=0, y=550)
+
+    botao_confirmar_entrada = tk.Button(janela_entrada_nota_fiscal, text="Confirmar", font=("Arial", 10, "bold"))
+    botao_confirmar_entrada.place(x=900, y=565)
+
+    botao_cancelar_saida = tk.Button(janela_entrada_nota_fiscal, text="Cancelar", font=("Arial", 10, "bold"))
+    botao_cancelar_saida.place(x=1000, y=565)
+
