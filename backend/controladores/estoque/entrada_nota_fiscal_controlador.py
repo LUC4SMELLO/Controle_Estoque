@@ -1,6 +1,9 @@
 import os
 import tkinter as tk
+from datetime import datetime
+
 from tkinter.filedialog import askopenfilename
+
 
 import xml.etree.ElementTree as ET
 
@@ -109,3 +112,10 @@ def buscar_nota_fiscal_back():
     except Exception as e:
         print(f"Ocorreu um erro inesperado: {e}")
         return []
+
+def data_entrada_atual():
+
+    data_agora = datetime.now()
+    data_formatada = data_agora.strftime("%d/%m/%Y")
+
+    return data_formatada
