@@ -2,15 +2,14 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 
-from backend.controladores.estoque.entrada_nota_fiscal_controlador import buscar_nota_fiscal_back
-
-from backend.controladores.estoque.entrada_controlador import entrada_produto_back
+from backend.controladores.estoque.entrada_nota_fiscal_controlador import buscar_nota_fiscal_back, data_entrada_atual
 
 from backend.binds.configuracao_binds import configurar_binds 
 
 def criar_janela_entrada_nota_fiscal():
     def mostrar_nota_fiscal():
 
+        data_entrada_agora = data_entrada_atual()
 
         resultados = buscar_nota_fiscal_back() 
 
@@ -21,12 +20,14 @@ def criar_janela_entrada_nota_fiscal():
             messagebox.showinfo("Aviso", "Não há produtos a serem listados ou um erro ocorreu na leitura.")
             return None 
         
+        entry_data_entrada.delete(0, tk.END)
         entry_numero_nota_fiscal.delete(0, tk.END)
         entry_descricao_fornecedor.delete(0, tk.END)
         entry_municipio.delete(0, tk.END)
         entry_uf.delete(0, tk.END)
         entry_bairro.delete(0, tk.END)
 
+        entry_data_entrada.insert(0, data_entrada_agora)
         entry_numero_nota_fiscal.insert(0, resultados[0]["numero_nota"])
         entry_descricao_fornecedor.insert(0, resultados[0]["razao_social"])
         entry_municipio.insert(0, (resultados[0]["cidade"]))
@@ -46,7 +47,8 @@ def criar_janela_entrada_nota_fiscal():
 
             numero_item += 1
 
-        messagebox.showinfo("Sucesso", f"{len(resultados)} produtos listados na tabela.") 
+        messagebox.showinfo("Sucesso", f"{len(resultados)} produtos listados na tabela.")
+        treeview_nota_fiscal.focus_set()
 
     janela_entrada_nota_fiscal = tk.Toplevel()
     janela_entrada_nota_fiscal.title("Entrada Nota Fiscal")
