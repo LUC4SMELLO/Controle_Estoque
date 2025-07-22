@@ -21,7 +21,17 @@ def criar_janela_entrada_nota_fiscal():
             messagebox.showinfo("Aviso", "Não há produtos a serem listados ou um erro ocorreu na leitura.")
             return None 
         
-        print(resultados[0])
+        entry_numero_nota_fiscal.delete(0, tk.END)
+        entry_descricao_fornecedor.delete(0, tk.END)
+        entry_municipio.delete(0, tk.END)
+        entry_uf.delete(0, tk.END)
+        entry_bairro.delete(0, tk.END)
+
+        entry_numero_nota_fiscal.insert(0, resultados[0]["numero_nota"])
+        entry_descricao_fornecedor.insert(0, resultados[0]["razao_social"])
+        entry_municipio.insert(0, (resultados[0]["cidade"]))
+        entry_uf.insert(0, (resultados[0]["uf"]))
+        entry_bairro.insert(0, resultados[0]["bairro"])
         
         numero_item = 1
         for produto_dict in resultados:
@@ -45,40 +55,40 @@ def criar_janela_entrada_nota_fiscal():
     label_data_entrada = tk.Label(janela_entrada_nota_fiscal, text="Data Entrada:", font=("Arial", 10, "bold"))
     label_data_entrada.place(x=26, y=10)
 
-    entry_data_entrada = tk.Entry(janela_entrada_nota_fiscal, width=10, font=("Arial", 10, "bold"))
+    entry_data_entrada = tk.Entry(janela_entrada_nota_fiscal, width=10, font=("Arial", 10))
     entry_data_entrada.place(x=120, y=10)
 
     label_fornecedor = tk.Label(janela_entrada_nota_fiscal, text="Fornecedor:", font=("Arial", 10, "bold"))
     label_fornecedor.place(x=200, y=10)
 
-    entry_codigo_fornecedor = tk.Entry(janela_entrada_nota_fiscal, width=6, font=("Arial", 10, "bold"))
+    entry_codigo_fornecedor = tk.Entry(janela_entrada_nota_fiscal, width=6, font=("Arial", 10))
     entry_codigo_fornecedor.place(x=285, y=10)
 
-    entry_descricao_fornecedor = tk.Entry(janela_entrada_nota_fiscal, width=53, font=("Arial", 10, "bold"))
+    entry_descricao_fornecedor = tk.Entry(janela_entrada_nota_fiscal, width=53, font=("Arial", 10))
     entry_descricao_fornecedor.place(x=335, y=10)
 
     label_uf = tk.Label(janela_entrada_nota_fiscal, text="UF:", font=("Arial", 10, "bold"))
     label_uf.place(x=256, y=40)
 
-    entry_uf = tk.Entry(janela_entrada_nota_fiscal, width=6, font=("Arial", 10, "bold"))
+    entry_uf = tk.Entry(janela_entrada_nota_fiscal, width=6, font=("Arial", 10))
     entry_uf.place(x=285, y=40)
 
     label_municipio = tk.Label(janela_entrada_nota_fiscal, text="Município:", font=("Arial", 10, "bold"))
     label_municipio.place(x=332, y=40)
 
-    entry_municipio = tk.Entry(janela_entrada_nota_fiscal, font=("Arial", 10, "bold"))
+    entry_municipio = tk.Entry(janela_entrada_nota_fiscal, font=("Arial", 10))
     entry_municipio.place(x=405, y=40)
 
     label_bairro = tk.Label(janela_entrada_nota_fiscal, text="Bairro:", font=("Arial", 10, "bold"))
     label_bairro.place(x=515, y=40)
 
-    entry_bairro = tk.Entry(janela_entrada_nota_fiscal, font=("Arial", 10, "bold"))
+    entry_bairro = tk.Entry(janela_entrada_nota_fiscal, font=("Arial", 10))
     entry_bairro.place(x=565, y=40)
 
     label_numero_nota_fiscal = tk.Label(janela_entrada_nota_fiscal, text="Número NF-e:", font=("Arial", 10, "bold"))
     label_numero_nota_fiscal.place(x=24, y=40)
 
-    entry_numero_nota_fiscal = tk.Entry(janela_entrada_nota_fiscal, width=10, font=("Arial", 10, "bold"))
+    entry_numero_nota_fiscal = tk.Entry(janela_entrada_nota_fiscal, width=10, font=("Arial", 10))
     entry_numero_nota_fiscal.place(x=120, y=40)
 
     botao_buscar_nota_fiscal = tk.Button(janela_entrada_nota_fiscal, text="Buscar\nNota Fiscal", font=("Arial", 10, "bold"), command=mostrar_nota_fiscal)
