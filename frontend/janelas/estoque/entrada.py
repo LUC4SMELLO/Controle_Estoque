@@ -6,6 +6,8 @@ from backend.validadores.estoque.formulario_entrada_saida import validar_formula
 
 from backend.controladores.estoque.entrada_controlador import entrada_produto_back
 
+from backend.controladores.produto.consultar_controlador import buscar_produto_back
+
 from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 
 from backend.binds.configuracao_binds import configurar_binds 
@@ -13,6 +15,10 @@ from backend.binds.configuracao_binds import configurar_binds
 def criar_janela_entrada_produtos():
 
     def entrada_produto_gui():
+
+        codigo_produto = entry_codigo_produto_entrada
+        quantidade = entry_quantidade_entrada
+
 
         valido, mensagem = validar_formulario_entrada_saida_estoque(
             entry_data_entrada.get().strip(),
@@ -24,10 +30,13 @@ def criar_janela_entrada_produtos():
             messagebox.showerror("Erro", mensagem)
             entry_data_entrada.focus_set()
             return None
-
-        codigo_produto = entry_codigo_produto_entrada
-        quantidade = entry_quantidade_entrada
         
+        valido, resposta = buscar_produto_back(codigo_produto.get().strip())
+        if not valido:
+            messagebox.showerror("Erro", resposta)
+            codigo_produto.focus_set()
+            return None
+
         entrada_produto_back(codigo_produto, quantidade)
         entry_data_entrada.focus_set()
 
