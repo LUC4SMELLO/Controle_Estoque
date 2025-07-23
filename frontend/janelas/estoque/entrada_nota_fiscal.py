@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 
-from backend.controladores.estoque.entrada_nota_fiscal_controlador import buscar_nota_fiscal_back, data_entrada_atual
+from backend.controladores.estoque.entrada_nota_fiscal_controlador import buscar_nota_fiscal_back, data_entrada_atual, verificar_produtos_da_nota_fiscal
 
 from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 
@@ -14,6 +14,12 @@ def criar_janela_entrada_nota_fiscal():
         data_entrada_agora = data_entrada_atual()
 
         resultados = buscar_nota_fiscal_back() 
+
+        valido, resposta = verificar_produtos_da_nota_fiscal(resultados)
+        if not valido:
+            messagebox.showerror("Erro", f"Os Seguintes Produtos Não Foram Encontrados: \n\n{resposta}")
+            treeview_nota_fiscal.focus_set()
+            return None
 
         for item in treeview_nota_fiscal.get_children():
             treeview_nota_fiscal.delete(item)
@@ -51,6 +57,8 @@ def criar_janela_entrada_nota_fiscal():
 
         messagebox.showinfo("Sucesso", f"{len(resultados)} produtos listados na tabela.")
         treeview_nota_fiscal.focus_set()
+
+
 
     janela_entrada_nota_fiscal = tk.Toplevel()
     janela_entrada_nota_fiscal.title("Entrada Nota Fiscal")
