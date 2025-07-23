@@ -44,6 +44,14 @@ CATEGORIAS_PRODUTOS = [
     "130 - 5 LITROS",
     "140 - 10 LITROS",
     "141 - 18 LITROS",
+    "002 - STICK",
+    "003 - GARRAFA",
+    "004 - MONOPECA",
+    "005 - TUBES",
+    "006 - TUBESAZED",
+    "007 - PASTILHAS",
+    "008 - GOMAS",
+    "009 - BALAS"
 ]
 
 GRUPO_PRODUTOS = [
