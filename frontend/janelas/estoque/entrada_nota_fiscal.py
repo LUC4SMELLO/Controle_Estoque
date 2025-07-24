@@ -2,14 +2,25 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 
-from backend.controladores.estoque.entrada_nota_fiscal_controlador import buscar_nota_fiscal_back, data_entrada_atual, verificar_produtos_da_nota_fiscal
+from backend.controladores.estoque.entrada_nota_fiscal_controlador import (
+    buscar_nota_fiscal_back,
+    data_entrada_atual, 
+    verificar_produtos_da_nota_fiscal,
+    entrada_produto_nota_fiscal_back
+)
+    
 
 from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 
 from backend.binds.configuracao_binds import configurar_binds 
 
 def criar_janela_entrada_nota_fiscal():
+
+    resultados = None
+
     def mostrar_nota_fiscal():
+
+        global resultados
 
         data_entrada_agora = data_entrada_atual()
 
@@ -58,6 +69,13 @@ def criar_janela_entrada_nota_fiscal():
         messagebox.showinfo("Sucesso", f"{len(resultados)} Produtos Listados na Tabela.")
         treeview_nota_fiscal.focus_set()
 
+    def entrada_produto_gui():
+
+        global resultados
+        
+        entrada_produto_nota_fiscal_back(resultados)
+
+        messagebox.showinfo("Sucesso!", "Nota Importada.")
 
 
     janela_entrada_nota_fiscal = tk.Toplevel()
@@ -144,7 +162,7 @@ def criar_janela_entrada_nota_fiscal():
     linha_horizontal_inferior = tk.Frame(janela_entrada_nota_fiscal, background="silver", width=1100, height=5)
     linha_horizontal_inferior.place(x=0, y=550)
 
-    botao_confirmar_entrada = tk.Button(janela_entrada_nota_fiscal, text="Confirmar", font=BOTAO)
+    botao_confirmar_entrada = tk.Button(janela_entrada_nota_fiscal, text="Confirmar", font=BOTAO, command=entrada_produto_gui)
     botao_confirmar_entrada.place(x=900, y=565)
 
     botao_cancelar_saida = tk.Button(janela_entrada_nota_fiscal, text="Cancelar", font=BOTAO)
