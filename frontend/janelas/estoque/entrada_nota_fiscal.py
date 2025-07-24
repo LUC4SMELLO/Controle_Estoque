@@ -25,7 +25,7 @@ def criar_janela_entrada_nota_fiscal():
             treeview_nota_fiscal.delete(item)
 
         if not resultados:
-            messagebox.showinfo("Aviso", "Não há produtos a serem listados ou um erro ocorreu na leitura.")
+            messagebox.showinfo("Aviso", "Não Há Produtos a Serem Listados ou um Erro Ocorreu na Leitura.")
             return None 
         
         entry_data_entrada.delete(0, tk.END)
@@ -55,7 +55,7 @@ def criar_janela_entrada_nota_fiscal():
 
             numero_item += 1
 
-        messagebox.showinfo("Sucesso", f"{len(resultados)} produtos listados na tabela.")
+        messagebox.showinfo("Sucesso", f"{len(resultados)} Produtos Listados na Tabela.")
         treeview_nota_fiscal.focus_set()
 
 
