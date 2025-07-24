@@ -6,6 +6,8 @@ from tkinter.filedialog import askopenfilename
 
 from backend.controladores.produto.consultar_controlador import buscar_produto_back
 
+from backend.controladores.estoque.entrada_controlador import entrada_produto_back
+
 import xml.etree.ElementTree as ET
 
 def buscar_nota_fiscal_back():
@@ -135,3 +137,10 @@ def verificar_produtos_da_nota_fiscal(nota_fiscal):
         return False, produtos_nao_encontrados
     
     return True, "Todos os Produtos Foram Encontrados."
+
+def entrada_produto_nota_fiscal_back(nota_fiscal):
+
+    for produto_dict in nota_fiscal:
+        entrada_produto_back(produto_dict["codigo_produto"], produto_dict["quantidade"])
+    
+

@@ -37,7 +37,7 @@ def criar_janela_entrada_produtos():
             codigo_produto.focus_set()
             return None
 
-        entrada_produto_back(codigo_produto, quantidade)
+        entrada_produto_back(codigo_produto.get().strip(), quantidade.get().strip())
         entry_data_entrada.focus_set()
 
         entry_data_entrada.delete(0, tk.END)
