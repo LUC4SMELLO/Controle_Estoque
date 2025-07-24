@@ -14,13 +14,15 @@ from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 
 from backend.binds.configuracao_binds import configurar_binds 
 
-def criar_janela_entrada_nota_fiscal():
+resultados = None
+produtos_listados_na_tabela = False
 
-    resultados = None
+def criar_janela_entrada_nota_fiscal():
 
     def mostrar_nota_fiscal():
 
         global resultados
+        global produtos_listados_na_tabela
 
         data_entrada_agora = data_entrada_atual()
 
@@ -37,6 +39,7 @@ def criar_janela_entrada_nota_fiscal():
 
         if not resultados:
             messagebox.showinfo("Aviso", "Não Há Produtos a Serem Listados ou um Erro Ocorreu na Leitura.")
+            treeview_nota_fiscal.focus_set()
             return None 
         
         entry_data_entrada.delete(0, tk.END)
@@ -66,16 +69,26 @@ def criar_janela_entrada_nota_fiscal():
 
             numero_item += 1
 
+        produtos_listados_na_tabela = True
+
         messagebox.showinfo("Sucesso", f"{len(resultados)} Produtos Listados na Tabela.")
         treeview_nota_fiscal.focus_set()
 
     def entrada_produto_gui():
 
         global resultados
+        global produtos_listados_na_tabela
+
+        if not produtos_listados_na_tabela:
+            messagebox.showerror("Erro.", "Busque uma Nota Fiscal Primeiro.")
+            botao_buscar_nota_fiscal.focus_set()
+            return None
         
         entrada_produto_nota_fiscal_back(resultados)
 
         messagebox.showinfo("Sucesso!", "Nota Importada.")
+
+        produtos_listados_na_tabela = False
 
 
     janela_entrada_nota_fiscal = tk.Toplevel()
@@ -155,9 +168,6 @@ def criar_janela_entrada_nota_fiscal():
     treeview_nota_fiscal.column("descricao", width=220, anchor="center")
     treeview_nota_fiscal.column("quantidade", width=120, anchor="center")
     # endregion
-
-
-
 
     linha_horizontal_inferior = tk.Frame(janela_entrada_nota_fiscal, background="silver", width=1100, height=5)
     linha_horizontal_inferior.place(x=0, y=550)
