@@ -90,6 +90,14 @@ def criar_janela_entrada_nota_fiscal():
 
         produtos_listados_na_tabela = False
 
+    def fechar_janela_entrada_produtos_nota_fiscal():
+        
+        global produtos_listados_na_tabela
+
+        produtos_listados_na_tabela = False
+
+        janela_entrada_nota_fiscal.destroy
+
 
     janela_entrada_nota_fiscal = tk.Toplevel()
     janela_entrada_nota_fiscal.title("Entrada Nota Fiscal")
@@ -175,6 +183,6 @@ def criar_janela_entrada_nota_fiscal():
     botao_confirmar_entrada = tk.Button(janela_entrada_nota_fiscal, text="Confirmar", font=BOTAO, command=entrada_produto_gui)
     botao_confirmar_entrada.place(x=900, y=565)
 
-    botao_cancelar_saida = tk.Button(janela_entrada_nota_fiscal, text="Cancelar", font=BOTAO)
+    botao_cancelar_saida = tk.Button(janela_entrada_nota_fiscal, text="Cancelar", font=BOTAO, command=fechar_janela_entrada_produtos_nota_fiscal)
     botao_cancelar_saida.place(x=1000, y=565)
 
