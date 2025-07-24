@@ -39,6 +39,8 @@ def criar_janela_saida_produtos():
         
 
         saida_produto_back(codigo_produto, quantidade)
+
+        messagebox.showinfo("Sucesso!", "Saída Concluída.")
         entry_data_saida.focus_set()
 
         entry_data_saida.delete(0, tk.END)
