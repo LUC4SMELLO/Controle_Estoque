@@ -40,6 +40,9 @@ def criar_janela_entrada_produtos():
         entrada_produto_back(codigo_produto.get().strip(), quantidade.get().strip())
         entry_data_entrada.focus_set()
 
+        messagebox.showinfo("Sucesso!", "Entrada Concluída.")
+        codigo_produto.focus_set()
+
         entry_data_entrada.delete(0, tk.END)
         entry_codigo_produto_entrada.delete(0, tk.END)
         entry_quantidade_entrada.delete(0, tk.END)
