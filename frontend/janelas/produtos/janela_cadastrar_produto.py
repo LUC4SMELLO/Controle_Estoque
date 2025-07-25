@@ -79,7 +79,9 @@ def criar_janela_cadastrar_produto():
         entry_itens_pallete_cadastrar.delete(0, tk.END)
         entry_itens_lastro_cadastrar.delete(0, tk.END)
 
+    def fechar_janela_cadastro_produto():
 
+        janela_cadastrar_produtos.destroy()
 
     janela_cadastrar_produtos = tk.Toplevel()
     janela_cadastrar_produtos.title("Cadastrar Produto")
@@ -171,7 +173,7 @@ def criar_janela_cadastrar_produto():
     botao_confirmar_cadastrar = tk.Button(janela_cadastrar_produtos, text="Confirmar", font=BOTAO, command=cadastrar_produto_gui)
     botao_confirmar_cadastrar.place(x=600, y=565)
 
-    botao_cancelar_cadastrar = tk.Button(janela_cadastrar_produtos, text="Cancelar", font=BOTAO)
+    botao_cancelar_cadastrar = tk.Button(janela_cadastrar_produtos, text="Cancelar", font=BOTAO, command=fechar_janela_cadastro_produto)
     botao_cancelar_cadastrar.place(x=700, y=565)
 
     lista_entrys = [
