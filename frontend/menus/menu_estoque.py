@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from backend.controladores.menu_controlador import organizar_botoes
+from backend.controladores.menu.menu_controlador import organizar_botoes
 
 from frontend.janelas.estoque.entrada_nota_fiscal import criar_janela_entrada_nota_fiscal
 from frontend.janelas.estoque.entrada import criar_janela_entrada_produtos
