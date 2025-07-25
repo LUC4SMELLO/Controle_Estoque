@@ -96,7 +96,7 @@ def criar_janela_entrada_nota_fiscal():
 
         produtos_listados_na_tabela = False
 
-        janela_entrada_nota_fiscal.destroy
+        janela_entrada_nota_fiscal.destroy()
 
 
     janela_entrada_nota_fiscal = tk.Toplevel()
