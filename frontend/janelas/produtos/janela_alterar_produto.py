@@ -115,6 +115,10 @@ def criar_janela_alterar_produto():
         entry_itens_pallete_alterar.delete(0, tk.END)
         entry_itens_lastro_alterar.delete(0, tk.END)
 
+    def fechar_janela_alterar_produto():
+
+        janela_alterar_produtos.destroy()
+
     janela_alterar_produtos = tk.Toplevel()
     janela_alterar_produtos.title("Alterar Produto")
     janela_alterar_produtos.geometry("800x600")
@@ -208,7 +212,7 @@ def criar_janela_alterar_produto():
     botao_confirmar_alterar = tk.Button(janela_alterar_produtos, text="Confirmar", font=BOTAO, command=alterar_produto_gui)
     botao_confirmar_alterar.place(x=600, y=565)
 
-    botao_cancelar_alterar = tk.Button(janela_alterar_produtos, text="Cancelar", font=BOTAO)
+    botao_cancelar_alterar = tk.Button(janela_alterar_produtos, text="Cancelar", font=BOTAO, command=fechar_janela_alterar_produto)
     botao_cancelar_alterar.place(x=700, y=565)
 
     lista_entrys = [
