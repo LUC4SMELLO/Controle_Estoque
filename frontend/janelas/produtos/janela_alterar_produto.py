@@ -18,6 +18,7 @@ from backend.controladores.produto.consultar_controlador import buscar_produto_b
 
 from backend.binds.configuracao_binds import configurar_binds
 
+botao_buscar_apertado = False
 
 def criar_janela_alterar_produto():
 
@@ -61,6 +62,13 @@ def criar_janela_alterar_produto():
         
 
     def alterar_produto_gui():
+
+        global botao_buscar_apertado
+
+        if not botao_buscar_apertado:
+            messagebox.showerror("Erro", "Busque o Produto Primeiro.")
+            entry_codigo_produto_alterar.focus_set()
+            return None
 
         valido, mensagem = validar_formulario_produto(
             entry_codigo_produto_alterar.get(),
