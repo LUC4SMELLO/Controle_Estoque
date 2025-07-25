@@ -55,9 +55,11 @@ def criar_janela_consultar_produto():
         entry_itens_lastro_consultar.insert(0, resposta.itens_lastro)
         entry_estoque_consultar.insert(0, resposta.quantidade_estoque)
 
+    def fechar_janela_consultar_produto():
+
+        janela_consultar_produtos.destroy()
 
         
-
     janela_consultar_produtos = tk.Toplevel()
     janela_consultar_produtos.title("Consultar Produto")
     janela_consultar_produtos.geometry("800x600")
@@ -157,7 +159,7 @@ def criar_janela_consultar_produto():
     botao_confirmar_consultar = tk.Button(janela_consultar_produtos, text="Confirmar", font=BOTAO)
     botao_confirmar_consultar.place(x=600, y=565)
 
-    botao_cancelar_consultar = tk.Button(janela_consultar_produtos, text="Cancelar", font=BOTAO)
+    botao_cancelar_consultar = tk.Button(janela_consultar_produtos, text="Cancelar", font=BOTAO, command=fechar_janela_consultar_produto)
     botao_cancelar_consultar.place(x=700, y=565)
 
 
