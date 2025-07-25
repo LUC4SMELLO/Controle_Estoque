@@ -48,6 +48,9 @@ def criar_janela_saida_produtos():
         entry_quantidade_saida.delete(0, tk.END)
         entry_motivo_saida.delete("1.0", tk.END)
 
+    def fechar_janela_saida_produto():
+
+        janela_saida_produtos.destroy()
 
     janela_saida_produtos = tk.Toplevel()
     janela_saida_produtos.title("Saída Produto")
@@ -84,7 +87,7 @@ def criar_janela_saida_produtos():
     botao_confirmar_saida = tk.Button(janela_saida_produtos, text="Confirmar", font=BOTAO, command=saida_produto_gui)
     botao_confirmar_saida.place(x=200, y=265)
 
-    botao_cancelar_saida = tk.Button(janela_saida_produtos, text="Cancelar", font=BOTAO)
+    botao_cancelar_saida = tk.Button(janela_saida_produtos, text="Cancelar", font=BOTAO, command=fechar_janela_saida_produto)
     botao_cancelar_saida.place(x=300, y=265)
 
 
