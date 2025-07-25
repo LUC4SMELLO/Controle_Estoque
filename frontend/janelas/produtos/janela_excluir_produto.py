@@ -109,6 +109,9 @@ def criar_janela_excluir_produto():
         entry_itens_pallete_excluir.delete(0, tk.END)
         entry_itens_lastro_excluir.delete(0, tk.END)
 
+    def fechar_janela_excluir_produto():
+
+        janela_excluir_produtos.destroy()
 
 
     janela_excluir_produtos = tk.Toplevel()
@@ -204,7 +207,7 @@ def criar_janela_excluir_produto():
     botao_confirmar_excluir = tk.Button(janela_excluir_produtos, text="Confirmar", font=BOTAO, command=excluir_produto_gui)
     botao_confirmar_excluir.place(x=600, y=565)
 
-    botao_cancelar_excluir = tk.Button(janela_excluir_produtos, text="Cancelar", font=BOTAO)
+    botao_cancelar_excluir = tk.Button(janela_excluir_produtos, text="Cancelar", font=BOTAO, command=fechar_janela_excluir_produto)
     botao_cancelar_excluir.place(x=700, y=565)
 
     lista_entrys = [
