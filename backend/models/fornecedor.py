@@ -19,6 +19,7 @@ class Fornecedor:
             cidade,
             cep,
             estado,
+
     ):
         self.codigo_fornecedor = codigo_fornecedor
         self.razao_social = razao_social
@@ -40,7 +41,6 @@ class Fornecedor:
         cursor.execute(
         """
         INSERT INTO TabelaFornecedores (codigo_fornecedor,
-        codigo_fornecedor,
         razao_social,
         nome_fantasia,
         fornecedor_ativo,
@@ -51,6 +51,7 @@ class Fornecedor:
         cidade,
         cep,
         estado)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, 
             (
                 self.codigo_fornecedor,
