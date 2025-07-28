@@ -31,37 +31,44 @@ def criar_janela_cadastrar_fornecedor():
     entry_fornecedor_ativo = tk.Checkbutton(janela_cadastrar_fornecedor, variable=fornecedor_ativo)
     entry_fornecedor_ativo.place(x=750, y=40)
 
-    label_nome_fantasia = tk.Label(janela_cadastrar_fornecedor, text="Nome Fantasia:", font=LABEL)
-    label_nome_fantasia.place(x=10, y=100)
+    label_nome_fantasia_fornecedor = tk.Label(janela_cadastrar_fornecedor, text="Nome Fantasia:", font=LABEL)
+    label_nome_fantasia_fornecedor.place(x=10, y=100)
 
-    entry_nome_fantasia = tk.Entry(janela_cadastrar_fornecedor, font=ENTRY, width=60)
-    entry_nome_fantasia.place(x=115, y=100)
-
+    entry_nome_fantasia_fornecedor = tk.Entry(janela_cadastrar_fornecedor, font=ENTRY, width=60)
+    entry_nome_fantasia_fornecedor.place(x=115, y=100)
 
     label_endereco_fornecedor = tk.Label(janela_cadastrar_fornecedor, text="Endereço:", font=("Arial", 12, "bold"))
-    label_endereco_fornecedor.place(x=10, y=140)
+    label_endereco_fornecedor.place(x=30, y=140)
 
     label_logradouro_fornecedor = tk.Label(janela_cadastrar_fornecedor, text="Logradouro:", font=LABEL)
-    label_logradouro_fornecedor.place(x=10, y=170)
+    label_logradouro_fornecedor.place(x=30, y=170)
 
     entry_logradouro_fornecedor = tk.Entry(janela_cadastrar_fornecedor, font=ENTRY)
     entry_logradouro_fornecedor.place(x=115, y=170)
 
     label_bairro_fornecedor = tk.Label(janela_cadastrar_fornecedor, text="Bairro:", font=LABEL)
-    label_bairro_fornecedor.place(x=10, y=200)
+    label_bairro_fornecedor.place(x=60, y=200)
 
     entry_bairro_fornecedor = tk.Entry(janela_cadastrar_fornecedor, font=ENTRY)
     entry_bairro_fornecedor.place(x=115, y=200)
 
-    label_cidade = tk.Label(janela_cadastrar_fornecedor, text="Cidade:", font=LABEL)
-    label_cidade.place(x=10, y=200)
+    label_cidade_fornecedor = tk.Label(janela_cadastrar_fornecedor, text="Cidade:", font=LABEL)
+    label_cidade_fornecedor.place(x=55, y=230)
 
-    entry_cidade = tk.Entry(janela_cadastrar_fornecedor, font=ENTRY)
-    entry_cidade.place(x=115, y=200)
+    entry_cidade_fornecedor = tk.Entry(janela_cadastrar_fornecedor, font=ENTRY)
+    entry_cidade_fornecedor.place(x=115, y=230)
 
-    label_cep = tk.Label(janela_cadastrar_fornecedor, text="CEP:", font=LABEL)
-    
+    label_cep_fornecedor = tk.Label(janela_cadastrar_fornecedor, text="CEP:", font=LABEL)
+    label_cep_fornecedor.place(x=75, y=260)
 
+    entry_cep_fornecedor = tk.Entry(janela_cadastrar_fornecedor, font=ENTRY)
+    entry_cep_fornecedor.place(x=115, y=260)
+
+    label_estado_fornecedor = tk.Label(janela_cadastrar_fornecedor, text="Estado:", font=LABEL)
+    label_estado_fornecedor.place(x=60, y=290)
+
+    entry_estado = tk.Entry(janela_cadastrar_fornecedor, font=ENTRY)
+    entry_estado.place(x=115, y=290)
 
     label_cnpj_fornecedor = tk.Label(janela_cadastrar_fornecedor, text="CNPJ:", font=LABEL)
     label_cnpj_fornecedor.place(x=585, y=170)
@@ -69,11 +76,11 @@ def criar_janela_cadastrar_fornecedor():
     entry_cnpj_fornecedor = tk.Entry(janela_cadastrar_fornecedor, font=ENTRY)
     entry_cnpj_fornecedor.place(x=630, y=170)
 
-    label_inscricao_estadual = tk.Label(janela_cadastrar_fornecedor, text="Inscrição Estadual:", font=LABEL)
-    label_inscricao_estadual.place(x=505, y=200)
+    label_inscricao_estadual_fornecedor = tk.Label(janela_cadastrar_fornecedor, text="Inscrição Estadual:", font=LABEL)
+    label_inscricao_estadual_fornecedor.place(x=505, y=200)
 
-    entry_inscricao_estadual = tk.Entry(janela_cadastrar_fornecedor, font=ENTRY)
-    entry_inscricao_estadual.place(x=630, y=200)
+    entry_inscricao_estadual_fornecedor = tk.Entry(janela_cadastrar_fornecedor, font=ENTRY)
+    entry_inscricao_estadual_fornecedor.place(x=630, y=200)
 
 
 
