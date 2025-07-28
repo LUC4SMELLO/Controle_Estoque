@@ -1,8 +1,45 @@
 import tkinter as tk
+from tkinter import  messagebox
 
 from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 
+from backend.controladores.fornecedor.consultar_fornecedor_controlador import buscar_fornecedor_back
+
 def criar_janela_consultar_fornecedor():
+
+    def buscar_fornecedor_gui():
+
+        
+        entry_razao_social_consultar.delete(0, tk.END)
+        entry_nome_fantasia_consultar.delete(0, tk.END)
+        fornecedor_ativo.set(False)
+        entry_cnpj_consultar.delete(0, tk.END)
+        entry_inscricao_estadual_consultar.delete(0, tk.END)
+        entry_logradouro_consultar.delete(0, tk.END)
+        entry_bairro_consultar.delete(0, tk.END)
+        entry_cidade_consultar.delete(0, tk.END)
+        entry_cep_consultar.delete(0, tk.END)
+        entry_estado_consultar.delete(0, tk.END)
+
+        valido, resposta = buscar_fornecedor_back(entry_codigo_consultar.get().strip())
+        if not valido:
+            messagebox.showerror("Erro", resposta)
+            entry_codigo_consultar.focus_set()
+            return None
+
+        entry_razao_social_consultar.insert(0, resposta.razao_social)
+        entry_nome_fantasia_consultar.insert(0, resposta.nome_fantasia)
+        fornecedor_ativo.set(resposta.fornecedor_ativo)
+        entry_cnpj_consultar.insert(0, resposta.cnpj)
+        entry_inscricao_estadual_consultar.insert(0, resposta.inscricao_estadual)
+        entry_logradouro_consultar.insert(0, resposta.logradouro)
+        entry_bairro_consultar.insert(0, resposta.bairro)
+        entry_cidade_consultar.insert(0, resposta.cidade)
+        entry_cep_consultar.insert(0, resposta.cep)
+        entry_estado_consultar.insert(0, resposta.estado)
+
+
+
 
     janela_consultar_fornecedor = tk.Toplevel()
     janela_consultar_fornecedor.title("Consultar Fornecedor")
@@ -14,7 +51,10 @@ def criar_janela_consultar_fornecedor():
     label_codigo_consultar = tk.Label(janela_consultar_fornecedor, text="Código:", font=LABEL)
     label_codigo_consultar.place(x=58, y=10)
 
-    entry_codigo_consultar = tk.Entry(janela_consultar_fornecedor, font=ENTRY)
+    botao_buscar_fornecedor = tk.Button(janela_consultar_fornecedor, text="Buscar", font=BOTAO, command=buscar_fornecedor_gui)
+    botao_buscar_fornecedor.place(x=175, y=5)
+
+    entry_codigo_consultar = tk.Entry(janela_consultar_fornecedor, width=7 ,font=ENTRY)
     entry_codigo_consultar.place(x=115, y=10)
 
     label_razao_social_consultar = tk.Label(janela_consultar_fornecedor, text="Razão Social:", font=LABEL)

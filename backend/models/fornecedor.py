@@ -132,7 +132,7 @@ class Fornecedor:
 
             cursor.execute(
             """
-            SELECT 1 FROM TabelaFornecedores
+            SELECT * FROM TabelaFornecedores
             WHERE codigo_fornecedor = ?
             """, (codigo_fornecedor,)
             )
