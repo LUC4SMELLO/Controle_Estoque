@@ -1,9 +1,49 @@
 import tkinter as tk
 from tkinter import messagebox, ttk
 
+from backend.validadores.fornecedor.formulario_fornecedor import validar_formulario_fornecedor
+
+from backend.controladores.fornecedor.cadastrar_fornecedor_controlador import cadastrar_fornecedor_back
+
 from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 
 def criar_janela_cadastrar_fornecedor():
+
+    def cadastrar_fornecedor_gui():
+
+        valido, mensagem = validar_formulario_fornecedor(
+            entry_codigo_fornecedor.get().strip(),
+            entry_razao_social_fornecedor.get().strip(),
+            entry_nome_fantasia_fornecedor.get().strip(),
+            entry_cnpj_fornecedor.get().strip(),
+            entry_inscricao_estadual_fornecedor.get().strip(),
+            entry_logradouro_fornecedor.get().strip(),
+            entry_bairro_fornecedor.get().strip(),
+            entry_cidade_fornecedor.get().strip(),
+            entry_cep_fornecedor.get().strip(),
+            entry_estado.get().strip()
+        )
+        if not valido:
+            messagebox.showerror("Erro", mensagem)
+            entry_codigo_fornecedor.focus_set()
+            return None
+
+        cadastrar_fornecedor_back(
+            entry_codigo_fornecedor.get().strip(),
+            entry_razao_social_fornecedor.get().strip(),
+            entry_nome_fantasia_fornecedor.get().strip(),
+            fornecedor_ativo.get(),
+            entry_cnpj_fornecedor.get().strip(),
+            entry_inscricao_estadual_fornecedor.get().strip(),
+            entry_logradouro_fornecedor.get().strip(),
+            entry_bairro_fornecedor.get().strip(),
+            entry_cidade_fornecedor.get().strip(),
+            entry_cep_fornecedor.get().strip(),
+            entry_estado.get().strip()
+        )
+
+        messagebox.showinfo("Sucesso!", "Fornecedor Cadastrado!")
+        entry_codigo_fornecedor.focus_set()
 
     janela_cadastrar_fornecedor = tk.Toplevel()
     janela_cadastrar_fornecedor.title("Cadastrar Fornecedor")
@@ -87,7 +127,7 @@ def criar_janela_cadastrar_fornecedor():
     linha_horizontal_inferior = tk.Frame(janela_cadastrar_fornecedor, background="silver", width=800, height=5)
     linha_horizontal_inferior.place(x=0, y=550)
 
-    botao_confirmar_cadastro = tk.Button(janela_cadastrar_fornecedor, text="Confirmar", font=BOTAO)
+    botao_confirmar_cadastro = tk.Button(janela_cadastrar_fornecedor, text="Confirmar", font=BOTAO, command=cadastrar_fornecedor_gui)
     botao_confirmar_cadastro.place(x=600, y=565)
 
     botao_cancelar_cadastro =  tk.Button(janela_cadastrar_fornecedor, text="Cancelar", font=BOTAO)
