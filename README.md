@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Software criado para o gerenciamento do estoque de uma empresa. Ele conta com diversas funcionalidades para isso.
+Este software foi desenvolvido para gerenciar o estoque de uma empresa, oferecendo uma série de funcionalidades que permitem o controle de produtos, entradas e saídas, fornecedores, notificações e relatórios.
 
 ## Tecnologias
 
@@ -66,3 +66,10 @@ Software criado para o gerenciamento do estoque de uma empresa. Ele conta com di
     Alterar <br>
     Excluir <br>
     Consultar <br>
+
+
+## Observações
+
+- Interface gráfica desenvolvida com **Tkinter**
+- Banco de dados local feito com **SQLite3**
+- Projeto desenvolvido para pequenos e médios comércios
