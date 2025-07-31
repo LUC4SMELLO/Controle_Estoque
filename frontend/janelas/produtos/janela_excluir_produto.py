@@ -111,7 +111,11 @@ def criar_janela_excluir_produto():
 
     def fechar_janela_excluir_produto():
 
+        global botao_buscar_apertado
+
         janela_excluir_produtos.destroy()
+
+        botao_buscar_apertado = False
 
 
     janela_excluir_produtos = tk.Toplevel()
