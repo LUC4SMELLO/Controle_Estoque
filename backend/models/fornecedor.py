@@ -84,11 +84,11 @@ class Fornecedor:
         fornecedor_ativo = ?,
         cnpj = ?,
         inscricao_estadual = ?,
-        logradouro = ?
+        logradouro = ?,
         bairro = ?,
         cidade = ?,
         cep = ?,
-        estado = ?,
+        estado = ?
         WHERE codigo_fornecedor = ?
         """,
             (
@@ -102,7 +102,7 @@ class Fornecedor:
                 self.cidade,
                 self.cep,
                 self.estado,
-                self.codigo_fornecedor,
+                self.codigo_fornecedor
             )
         )
 
