@@ -117,7 +117,11 @@ def criar_janela_alterar_produto():
 
     def fechar_janela_alterar_produto():
 
+        global botao_buscar_apertado
+
         janela_alterar_produtos.destroy()
+
+        botao_buscar_apertado = False
 
     janela_alterar_produtos = tk.Toplevel()
     janela_alterar_produtos.title("Alterar Produto")
