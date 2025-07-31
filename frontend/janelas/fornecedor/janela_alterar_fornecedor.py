@@ -1,9 +1,119 @@
 import tkinter as tk
+from tkinter import messagebox
 
 from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 
+from backend.controladores.fornecedor.consultar_fornecedor_controlador import buscar_fornecedor_back
+
+from backend.validadores.fornecedor.formulario_fornecedor import validar_formulario_fornecedor
+
+from backend.controladores.fornecedor.alterar_fornecedor_controlador import alterar_fornecedor_back
+
+
+fornecedor_buscado = False
 
 def criar_janela_alterar_fornecedor():
+
+    def buscar_fornecedor_alterar_gui():
+
+        global fornecedor_buscado
+        
+        entry_razao_social_alterar.delete(0, tk.END)
+        entry_nome_fantasia_alterar.delete(0, tk.END)
+        fornecedor_ativo.set(False)
+        entry_cnpj_alterar.delete(0, tk.END)
+        entry_inscricao_estadual_alterar.delete(0, tk.END)
+        entry_logradouro_alterar.delete(0, tk.END)
+        entry_bairro_alterar.delete(0, tk.END)
+        entry_cidade_alterar.delete(0, tk.END)
+        entry_cep_alterar.delete(0, tk.END)
+        entry_estado_alterar.delete(0, tk.END)
+
+        valido, resposta = buscar_fornecedor_back(entry_codigo_alterar.get().strip())
+        if not valido:
+            messagebox.showerror("Erro", resposta)
+            entry_codigo_alterar.focus_set()
+            return None
+
+        entry_razao_social_alterar.insert(0, resposta.razao_social)
+        entry_nome_fantasia_alterar.insert(0, resposta.nome_fantasia)
+        fornecedor_ativo.set(resposta.fornecedor_ativo)
+        entry_cnpj_alterar.insert(0, resposta.cnpj)
+        entry_inscricao_estadual_alterar.insert(0, resposta.inscricao_estadual)
+        entry_logradouro_alterar.insert(0, resposta.logradouro)
+        entry_bairro_alterar.insert(0, resposta.bairro)
+        entry_cidade_alterar.insert(0, resposta.cidade)
+        entry_cep_alterar.insert(0, resposta.cep)
+        entry_estado_alterar.insert(0, resposta.estado)
+
+        fornecedor_buscado = True
+
+    def alterar_fornecedor_gui():
+
+        global fornecedor_buscado
+
+        if not fornecedor_buscado:
+            messagebox.showerror("Erro.", "Busque o Fornecedor Primeiro.")
+            entry_codigo_alterar.focus_set()
+            return None
+        
+        valido, mensagem = validar_formulario_fornecedor(
+        entry_codigo_alterar.get().strip(),
+        entry_razao_social_alterar.get().strip(),
+        entry_nome_fantasia_alterar.get().strip(),
+        entry_cnpj_alterar.get().strip(),
+        entry_inscricao_estadual_alterar.get().strip(),
+        entry_logradouro_alterar.get().strip(),
+        entry_bairro_alterar.get().strip(),
+        entry_cidade_alterar.get().strip(),
+        entry_cep_alterar.get().strip(),
+        entry_estado_alterar.get().strip()
+        )
+        if not valido:
+            messagebox.showerror("Erro", mensagem)
+            entry_codigo_alterar.focus_set()
+            return None
+
+        alterar_fornecedor_back(
+            entry_codigo_alterar.get(),
+            entry_razao_social_alterar.get(),
+            entry_nome_fantasia_alterar.get(),
+            fornecedor_ativo.get(),
+            entry_cnpj_alterar.get(),
+            entry_inscricao_estadual_alterar.get(),
+            entry_logradouro_alterar.get(),
+            entry_bairro_alterar.get(),
+            entry_cidade_alterar.get(),
+            entry_cep_alterar.get(),
+            entry_estado_alterar.get()
+        )
+        messagebox.showinfo("Sucesso!", "Fornecedor Atualizado!")
+        entry_codigo_alterar.focus_set()
+
+        entry_codigo_alterar.delete(0, tk.END)
+        entry_razao_social_alterar.delete(0, tk.END)
+        entry_nome_fantasia_alterar.delete(0, tk.END)
+        fornecedor_ativo.set(False)
+        entry_cnpj_alterar.delete(0, tk.END)
+        entry_inscricao_estadual_alterar.delete(0, tk.END)
+        entry_logradouro_alterar.delete(0, tk.END)
+        entry_bairro_alterar.delete(0, tk.END)
+        entry_cidade_alterar.delete(0, tk.END)
+        entry_cep_alterar.delete(0, tk.END)
+        entry_estado_alterar.delete(0, tk.END)
+
+
+        fornecedor_buscado = False
+
+    def fechar_janela_alterar_fornecedor():
+
+        global fornecedor_buscado
+
+        janela_alterar_fornecedor.destroy()
+
+        fornecedor_buscado = False
+
+
 
     janela_alterar_fornecedor = tk.Toplevel()
     janela_alterar_fornecedor.title("Alterar Fornecedor")
@@ -15,8 +125,8 @@ def criar_janela_alterar_fornecedor():
     label_codigo_alterar = tk.Label(janela_alterar_fornecedor, text="Código:", font=LABEL)
     label_codigo_alterar.place(x=58, y=10)
 
-    botao_buscar_fornecedor = tk.Button(janela_alterar_fornecedor, text="Buscar", font=BOTAO)
-    botao_buscar_fornecedor.place(x=175, y=5)
+    botao_buscar_alterar = tk.Button(janela_alterar_fornecedor, text="Buscar", font=BOTAO, command=buscar_fornecedor_alterar_gui)
+    botao_buscar_alterar.place(x=175, y=5)
 
     entry_codigo_alterar = tk.Entry(janela_alterar_fornecedor, width=7 ,font=ENTRY)
     entry_codigo_alterar.place(x=115, y=10)
@@ -27,12 +137,12 @@ def criar_janela_alterar_fornecedor():
     entry_razao_social_alterar = tk.Entry(janela_alterar_fornecedor, font=ENTRY, width=60)
     entry_razao_social_alterar.place(x=115, y=40)
 
-    label_fornecedor_ativo = tk.Label(janela_alterar_fornecedor, text="Ativo:", font=LABEL)
-    label_fornecedor_ativo.place(x=710, y=40)
+    label_alterar_ativo = tk.Label(janela_alterar_fornecedor, text="Ativo:", font=LABEL)
+    label_alterar_ativo.place(x=710, y=40)
 
     fornecedor_ativo = tk.BooleanVar()
-    entry_fornecedor_ativo_fornecedor = tk.Checkbutton(janela_alterar_fornecedor, variable=fornecedor_ativo)
-    entry_fornecedor_ativo_fornecedor.place(x=750, y=40)
+    entry_alterar_ativo_alterar = tk.Checkbutton(janela_alterar_fornecedor, variable=fornecedor_ativo)
+    entry_alterar_ativo_alterar.place(x=750, y=40)
 
     label_nome_fantasia_alterar = tk.Label(janela_alterar_fornecedor, text="Nome Fantasia:", font=LABEL)
     label_nome_fantasia_alterar.place(x=10, y=100)
@@ -90,8 +200,8 @@ def criar_janela_alterar_fornecedor():
     linha_horizontal_inferior = tk.Frame(janela_alterar_fornecedor, background="silver", width=800, height=5)
     linha_horizontal_inferior.place(x=0, y=550)
 
-    botao_confirmar_alterar = tk.Button(janela_alterar_fornecedor, text="Confirmar", font=BOTAO)
+    botao_confirmar_alterar = tk.Button(janela_alterar_fornecedor, text="Confirmar", font=BOTAO, command=alterar_fornecedor_gui)
     botao_confirmar_alterar.place(x=600, y=565)
 
-    botao_cancelar_alterar =  tk.Button(janela_alterar_fornecedor, text="Cancelar", font=BOTAO)
+    botao_cancelar_alterar =  tk.Button(janela_alterar_fornecedor, text="Cancelar", font=BOTAO, command=fechar_janela_alterar_fornecedor)
     botao_cancelar_alterar.place(x=700, y=565)
