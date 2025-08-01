@@ -17,4 +17,10 @@ def validar_formulario_fornecedor(
     bairro or not cidade or not cep or not estado:
         return False, "Todos os Campos Devem ser Preenchidos."
     
+    if len(cnpj) != 14:
+        return False, "CNPJ Inválido."    
+    
+    if len(inscricao_estadual) != 13:
+        return False, "Inscrição Estadual Inválida."
+    
     return True, "Cadastro Válido."
