@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox, ttk
 
+from backend.binds.configuracao_binds import configurar_binds
+
 from backend.validadores.fornecedor.formulario_fornecedor import validar_formulario_fornecedor
 
 from backend.controladores.fornecedor.cadastrar_fornecedor_controlador import cadastrar_fornecedor_back
@@ -132,3 +134,18 @@ def criar_janela_cadastrar_fornecedor():
 
     botao_cancelar_cadastro =  tk.Button(janela_cadastrar_fornecedor, text="Cancelar", font=BOTAO)
     botao_cancelar_cadastro.place(x=700, y=565)
+
+    lista_entrys = [
+        entry_codigo_fornecedor,
+        entry_razao_social_fornecedor,
+        entry_nome_fantasia_fornecedor,
+        entry_logradouro_fornecedor,
+        entry_bairro_fornecedor,
+        entry_cidade_fornecedor,
+        entry_cep_fornecedor,
+        entry_estado,
+        entry_cnpj_fornecedor,
+        entry_inscricao_estadual_fornecedor,
+    ]
+
+    configurar_binds(lista_entrys, acoes_intermediarias=None, ultima_acao=cadastrar_fornecedor_gui)
