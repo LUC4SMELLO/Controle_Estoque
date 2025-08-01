@@ -115,6 +115,9 @@ def criar_janela_alterar_produto():
         entry_itens_pallete_alterar.delete(0, tk.END)
         entry_itens_lastro_alterar.delete(0, tk.END)
 
+        messagebox.showinfo("Sucesso!", "Produto Alterado.")
+        entry_codigo_produto_alterar.focus_set()
+
     def fechar_janela_alterar_produto():
 
         global botao_buscar_apertado

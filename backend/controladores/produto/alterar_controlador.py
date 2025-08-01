@@ -34,6 +34,3 @@ def alterar_produto_back(
         itens_lastro.get().strip(),
     )
     produto.atualizar_produto()
-
-    messagebox.showinfo("Sucesso!", "Produto Alterado.")
-    codigo_produto.focus_set()
