@@ -34,6 +34,3 @@ def cadastrar_produto_back(
     )
 
     novo_produto.salvar_produto()
-
-    messagebox.showinfo("Sucesso!", "Produto Cadastrado.")
-    codigo_produto.focus_set()

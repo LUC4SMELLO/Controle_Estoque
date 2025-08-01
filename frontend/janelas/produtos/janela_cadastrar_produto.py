@@ -61,9 +61,11 @@ def criar_janela_cadastrar_produto():
             entry_itens_lastro_cadastrar
 
         )
-        
 
         limpar_entradas_cadastro_produto()
+
+        messagebox.showinfo("Sucesso!", "Produto Cadastrado.")
+        entry_codigo_produto_cadastrar.focus_set()
 
     def limpar_entradas_cadastro_produto():
         entry_codigo_produto_cadastrar.delete(0, tk.END)
