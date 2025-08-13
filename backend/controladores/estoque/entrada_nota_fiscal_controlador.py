@@ -8,6 +8,8 @@ from backend.controladores.produto.consultar_controlador import buscar_produto_b
 
 from backend.controladores.estoque.entrada_controlador import entrada_produto_back
 
+from backend.models.fornecedor import Fornecedor
+
 import xml.etree.ElementTree as ET
 
 def buscar_nota_fiscal_back():
@@ -143,4 +145,15 @@ def entrada_produto_nota_fiscal_back(nota_fiscal):
     for produto_dict in nota_fiscal:
         entrada_produto_back(produto_dict["codigo_produto"], produto_dict["quantidade"])
     
+def buscar_fornecedor_pelo_cnpj_back(cnpj):
+
+    if not cnpj.strip():
+        return False, "Preencha o Código do Fornecedor."
+    
+    resultado = Fornecedor.buscar_fornecedor_pelo_cnpj(cnpj)
+
+    if not resultado:
+        return False, "Fornecedor Não Encontrado."
+
+    return True, resultado
 
