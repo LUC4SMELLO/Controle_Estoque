@@ -6,7 +6,8 @@ from backend.controladores.estoque.entrada_nota_fiscal_controlador import (
     buscar_nota_fiscal_back,
     data_entrada_atual, 
     verificar_produtos_da_nota_fiscal,
-    entrada_produto_nota_fiscal_back
+    entrada_produto_nota_fiscal_back,
+    buscar_fornecedor_pelo_cnpj_back
 )
     
 
@@ -14,21 +15,23 @@ from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 
 from backend.binds.configuracao_binds import configurar_binds 
 
-resultados = None
+resultados_nota_fiscal = None
 produtos_listados_na_tabela = False
 
 def criar_janela_entrada_nota_fiscal():
 
     def mostrar_nota_fiscal():
 
-        global resultados
+        global resultados_nota_fiscal
         global produtos_listados_na_tabela
 
         data_entrada_agora = data_entrada_atual()
 
-        resultados = buscar_nota_fiscal_back() 
+        resultados_nota_fiscal = buscar_nota_fiscal_back() 
 
-        valido, resposta = verificar_produtos_da_nota_fiscal(resultados)
+        valido, resposta_fornecedor = buscar_fornecedor_pelo_cnpj_back(resultados_nota_fiscal[0]["cnpj"])
+
+        valido, resposta = verificar_produtos_da_nota_fiscal(resultados_nota_fiscal)
         if not valido:
             messagebox.showerror("Erro", f"Os Seguintes Produtos Não Foram Encontrados: \n\n{resposta}")
             treeview_nota_fiscal.focus_set()
@@ -37,12 +40,13 @@ def criar_janela_entrada_nota_fiscal():
         for item in treeview_nota_fiscal.get_children():
             treeview_nota_fiscal.delete(item)
 
-        if not resultados:
+        if not resultados_nota_fiscal:
             messagebox.showinfo("Aviso", "Não Há Produtos a Serem Listados ou um Erro Ocorreu na Leitura.")
             treeview_nota_fiscal.focus_set()
             return None 
         
         entry_data_entrada.delete(0, tk.END)
+        entry_codigo_fornecedor.delete(0, tk.END)
         entry_numero_nota_fiscal.delete(0, tk.END)
         entry_descricao_fornecedor.delete(0, tk.END)
         entry_municipio.delete(0, tk.END)
@@ -50,14 +54,15 @@ def criar_janela_entrada_nota_fiscal():
         entry_bairro.delete(0, tk.END)
 
         entry_data_entrada.insert(0, data_entrada_agora)
-        entry_numero_nota_fiscal.insert(0, resultados[0]["numero_nota"])
-        entry_descricao_fornecedor.insert(0, resultados[0]["razao_social"])
-        entry_municipio.insert(0, (resultados[0]["cidade"]))
-        entry_uf.insert(0, (resultados[0]["uf"]))
-        entry_bairro.insert(0, resultados[0]["bairro"])
+        entry_codigo_fornecedor.insert(0, resposta_fornecedor.codigo_fornecedor)
+        entry_numero_nota_fiscal.insert(0, resultados_nota_fiscal[0]["numero_nota"])
+        entry_descricao_fornecedor.insert(0, resultados_nota_fiscal[0]["razao_social"])
+        entry_municipio.insert(0, (resultados_nota_fiscal[0]["cidade"]))
+        entry_uf.insert(0, (resultados_nota_fiscal[0]["uf"]))
+        entry_bairro.insert(0, resultados_nota_fiscal[0]["bairro"])
         
         numero_item = 1
-        for produto_dict in resultados:
+        for produto_dict in resultados_nota_fiscal:
 
             valores_para_treeview = (
                 numero_item,
@@ -71,12 +76,12 @@ def criar_janela_entrada_nota_fiscal():
 
         produtos_listados_na_tabela = True
 
-        messagebox.showinfo("Sucesso", f"{len(resultados)} Produtos Listados na Tabela.")
+        messagebox.showinfo("Sucesso", f"{len(resultados_nota_fiscal)} Produtos Listados na Tabela.")
         treeview_nota_fiscal.focus_set()
 
     def entrada_produto_gui():
 
-        global resultados
+        global resultados_nota_fiscal
         global produtos_listados_na_tabela
 
         if not produtos_listados_na_tabela:
@@ -84,7 +89,7 @@ def criar_janela_entrada_nota_fiscal():
             botao_buscar_nota_fiscal.focus_set()
             return None
         
-        entrada_produto_nota_fiscal_back(resultados)
+        entrada_produto_nota_fiscal_back(resultados_nota_fiscal)
 
         messagebox.showinfo("Sucesso!", "Nota Importada.")
 
