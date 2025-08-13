@@ -135,7 +135,7 @@ class Produto:
         conexao.close()
     
     @staticmethod
-    def buscar_produto(codigo_produto):
+    def buscar_produto_por_codigo(codigo_produto):
         try:
             conexao = conectar_banco_de_dados_produtos()
             cursor = conexao.cursor()

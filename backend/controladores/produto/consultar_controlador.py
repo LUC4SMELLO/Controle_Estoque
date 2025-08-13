@@ -5,7 +5,7 @@ def buscar_produto_back(codigo: str):
     if not codigo.strip():
         return False, "Preencha o Código do Produto."
 
-    resultado = Produto.buscar_produto(codigo.strip())
+    resultado = Produto.buscar_produto_por_codigo(codigo.strip())
 
     if not resultado:
         return False, "Produto Não Encontrado."
