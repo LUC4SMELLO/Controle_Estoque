@@ -125,7 +125,7 @@ class Fornecedor:
         conexao.close()
 
     @staticmethod
-    def buscar_fornecedor(codigo_fornecedor):
+    def buscar_fornecedor_pelo_codigo(codigo_fornecedor):
         try:
             conexao = conectar_banco_de_dados_fornecedores()
             cursor = conexao.cursor()
