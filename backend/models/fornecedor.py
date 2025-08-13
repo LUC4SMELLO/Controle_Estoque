@@ -146,3 +146,26 @@ class Fornecedor:
         
         except TypeError:
             return False
+        
+    @staticmethod
+    def buscar_fornecedor_pelo_cnpj(cnpj_fornecedor):
+        try:
+            conexao = conectar_banco_de_dados_fornecedores()
+            cursor = conexao.cursor()
+
+            cursor.execute(
+            """
+            SELECT * FROM TabelaFornecedores
+            WHERE cnpj = ?
+            """, (cnpj_fornecedor,)
+            )
+
+            resultado = cursor.fetchone()
+
+            conexao.commit()
+            conexao.close()
+
+            return Fornecedor(*resultado)
+        
+        except TypeError:
+            return False
