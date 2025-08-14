@@ -6,6 +6,7 @@ from frontend.janelas.fornecedor.janela_cadastrar_fornecedor import criar_janela
 from frontend.janelas.fornecedor.janela_alterar_fornecedor import criar_janela_alterar_fornecedor
 from frontend.janelas.fornecedor.janela_excluir_fornecedor import criar_janela_excluir_fornecedor
 from frontend.janelas.fornecedor.janela_consultar_fornecedor import criar_janela_consultar_fornecedor
+from frontend.janelas.fornecedor.janela_ultimas_compras import criar_janela_ultimas_compras
 
 import frontend.menu_state as state
 
@@ -19,7 +20,7 @@ def criar_botao_fornecedores(janela_pai):
     botao_excluir_fornecedores = tk.Button(janela_pai, text="Excluir", width=8, font=("Arial", 10, "bold"), command=criar_janela_excluir_fornecedor)
     botao_consultar_fornecedores = tk.Button(janela_pai, text="Consultar", width=8, font=("Arial", 10, "bold"), command=criar_janela_consultar_fornecedor)
 
-    botao_ultimas_compras = tk.Button(janela_pai, text="Últimas Compras", font=("Arial", 10, "bold"))
+    botao_ultimas_compras = tk.Button(janela_pai, text="Últimas Compras", font=("Arial", 10, "bold"), command=criar_janela_ultimas_compras)
 
     state.botoes_principais["fornecedores"] = botao_fornecedores
     state.botoes_submenus["fornecedores"] = [
