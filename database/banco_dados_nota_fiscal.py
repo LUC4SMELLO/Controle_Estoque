@@ -14,7 +14,11 @@ def criar_tabela_nota_fiscal():
         numero_nota_fiscal VARCHAR(9) NOT NULL,
         codigo_fornecedor VARCHAR(6),
         data_entrada VARCHAR (10),
-        PRIMARY KEY (numero_nota_fiscal)
-        )
+        PRIMARY KEY (numero_nota_fiscal),
+        FOREIGN KEY (codigo_fornecedor)
+    )
     """
     )
+
+    conexao.commit()
+    conexao.close()
