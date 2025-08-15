@@ -7,7 +7,8 @@ from backend.controladores.estoque.entrada_nota_fiscal_controlador import (
     data_entrada_atual, 
     verificar_produtos_da_nota_fiscal,
     entrada_produto_nota_fiscal_back,
-    buscar_fornecedor_pelo_cnpj_back
+    buscar_fornecedor_pelo_cnpj_back,
+    salvar_nota_fiscal_back
 )
     
 
@@ -16,16 +17,19 @@ from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 from backend.binds.configuracao_binds import configurar_binds 
 
 resultados_nota_fiscal = None
+resposta_fornecedor = None
 produtos_listados_na_tabela = False
 
 def criar_janela_entrada_nota_fiscal():
 
+    data_entrada_agora = data_entrada_atual()
+
     def mostrar_nota_fiscal():
 
         global resultados_nota_fiscal
+        global resposta_fornecedor
         global produtos_listados_na_tabela
 
-        data_entrada_agora = data_entrada_atual()
 
         resultados_nota_fiscal = buscar_nota_fiscal_back() 
 
@@ -82,12 +86,17 @@ def criar_janela_entrada_nota_fiscal():
     def entrada_produto_gui():
 
         global resultados_nota_fiscal
+        global resposta_fornecedor
         global produtos_listados_na_tabela
 
         if not produtos_listados_na_tabela:
             messagebox.showerror("Erro.", "Busque uma Nota Fiscal Primeiro.")
             botao_buscar_nota_fiscal.focus_set()
             return None
+        
+        salvar_nota_fiscal_back(resultados_nota_fiscal[0]["numero_nota"],
+                                resposta_fornecedor.codigo_fornecedor,
+                                data_entrada_agora)
         
         entrada_produto_nota_fiscal_back(resultados_nota_fiscal)
 
