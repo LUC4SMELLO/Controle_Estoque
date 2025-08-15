@@ -1,7 +1,9 @@
 import sqlite3
 
+
 def conectar_banco_de_dados_nota_fiscal():
     return sqlite3.connect("TabelaNotaFiscal.db")
+
 
 def criar_tabela_nota_fiscal():
 
@@ -10,15 +12,18 @@ def criar_tabela_nota_fiscal():
 
     cursor.execute(
     """
-    CREATE TABLE IF NOT EXISTS TabelaNotaFiscal.db (
+    CREATE TABLE IF NOT EXISTS TabelaNotaFiscal (
         numero_nota_fiscal VARCHAR(9) NOT NULL,
         codigo_fornecedor VARCHAR(6),
-        data_entrada VARCHAR (10),
+        data_entrada VARCHAR(10),
         PRIMARY KEY (numero_nota_fiscal),
-        FOREIGN KEY (codigo_fornecedor)
+        FOREIGN KEY (codigo_fornecedor) REFERENCES TabelaFornecedores(codigo_fornecedor)
     )
     """
     )
 
     conexao.commit()
     conexao.close()
+
+
+criar_tabela_nota_fiscal()
