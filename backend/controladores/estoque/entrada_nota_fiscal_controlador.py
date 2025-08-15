@@ -10,6 +10,8 @@ from backend.controladores.estoque.entrada_controlador import entrada_produto_ba
 
 from backend.models.fornecedor import Fornecedor
 
+from backend.models.nota_fiscal import NotaFiscal
+
 import xml.etree.ElementTree as ET
 
 def buscar_nota_fiscal_back():
@@ -156,4 +158,11 @@ def buscar_fornecedor_pelo_cnpj_back(cnpj):
         return False, "Fornecedor Não Encontrado."
 
     return True, resultado
+
+def salvar_nota_fiscal_back(numero_nota_fiscal, codigo_fornecedor, data_entrada):
+    
+    nota_fiscal = NotaFiscal(numero_nota_fiscal, codigo_fornecedor, data_entrada)
+
+    nota_fiscal.salvar_nota_fiscal()
+
 
