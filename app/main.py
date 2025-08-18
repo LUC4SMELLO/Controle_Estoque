@@ -7,8 +7,8 @@ from frontend.interface import inicializar_interface
 from servicos.servico_banco_dados import inicializar_bancos_de_dados
 
 def main():
-    inicializar_interface()
     inicializar_bancos_de_dados()
+    inicializar_interface()
 
 
 if __name__ == "__main__":

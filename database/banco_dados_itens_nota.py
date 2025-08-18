@@ -10,7 +10,7 @@ def criar_tabela_itens_nota_fiscal():
 
     cursor.execute(
     """
-    CREATE TABLE IF NOT EXISTS TabelaItensNotaFiscal.db (
+    CREATE TABLE IF NOT EXISTS TabelaItensNotaFiscal (
         id_item_nota VARCHAR(10),
         numero_nota_fiscal VARCHAR(9),
         codigo_produto VARCHAR(6),
@@ -18,8 +18,8 @@ def criar_tabela_itens_nota_fiscal():
         preco_unitario VARCHAR(10),
         valor_total VARCHAR(10),
         PRIMARY KEY (id_item_nota),
-        FOREIGN KEY (numero_nota_fiscal),
-        FOREIGN KEY (codigo_produto)
+        FOREIGN KEY (numero_nota_fiscal) REFERENCES TabelaNotaFiscal(numero_nota_fiscal),
+        FOREIGN KEY (codigo_produto) REFERENCES TabelaProdutos(codigo_produto)
     )
     """
     )
