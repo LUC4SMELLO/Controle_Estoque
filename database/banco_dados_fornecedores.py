@@ -3,7 +3,7 @@ import sqlite3
 def conectar_banco_de_dados_fornecedores():
     return sqlite3.connect("TabelaFornecedores.db")
 
-def criar_tabela_produtos():
+def criar_tabela_fornecedores():
     conexao = conectar_banco_de_dados_fornecedores()
     cursor = conexao.cursor()
 
