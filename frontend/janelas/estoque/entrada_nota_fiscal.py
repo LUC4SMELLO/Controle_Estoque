@@ -8,9 +8,9 @@ from backend.controladores.estoque.entrada_nota_fiscal_controlador import (
     verificar_produtos_da_nota_fiscal,
     entrada_produto_nota_fiscal_back,
     buscar_fornecedor_pelo_cnpj_back,
-    salvar_nota_fiscal_back
-)
-    
+    salvar_nota_fiscal_back,
+    nota_fiscal_ja_importada
+)   
 
 from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 
@@ -30,7 +30,6 @@ def criar_janela_entrada_nota_fiscal():
         global resposta_fornecedor
         global produtos_listados_na_tabela
 
-
         resultados_nota_fiscal = buscar_nota_fiscal_back() 
 
         valido, resposta_fornecedor = buscar_fornecedor_pelo_cnpj_back(resultados_nota_fiscal[0]["cnpj"])
@@ -47,8 +46,12 @@ def criar_janela_entrada_nota_fiscal():
         if not resultados_nota_fiscal:
             messagebox.showinfo("Aviso", "Não Há Produtos a Serem Listados ou um Erro Ocorreu na Leitura.")
             treeview_nota_fiscal.focus_set()
-            return None 
+            return None
         
+        resultado, mensagem = nota_fiscal_ja_importada(resultados_nota_fiscal[0]["numero_nota"])
+        if resultado:
+            mensagem_nota_ja_importada = "Nota Já Importada!"
+ 
         entry_data_entrada.delete(0, tk.END)
         entry_codigo_fornecedor.delete(0, tk.END)
         entry_numero_nota_fiscal.delete(0, tk.END)
@@ -94,9 +97,16 @@ def criar_janela_entrada_nota_fiscal():
             botao_buscar_nota_fiscal.focus_set()
             return None
         
-        salvar_nota_fiscal_back(resultados_nota_fiscal[0]["numero_nota"],
-                                resposta_fornecedor.codigo_fornecedor,
-                                data_entrada_agora)
+        resultado, mensagem = salvar_nota_fiscal_back(
+            resultados_nota_fiscal[0]["numero_nota"],
+            resposta_fornecedor.codigo_fornecedor,
+            data_entrada_agora
+            )
+        
+        if not resultado:
+            messagebox.showerror("Erro", mensagem)
+            treeview_nota_fiscal.focus_set()
+            return None
         
         entrada_produto_nota_fiscal_back(resultados_nota_fiscal)
 
