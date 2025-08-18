@@ -159,10 +159,25 @@ def buscar_fornecedor_pelo_cnpj_back(cnpj):
 
     return True, resultado
 
+def nota_fiscal_ja_importada(numero_nota_fiscal):
+
+    nota_importada = NotaFiscal.buscar_nota_fiscal_por_numero(numero_nota_fiscal)
+
+    if nota_importada:
+        return False, "Nota Já Importada!"
+    
+    return True, "Nota Importada Com Sucesso!"
+    
 def salvar_nota_fiscal_back(numero_nota_fiscal, codigo_fornecedor, data_entrada):
+
+    resultado, mensagem = nota_fiscal_ja_importada(numero_nota_fiscal)
+    if not resultado:
+        return False, mensagem
     
     nota_fiscal = NotaFiscal(numero_nota_fiscal, codigo_fornecedor, data_entrada)
 
     nota_fiscal.salvar_nota_fiscal()
+
+    return True, "Nota Importada com Sucesso!"
 
 
