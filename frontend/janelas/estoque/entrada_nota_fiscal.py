@@ -9,7 +9,8 @@ from backend.controladores.estoque.entrada_nota_fiscal_controlador import (
     entrada_produto_nota_fiscal_back,
     buscar_fornecedor_pelo_cnpj_back,
     salvar_nota_fiscal_back,
-    nota_fiscal_ja_importada
+    nota_fiscal_ja_importada,
+    salvar_item_nota_fiscal_back
 )   
 
 from backend.constantes.fontes import LABEL, ENTRY, BOTAO
@@ -107,11 +108,19 @@ def criar_janela_entrada_nota_fiscal():
             resposta_fornecedor.codigo_fornecedor,
             data_entrada_agora
             )
-        
         if not resultado:
             messagebox.showerror("Erro", mensagem)
             treeview_nota_fiscal.focus_set()
             return None
+        
+        for produto_dict in resultados_nota_fiscal:
+            salvar_item_nota_fiscal_back(
+                resultados_nota_fiscal[0]["numero_nota"],
+                produto_dict.get("codigo_produto", ""),
+                produto_dict.get("quantidade", 0),
+                produto_dict.get("preco_unitario", 0),
+                produto_dict.get("preco_total", 0)
+            )
         
         entrada_produto_nota_fiscal_back(resultados_nota_fiscal)
 
