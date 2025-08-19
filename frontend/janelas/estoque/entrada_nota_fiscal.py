@@ -48,9 +48,9 @@ def criar_janela_entrada_nota_fiscal():
             treeview_nota_fiscal.focus_set()
             return None
         
-        resultado, mensagem = nota_fiscal_ja_importada(resultados_nota_fiscal[0]["numero_nota"])
-        if resultado:
-            mensagem_nota_ja_importada = "Nota Já Importada!"
+        resultado, _ = nota_fiscal_ja_importada(resultados_nota_fiscal[0]["numero_nota"])
+        if not resultado:
+            label_nota_importada.config(text="Nota Já Importada!", bg="Black", fg="Yellow")
  
         entry_data_entrada.delete(0, tk.END)
         entry_codigo_fornecedor.delete(0, tk.END)
@@ -156,6 +156,9 @@ def criar_janela_entrada_nota_fiscal():
 
     label_bairro = tk.Label(janela_entrada_nota_fiscal, text="Bairro:", font=LABEL)
     label_bairro.place(x=515, y=40)
+
+    label_nota_importada = tk.Label(janela_entrada_nota_fiscal, text="", font=LABEL)
+    label_nota_importada.place(x=750, y=40)
 
     entry_bairro = tk.Entry(janela_entrada_nota_fiscal, font=ENTRY)
     entry_bairro.place(x=565, y=40)
