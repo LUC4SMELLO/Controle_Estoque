@@ -3,6 +3,8 @@ from tkinter import messagebox
 
 from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 
+from backend.binds.configuracao_binds import configurar_binds
+
 from backend.controladores.fornecedor.consultar_fornecedor_controlador import buscar_fornecedor_back
 
 from backend.controladores.fornecedor.excluir_fornecedor_controlador import excluir_fornecedor_back
@@ -189,3 +191,21 @@ def criar_janela_excluir_fornecedor():
 
     botao_cancelar_excluir =  tk.Button(janela_excluir_fornecedor, text="Cancelar", font=BOTAO, command=fechar_janela_excluir_fornecedor)
     botao_cancelar_excluir.place(x=700, y=565)
+
+    lista_entrys = [
+        entry_codigo_excluir,
+        botao_buscar_excluir,
+        entry_razao_social_excluir,
+        entry_nome_fantasia_excluir,
+        entry_logradouro_excluir,
+        entry_bairro_excluir,
+        entry_cidade_excluir,
+        entry_cep_excluir,
+        entry_estado_excluir,
+        entry_cnpj_excluir,
+        entry_inscricao_estadual_excluir,
+    ]
+
+    acoes_intermediarias = [None, buscar_fornecedor_excluir_gui, None, None, None, None, None, None, None, None, None]
+
+    configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultima_acao=None)
