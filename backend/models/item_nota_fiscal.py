@@ -12,13 +12,13 @@ class ItemNotaFiscal:
         codigo_produto,
         quantidade,
         preco_unitario,
-        valor_total
+        preco_total
     ):      
         self.numero_nota_fiscal = numero_nota_fiscal
         self.codigo_produto = codigo_produto
         self.quantidade = quantidade
         self.preco_unitario = preco_unitario
-        self.valor_total = valor_total
+        self.preco_total = preco_total
 
     def salvar_item_nota_fiscal(self):
 
@@ -31,7 +31,7 @@ class ItemNotaFiscal:
         codigo_produto,
         quantidade,
         preco_unitario,
-        valor_total)
+        preco_total)
         VALUES (?, ?, ?, ?, ?)
         """,
             (
@@ -39,7 +39,7 @@ class ItemNotaFiscal:
                 self.codigo_produto,
                 self.quantidade,
                 self.preco_unitario,
-                self.valor_total
+                self.preco_total
             )
         )
 
