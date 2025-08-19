@@ -86,11 +86,17 @@ def buscar_nota_fiscal_back():
                 descricao = prod.find("nfe:xProd", namespaces=ns).text if prod.find("nfe:xProd", namespaces=ns) is not None else ""
                 unidade = prod.find("nfe:uCom", namespaces=ns).text if prod.find("nfe:uCom", namespaces=ns) is not None else ""
                 quantidade_text = prod.find("nfe:qCom", namespaces=ns).text if prod.find("nfe:qCom", namespaces=ns) is not None else "0"
+                preco_unitario_text = prod.find("nfe:vUnCom", namespaces=ns).text if prod.find("nfe:vUnCom", namespaces=ns) is not None else "0"
+                preco_total_text = prod.find("nfe:vProd", namespaces=ns).text if prod.find("nfe:vProd", namespaces=ns) is not None else "0"
                 
                 try:
                     quantidade = round(float(quantidade_text), 2)
+                    preco_unitario = round(float(preco_unitario_text), 2)
+                    preco_total = round(float(preco_total_text), 2)
                 except ValueError:
                     quantidade = 0.0
+                    preco_unitario = 0.0
+                    preco_total = 0.0
 
                 # Adiciona os dados do produto atual à lista
                 todos_os_produtos.append({
@@ -104,7 +110,10 @@ def buscar_nota_fiscal_back():
                     "codigo_produto": codigo_produto,
                     "descricao": descricao,
                     "unidade": unidade,
-                    "quantidade": quantidade
+                    "quantidade": quantidade,
+                    "preco_unitario": preco_unitario,
+                    "preco_total": preco_total
+
                 })
         
         return todos_os_produtos # Retorna a lista completa de produtos
