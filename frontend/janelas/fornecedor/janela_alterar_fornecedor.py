@@ -3,6 +3,8 @@ from tkinter import messagebox
 
 from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 
+from backend.binds.configuracao_binds import configurar_binds
+
 from backend.controladores.fornecedor.consultar_fornecedor_controlador import buscar_fornecedor_back
 
 from backend.validadores.fornecedor.formulario_fornecedor import validar_formulario_fornecedor
@@ -205,3 +207,21 @@ def criar_janela_alterar_fornecedor():
 
     botao_cancelar_alterar =  tk.Button(janela_alterar_fornecedor, text="Cancelar", font=BOTAO, command=fechar_janela_alterar_fornecedor)
     botao_cancelar_alterar.place(x=700, y=565)
+
+    lista_entrys = [
+        entry_codigo_alterar,
+        botao_buscar_alterar,
+        entry_razao_social_alterar,
+        entry_nome_fantasia_alterar,
+        entry_logradouro_alterar,
+        entry_bairro_alterar,
+        entry_cidade_alterar,
+        entry_cep_alterar,
+        entry_estado_alterar,
+        entry_cnpj_alterar,
+        entry_inscricao_estadual_alterar,
+    ]
+
+    acoes_intermediarias = [None, buscar_fornecedor_alterar_gui, None, None, None, None, None, None, None, None, None]
+
+    configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultima_acao=alterar_fornecedor_gui)
