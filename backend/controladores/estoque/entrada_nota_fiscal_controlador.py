@@ -26,7 +26,6 @@ def buscar_nota_fiscal_back():
 
     # Se nenhum arquivo for escolhido, a função retorna uma string vazia
     if not arquivo_escolhido:
-        print("Nenhum arquivo XML selecionado.")
         return [] # Retorna uma lista vazia se nenhum arquivo for selecionado
 
     # NAMESPACE
@@ -111,13 +110,10 @@ def buscar_nota_fiscal_back():
         return todos_os_produtos # Retorna a lista completa de produtos
         
     except ET.ParseError as e:
-        print(f"Erro ao analisar o arquivo XML: {e}")
         return []
     except FileNotFoundError:
-        print(f"Arquivo não encontrado: {arquivo_escolhido}")
         return []
     except Exception as e:
-        print(f"Ocorreu um erro inesperado: {e}")
         return []
 
 def data_entrada_atual():
