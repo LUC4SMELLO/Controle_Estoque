@@ -151,7 +151,7 @@ def buscar_fornecedor_pelo_cnpj_back(cnpj):
     resultado = Fornecedor.buscar_fornecedor_pelo_cnpj(cnpj)
 
     if not resultado:
-        return False, "Fornecedor Não Encontrado."
+        return False, "Fornecedor Não Encontrado. \nTalvez Seja Necessário Cadastrá-lo."
 
     return True, resultado
 
