@@ -15,8 +15,7 @@ def criar_tabela_itens_nota_fiscal():
         codigo_produto VARCHAR(6),
         quantidade VARCHAR(10),
         preco_unitario VARCHAR(10),
-        valor_total VARCHAR(10),
-        PRIMARY KEY (id_item_nota),
+        preco_total VARCHAR(10),
         FOREIGN KEY (numero_nota_fiscal) REFERENCES TabelaNotaFiscal(numero_nota_fiscal),
         FOREIGN KEY (codigo_produto) REFERENCES TabelaProdutos(codigo_produto)
     )
