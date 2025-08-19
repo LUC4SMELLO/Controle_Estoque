@@ -78,7 +78,9 @@ def criar_janela_entrada_nota_fiscal():
                 numero_item,
                 produto_dict.get("codigo_produto", ""),
                 produto_dict.get("descricao", ""),
-                produto_dict.get("quantidade", 0)
+                produto_dict.get("quantidade", 0),
+                produto_dict.get("preco_unitario", 0),
+                produto_dict.get("preco_total", 0)
             )
             treeview_nota_fiscal.insert("", "end", values=valores_para_treeview)
 
@@ -184,7 +186,7 @@ def criar_janela_entrada_nota_fiscal():
     style = ttk.Style()
     style.configure("Treeview.Heading", font=("Arial", 10, "bold"))
 
-    colunas = ("numero_item", "codigo_produto", "descricao", "quantidade")
+    colunas = ("numero_item", "codigo_produto", "descricao", "quantidade", "preco_unitario", "preco_total")
     treeview_nota_fiscal = ttk.Treeview(
         janela_entrada_nota_fiscal,
         columns=colunas,
@@ -200,11 +202,15 @@ def criar_janela_entrada_nota_fiscal():
     treeview_nota_fiscal.heading("codigo_produto", text="CÓDIGO PRODUTO", anchor="center")
     treeview_nota_fiscal.heading("descricao", text="DESCRIÇÃO", anchor="center")
     treeview_nota_fiscal.heading("quantidade", text="QUANTIDADE", anchor="center")
+    treeview_nota_fiscal.heading("preco_unitario", text="PREÇO UNITÁRIO", anchor="center")
+    treeview_nota_fiscal.heading("preco_total", text="PREÇO TOTAL", anchor="center")
 
     treeview_nota_fiscal.column("numero_item", width=120, anchor="center")
     treeview_nota_fiscal.column("codigo_produto", width=160, anchor="center")
     treeview_nota_fiscal.column("descricao", width=220, anchor="center")
     treeview_nota_fiscal.column("quantidade", width=120, anchor="center")
+    treeview_nota_fiscal.column("preco_unitario", width=120, anchor="center")
+    treeview_nota_fiscal.column("preco_total", width=120, anchor="center")
     # endregion
 
     linha_horizontal_inferior = tk.Frame(janela_entrada_nota_fiscal, background="silver", width=1100, height=5)
