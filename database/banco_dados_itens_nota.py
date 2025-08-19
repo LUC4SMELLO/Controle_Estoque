@@ -11,7 +11,6 @@ def criar_tabela_itens_nota_fiscal():
     cursor.execute(
     """
     CREATE TABLE IF NOT EXISTS TabelaItensNotaFiscal (
-        id_item_nota VARCHAR(10),
         numero_nota_fiscal VARCHAR(9),
         codigo_produto VARCHAR(6),
         quantidade VARCHAR(10),
