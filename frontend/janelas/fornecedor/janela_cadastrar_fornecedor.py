@@ -146,6 +146,7 @@ def criar_janela_cadastrar_fornecedor():
         entry_estado,
         entry_cnpj_fornecedor,
         entry_inscricao_estadual_fornecedor,
+        botao_confirmar_cadastro
     ]
 
     configurar_binds(lista_entrys, acoes_intermediarias=None, ultima_acao=cadastrar_fornecedor_gui)

@@ -220,8 +220,9 @@ def criar_janela_alterar_fornecedor():
         entry_estado_alterar,
         entry_cnpj_alterar,
         entry_inscricao_estadual_alterar,
+        botao_confirmar_alterar
     ]
 
-    acoes_intermediarias = [None, buscar_fornecedor_alterar_gui, None, None, None, None, None, None, None, None, None]
+    acoes_intermediarias = [None, buscar_fornecedor_alterar_gui, None, None, None, None, None, None, None, None, None, None]
 
     configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultima_acao=alterar_fornecedor_gui)

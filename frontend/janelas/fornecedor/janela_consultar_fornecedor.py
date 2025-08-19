@@ -128,8 +128,8 @@ def criar_janela_consultar_fornecedor():
     linha_horizontal_inferior = tk.Frame(janela_consultar_fornecedor, background="silver", width=800, height=5)
     linha_horizontal_inferior.place(x=0, y=550)
 
-    botao_confirmar_cadastro = tk.Button(janela_consultar_fornecedor, text="Confirmar", font=BOTAO)
-    botao_confirmar_cadastro.place(x=600, y=565)
+    botao_confirmar_consulta = tk.Button(janela_consultar_fornecedor, text="Confirmar", font=BOTAO)
+    botao_confirmar_consulta.place(x=600, y=565)
 
     botao_cancelar_cadastro =  tk.Button(janela_consultar_fornecedor, text="Cancelar", font=BOTAO)
     botao_cancelar_cadastro.place(x=700, y=565)
@@ -146,8 +146,9 @@ def criar_janela_consultar_fornecedor():
         entry_estado_consultar,
         entry_cnpj_consultar,
         entry_inscricao_estadual_consultar,
+        botao_confirmar_consulta
     ]
 
-    acoes_intermediarias = [None, buscar_fornecedor_gui, None, None, None, None, None, None, None, None, None]
+    acoes_intermediarias = [None, buscar_fornecedor_gui, None, None, None, None, None, None, None, None, None, None]
 
     configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultima_acao=None)

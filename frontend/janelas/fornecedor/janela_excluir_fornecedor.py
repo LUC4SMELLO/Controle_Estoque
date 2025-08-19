@@ -204,8 +204,9 @@ def criar_janela_excluir_fornecedor():
         entry_estado_excluir,
         entry_cnpj_excluir,
         entry_inscricao_estadual_excluir,
+        botao_confirmar_excluir
     ]
 
-    acoes_intermediarias = [None, buscar_fornecedor_excluir_gui, None, None, None, None, None, None, None, None, None]
+    acoes_intermediarias = [None, buscar_fornecedor_excluir_gui, None, None, None, None, None, None, None, None, None, None]
 
-    configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultima_acao=None)
+    configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultima_acao=excluir_fornecedor_gui)
