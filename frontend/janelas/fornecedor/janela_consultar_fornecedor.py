@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import  messagebox
 
+from backend.binds.configuracao_binds import configurar_binds
+
 from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 
 from backend.controladores.fornecedor.consultar_fornecedor_controlador import buscar_fornecedor_back
@@ -131,3 +133,21 @@ def criar_janela_consultar_fornecedor():
 
     botao_cancelar_cadastro =  tk.Button(janela_consultar_fornecedor, text="Cancelar", font=BOTAO)
     botao_cancelar_cadastro.place(x=700, y=565)
+
+    lista_entrys = [
+        entry_codigo_consultar,
+        botao_buscar_fornecedor,
+        entry_razao_social_consultar,
+        entry_nome_fantasia_consultar,
+        entry_logradouro_consultar,
+        entry_bairro_consultar,
+        entry_cidade_consultar,
+        entry_cep_consultar,
+        entry_estado_consultar,
+        entry_cnpj_consultar,
+        entry_inscricao_estadual_consultar,
+    ]
+
+    acoes_intermediarias = [None, buscar_fornecedor_gui, None, None, None, None, None, None, None, None, None]
+
+    configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultima_acao=None)
