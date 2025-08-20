@@ -188,18 +188,22 @@ def salvar_nota_fiscal_back(numero_nota_fiscal, codigo_fornecedor, data_entrada)
     return True, "Nota Importada com Sucesso!"
 
 def salvar_item_nota_fiscal_back(
-        numero_nota_fiscal, 
+        data_entrada,
+        numero_nota_fiscal,
+        codigo_fornecedor,
         codigo_produto, 
         quantidade,
         preco_unitario,
-        valor_total):
+        valor_total,):
     
     novo_item_nota_fiscal = ItemNotaFiscal(
+        data_entrada,
         numero_nota_fiscal,
+        codigo_fornecedor,
         codigo_produto,
         quantidade,
         preco_unitario,
-        valor_total
+        valor_total,
         )
     
     novo_item_nota_fiscal.salvar_item_nota_fiscal()
