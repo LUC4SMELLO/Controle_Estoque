@@ -5,7 +5,24 @@ from backend.binds.configuracao_binds import configurar_binds
 
 from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 
+from backend.controladores.fornecedor.ultimas_compras_controlador import retornar_ultimas_compras_fornecedor
+
+from backend.controladores.fornecedor.consultar_fornecedor_controlador import buscar_fornecedor_back
+
 def criar_janela_ultimas_compras():
+
+    def buscar_fornecedor_gui():
+
+        entry_razao_social.delete(0, tk.END)
+
+        valido, resposta = buscar_fornecedor_back(entry_codigo_ultimas_compras.get().strip())
+        if not valido:
+            messagebox.showerror("Erro", resposta)
+            entry_codigo_ultimas_compras.focus_set()
+            return None
+
+        entry_razao_social.insert(0, resposta.razao_social)
+    
 
     janela_ultimas_compras = tk.Toplevel()
     janela_ultimas_compras.geometry("1100x600")
@@ -14,14 +31,14 @@ def criar_janela_ultimas_compras():
     linha_horizontal_superior = tk.Frame(janela_ultimas_compras, background="silver", width=1100, height=5)
     linha_horizontal_superior.place(x=0, y=75)
 
-    label_codigo_excluir = tk.Label(janela_ultimas_compras, text="Código:", font=LABEL)
-    label_codigo_excluir.place(x=58, y=10)
+    label_codigo_ultimas_compras = tk.Label(janela_ultimas_compras, text="Código:", font=LABEL)
+    label_codigo_ultimas_compras.place(x=58, y=10)
 
-    entry_codigo_excluir = tk.Entry(janela_ultimas_compras, width=7 ,font=ENTRY)
-    entry_codigo_excluir.place(x=115, y=10)
+    entry_codigo_ultimas_compras = tk.Entry(janela_ultimas_compras, width=7 ,font=ENTRY)
+    entry_codigo_ultimas_compras.place(x=115, y=10)
 
-    botao_buscar_excluir = tk.Button(janela_ultimas_compras, text="Buscar", font=BOTAO)
-    botao_buscar_excluir.place(x=175, y=5)
+    botao_buscar_ultimas_compras = tk.Button(janela_ultimas_compras, text="Buscar", font=BOTAO, command=buscar_fornecedor_gui)
+    botao_buscar_ultimas_compras.place(x=175, y=5)
 
     label_razao_social = tk.Label(janela_ultimas_compras, text="Razão Social:", font=LABEL)
     label_razao_social.place(x=20, y=40)
@@ -69,8 +86,8 @@ def criar_janela_ultimas_compras():
     linha_horizontal_inferior = tk.Frame(janela_ultimas_compras, background="silver", width=1100, height=5)
     linha_horizontal_inferior.place(x=0, y=550)
 
-    botao_confirmar_excluir = tk.Button(janela_ultimas_compras, text="Confirmar", font=BOTAO)
-    botao_confirmar_excluir.place(x=900, y=565)
+    botao_confirmar_ultimas_compras = tk.Button(janela_ultimas_compras, text="Confirmar", font=BOTAO)
+    botao_confirmar_ultimas_compras.place(x=900, y=565)
 
-    botao_cancelar_excluir =  tk.Button(janela_ultimas_compras, text="Cancelar", font=BOTAO)
-    botao_cancelar_excluir.place(x=1000, y=565)
+    botao_cancelar_ultimas_compras =  tk.Button(janela_ultimas_compras, text="Cancelar", font=BOTAO)
+    botao_cancelar_ultimas_compras.place(x=1000, y=565)
