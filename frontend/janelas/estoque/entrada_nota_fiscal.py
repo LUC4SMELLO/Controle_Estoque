@@ -128,6 +128,19 @@ def criar_janela_entrada_nota_fiscal():
 
         produtos_listados_na_tabela = False
 
+        for item in treeview_nota_fiscal.get_children():
+            treeview_nota_fiscal.delete(item)
+
+        entry_data_entrada.delete(0, tk.END)
+        entry_codigo_fornecedor.delete(0, tk.END)
+        entry_numero_nota_fiscal.delete(0, tk.END)
+        entry_descricao_fornecedor.delete(0, tk.END)
+        entry_municipio.delete(0, tk.END)
+        entry_uf.delete(0, tk.END)
+        entry_bairro.delete(0, tk.END)
+
+        treeview_nota_fiscal.focus_set()
+
     def fechar_janela_entrada_produtos_nota_fiscal():
         
         global produtos_listados_na_tabela
