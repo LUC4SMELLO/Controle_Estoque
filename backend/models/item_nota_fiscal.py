@@ -8,13 +8,17 @@ from database.banco_dados_itens_nota import conectar_banco_de_dados_itens_nota_f
 class ItemNotaFiscal:
     def __init__(
         self,
+        data_entrada,
         numero_nota_fiscal,
+        codigo_fornecedor,
         codigo_produto,
         quantidade,
         preco_unitario,
-        preco_total
-    ):      
+        preco_total,
+    ):  
+        self.data_entrada = data_entrada
         self.numero_nota_fiscal = numero_nota_fiscal
+        self.codigo_fornecedor = codigo_fornecedor
         self.codigo_produto = codigo_produto
         self.quantidade = quantidade
         self.preco_unitario = preco_unitario
@@ -27,15 +31,18 @@ class ItemNotaFiscal:
 
         cursor.execute(
         """
-        INSERT INTO TabelaItensNotaFiscal (numero_nota_fiscal,
+        INSERT INTO TabelaItensNotaFiscal (data_entrada,
+        numero_nota_fiscal,
+        codigo_fornecedor,
         codigo_produto,
         quantidade,
         preco_unitario,
         preco_total)
-        VALUES (?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
         """,
-            (
+            (   self.data_entrada,
                 self.numero_nota_fiscal,
+                self.codigo_fornecedor,
                 self.codigo_produto,
                 self.quantidade,
                 self.preco_unitario,
