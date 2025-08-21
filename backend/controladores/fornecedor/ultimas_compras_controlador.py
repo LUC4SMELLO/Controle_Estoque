@@ -20,9 +20,7 @@ def retornar_ultimas_compras_fornecedor(codigo_fornecedor):
         conexao.commit()
         conexao.close()
 
-        return True, ItemNotaFiscal(*resultado)
+        return resultado
 
-
-    
     except TypeError:
-        return False, "Nenhuma Compra Encontrada."
+        return False
