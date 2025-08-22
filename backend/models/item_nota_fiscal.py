@@ -12,6 +12,7 @@ class ItemNotaFiscal:
         numero_nota_fiscal,
         codigo_fornecedor,
         codigo_produto,
+        descricao,
         quantidade,
         preco_unitario,
         preco_total,
@@ -20,6 +21,7 @@ class ItemNotaFiscal:
         self.numero_nota_fiscal = numero_nota_fiscal
         self.codigo_fornecedor = codigo_fornecedor
         self.codigo_produto = codigo_produto
+        self.descricao = descricao
         self.quantidade = quantidade
         self.preco_unitario = preco_unitario
         self.preco_total = preco_total
@@ -35,15 +37,17 @@ class ItemNotaFiscal:
         numero_nota_fiscal,
         codigo_fornecedor,
         codigo_produto,
+        descricao,
         quantidade,
         preco_unitario,
         preco_total)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         """,
             (   self.data_entrada,
                 self.numero_nota_fiscal,
                 self.codigo_fornecedor,
                 self.codigo_produto,
+                self.descricao,
                 self.quantidade,
                 self.preco_unitario,
                 self.preco_total
