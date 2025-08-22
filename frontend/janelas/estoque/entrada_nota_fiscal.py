@@ -119,6 +119,7 @@ def criar_janela_entrada_nota_fiscal():
                 resultados_nota_fiscal[0]["numero_nota"],
                 resposta_fornecedor.codigo_fornecedor,
                 produto_dict.get("codigo_produto", ""),
+                produto_dict.get("descricao", ""),
                 produto_dict.get("quantidade", 0),
                 produto_dict.get("preco_unitario", 0),
                 produto_dict.get("preco_total", 0)
