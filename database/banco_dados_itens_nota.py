@@ -15,6 +15,7 @@ def criar_tabela_itens_nota_fiscal():
         numero_nota_fiscal VARCHAR(9),
         codigo_fornecedor VARCHAR(6),
         codigo_produto VARCHAR(6),
+        descricao VARCHAR(50),
         quantidade VARCHAR(10),
         preco_unitario VARCHAR(10),
         preco_total VARCHAR(10),
