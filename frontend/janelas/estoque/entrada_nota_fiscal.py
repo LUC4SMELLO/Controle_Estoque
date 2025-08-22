@@ -188,7 +188,7 @@ def criar_janela_entrada_nota_fiscal():
     label_bairro.place(x=515, y=40)
 
     label_nota_importada = tk.Label(janela_entrada_nota_fiscal, text="", font=LABEL)
-    label_nota_importada.place(x=750, y=40)
+    label_nota_importada.place(x=790, y=40)
 
     entry_bairro = tk.Entry(janela_entrada_nota_fiscal, font=ENTRY)
     entry_bairro.place(x=565, y=40)
@@ -200,7 +200,7 @@ def criar_janela_entrada_nota_fiscal():
     entry_numero_nota_fiscal.place(x=120, y=40)
 
     botao_buscar_nota_fiscal = tk.Button(janela_entrada_nota_fiscal, text="Buscar\nNota Fiscal", font=BOTAO, command=mostrar_nota_fiscal)
-    botao_buscar_nota_fiscal.place(x=1000, y=10)
+    botao_buscar_nota_fiscal.place(x=992, y=15)
 
     linha_horizontal_superior = tk.Frame(janela_entrada_nota_fiscal, background="silver", width=1100, height=5)
     linha_horizontal_superior.place(x=0, y=80)
