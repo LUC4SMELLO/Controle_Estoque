@@ -130,3 +130,13 @@ def criar_janela_ultimas_compras():
 
     botao_cancelar_ultimas_compras =  tk.Button(janela_ultimas_compras, text="Cancelar", font=BOTAO, command=fechar_janela_ultimas_compras)
     botao_cancelar_ultimas_compras.place(x=1000, y=565)
+
+    lista_entrys = [
+        entry_codigo_ultimas_compras,
+        botao_buscar_ultimas_compras,
+        entry_razao_social
+    ]
+
+    acoes_intermediarias = [None, buscar_fornecedor_gui, None]
+
+    configurar_binds(lista_entrys, acoes_intermediarias=acoes_intermediarias, ultima_acao=None)
