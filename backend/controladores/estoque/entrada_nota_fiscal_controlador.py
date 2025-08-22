@@ -191,7 +191,8 @@ def salvar_item_nota_fiscal_back(
         data_entrada,
         numero_nota_fiscal,
         codigo_fornecedor,
-        codigo_produto, 
+        codigo_produto,
+        descricao,
         quantidade,
         preco_unitario,
         valor_total,):
@@ -201,6 +202,7 @@ def salvar_item_nota_fiscal_back(
         numero_nota_fiscal,
         codigo_fornecedor,
         codigo_produto,
+        descricao,
         quantidade,
         preco_unitario,
         valor_total,
