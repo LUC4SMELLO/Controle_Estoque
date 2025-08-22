@@ -15,6 +15,9 @@ def criar_janela_ultimas_compras():
 
         entry_razao_social.delete(0, tk.END)
 
+        for item in treeview_ultimas_compras.get_children():
+            treeview_ultimas_compras.delete(item)
+
         valido, resposta = buscar_fornecedor_back(entry_codigo_ultimas_compras.get().strip())
         if not valido:
             messagebox.showerror("Erro", resposta)
@@ -26,6 +29,7 @@ def criar_janela_ultimas_compras():
         resultado = retornar_ultimas_compras_fornecedor(entry_codigo_ultimas_compras.get().strip())
         if not resultado:
             messagebox.showerror("Erro", "Últimas Compras Não Encontradas.")
+            janela_ultimas_compras.focus_set()
             return None
         
         ultimas_compras = []
@@ -54,6 +58,10 @@ def criar_janela_ultimas_compras():
                 ultima_compra_dict.get("preco_total", 0)
             )
             treeview_ultimas_compras.insert("", "end", values=valores_para_treeview)
+    
+    def fechar_janela_ultimas_compras():
+
+        janela_ultimas_compras.destroy()
 
     janela_ultimas_compras = tk.Toplevel()
     janela_ultimas_compras.geometry("1100x600")
@@ -120,5 +128,5 @@ def criar_janela_ultimas_compras():
     botao_confirmar_ultimas_compras = tk.Button(janela_ultimas_compras, text="Confirmar", font=BOTAO)
     botao_confirmar_ultimas_compras.place(x=900, y=565)
 
-    botao_cancelar_ultimas_compras =  tk.Button(janela_ultimas_compras, text="Cancelar", font=BOTAO)
+    botao_cancelar_ultimas_compras =  tk.Button(janela_ultimas_compras, text="Cancelar", font=BOTAO, command=fechar_janela_ultimas_compras)
     botao_cancelar_ultimas_compras.place(x=1000, y=565)
