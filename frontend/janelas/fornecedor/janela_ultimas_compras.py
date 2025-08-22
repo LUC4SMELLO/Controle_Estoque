@@ -103,7 +103,7 @@ def criar_janela_ultimas_compras():
     treeview_ultimas_compras.heading("preco_unitario", text="PREÇO UNITÁRIO", anchor="center")
     treeview_ultimas_compras.heading("preco_total", text="PREÇO TOTAL", anchor="center")
 
-    treeview_ultimas_compras.column("data_entrada", width=120)
+    treeview_ultimas_compras.column("data_entrada", width=120, anchor="center")
     treeview_ultimas_compras.column("numero_nota_fiscal", width=110, anchor="center")
     treeview_ultimas_compras.column("codigo_produto", width=120, anchor="center")
     treeview_ultimas_compras.column("descricao", width=260, anchor="center")
