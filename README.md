@@ -61,7 +61,7 @@ Este software foi desenvolvido para gerenciar o estoque de uma empresa, oferecen
     Estoque Inativo <br>
     Data Validade <br>
 
-10. **Validades**
+10. **Validades** <br>
     Cadastrar  <br>
     Alterar <br>
     Excluir <br>
