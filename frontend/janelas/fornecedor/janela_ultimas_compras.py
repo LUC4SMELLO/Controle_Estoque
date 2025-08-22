@@ -22,7 +22,38 @@ def criar_janela_ultimas_compras():
             return None
 
         entry_razao_social.insert(0, resposta.razao_social)
-    
+
+        resultado = retornar_ultimas_compras_fornecedor(entry_codigo_ultimas_compras.get().strip())
+        if not resultado:
+            messagebox.showerror("Erro", "Últimas Compras Não Encontradas.")
+            return None
+        
+        ultimas_compras = []
+        for i in range(len(resultado)):
+            ultimas_compras.append(
+                {
+                    "data_entrada": resultado[i][0],
+                    "numero_nota_fiscal": resultado[i][1],
+                    "codigo_produto": resultado[i][3],
+                    "descricao": resultado[i][4],
+                    "quantidade": resultado[i][5],
+                    "preco_unitario": resultado[i][6],
+                    "preco_total": resultado[i][7]
+                }
+            )
+  
+        for ultima_compra_dict in ultimas_compras:
+
+            valores_para_treeview = (
+                ultima_compra_dict.get("data_entrada", ""),
+                ultima_compra_dict.get("numero_nota_fiscal", ""),
+                ultima_compra_dict.get("codigo_produto", ""),
+                ultima_compra_dict.get("descricao", ""),
+                ultima_compra_dict.get("quantidade", 0),
+                ultima_compra_dict.get("preco_unitario", 0),
+                ultima_compra_dict.get("preco_total", 0)
+            )
+            treeview_ultimas_compras.insert("", "end", values=valores_para_treeview)
 
     janela_ultimas_compras = tk.Toplevel()
     janela_ultimas_compras.geometry("1100x600")
