@@ -158,13 +158,13 @@ def criar_janela_alterar_fornecedor():
     label_logradouro_alterar = tk.Label(janela_alterar_fornecedor, text="Logradouro:", font=LABEL)
     label_logradouro_alterar.place(x=30, y=170)
 
-    entry_logradouro_alterar = tk.Entry(janela_alterar_fornecedor, font=ENTRY)
+    entry_logradouro_alterar = tk.Entry(janela_alterar_fornecedor, font=ENTRY, width=45)
     entry_logradouro_alterar.place(x=115, y=170)
 
     label_bairro_alterar = tk.Label(janela_alterar_fornecedor, text="Bairro:", font=LABEL)
     label_bairro_alterar.place(x=60, y=200)
 
-    entry_bairro_alterar = tk.Entry(janela_alterar_fornecedor, font=ENTRY)
+    entry_bairro_alterar = tk.Entry(janela_alterar_fornecedor, font=ENTRY, width=45)
     entry_bairro_alterar.place(x=115, y=200)
 
     label_cidade_alterar = tk.Label(janela_alterar_fornecedor, text="Cidade:", font=LABEL)

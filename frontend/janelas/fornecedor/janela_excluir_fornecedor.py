@@ -142,13 +142,13 @@ def criar_janela_excluir_fornecedor():
     label_logradouro_excluir = tk.Label(janela_excluir_fornecedor, text="Logradouro:", font=LABEL)
     label_logradouro_excluir.place(x=30, y=170)
 
-    entry_logradouro_excluir = tk.Entry(janela_excluir_fornecedor, font=ENTRY)
+    entry_logradouro_excluir = tk.Entry(janela_excluir_fornecedor, font=ENTRY, width=45)
     entry_logradouro_excluir.place(x=115, y=170)
 
     label_bairro_excluir = tk.Label(janela_excluir_fornecedor, text="Bairro:", font=LABEL)
     label_bairro_excluir.place(x=60, y=200)
 
-    entry_bairro_excluir = tk.Entry(janela_excluir_fornecedor, font=ENTRY)
+    entry_bairro_excluir = tk.Entry(janela_excluir_fornecedor, font=ENTRY, width=45)
     entry_bairro_excluir.place(x=115, y=200)
 
     label_cidade_excluir = tk.Label(janela_excluir_fornecedor, text="Cidade:", font=LABEL)
