@@ -29,13 +29,15 @@ def criar_janela_cadastrar_fornecedor():
             messagebox.showerror("Erro", mensagem)
             entry_codigo_fornecedor.focus_set()
             return None
+        
+        cnpj_limpo = entry_cnpj_fornecedor.get().strip().replace(".", "").replace("/", "").replace("-", "")
 
         cadastrar_fornecedor_back(
             entry_codigo_fornecedor.get().strip(),
             entry_razao_social_fornecedor.get().strip(),
             entry_nome_fantasia_fornecedor.get().strip(),
             fornecedor_ativo.get(),
-            entry_cnpj_fornecedor.get().strip(),
+            cnpj_limpo,
             entry_inscricao_estadual_fornecedor.get().strip(),
             entry_logradouro_fornecedor.get().strip(),
             entry_bairro_fornecedor.get().strip(),
