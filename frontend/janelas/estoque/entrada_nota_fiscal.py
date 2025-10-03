@@ -36,6 +36,7 @@ def criar_janela_entrada_nota_fiscal():
         valido, resposta_fornecedor = buscar_fornecedor_pelo_cnpj_back(resultados_nota_fiscal[0]["cnpj"])
         if not valido:
             messagebox.showerror("Erro", resposta_fornecedor)
+            treeview_nota_fiscal.focus_set()
             return None
 
         valido, resposta = verificar_produtos_da_nota_fiscal(resultados_nota_fiscal)
