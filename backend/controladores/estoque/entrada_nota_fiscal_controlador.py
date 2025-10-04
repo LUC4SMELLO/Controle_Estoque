@@ -142,7 +142,7 @@ def verificar_produtos_da_nota_fiscal(nota_fiscal):
 
         valido, _ = buscar_produto_back(produto_dict["codigo_produto"])
         if not valido:
-            produtos_nao_encontrados = produtos_nao_encontrados + f"{produto_dict["codigo_produto"]} - {produto_dict["descricao"]}\n"
+            produtos_nao_encontrados = produtos_nao_encontrados + f'{produto_dict["codigo_produto"]} - {produto_dict["descricao"]}\n'
         
     if produtos_nao_encontrados:
         return False, produtos_nao_encontrados
