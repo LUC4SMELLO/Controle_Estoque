@@ -56,10 +56,10 @@ def criar_janela_contagem_produtos():
 
     # EXIBE DADOS
     for i, linha in df.iterrows():
-        tk.Label(frame_tabela, text=linha["Codigo"], width=15, borderwidth=1, relief="solid").grid(row=i+1, column=0)
-        tk.Label(frame_tabela, text=linha["DescriÃ§Ã£o"], width=40, borderwidth=1, relief="solid", anchor="w").grid(row=i+1, column=1)
+        tk.Label(frame_tabela, text=linha["Codigo"], width=15).grid(row=i+1, column=0)
+        tk.Label(frame_tabela, text=linha["DescriÃ§Ã£o"], width=40, anchor="w").grid(row=i+1, column=1)
         
-        entrada = tk.Entry(frame_tabela, width=15)
+        entrada = tk.Entry(frame_tabela, width=15, justify="center")
         if not linha["Saldo Atual"]:
             entrada.insert(0, 0)
         entrada.insert(0, linha["Saldo Atual"])
