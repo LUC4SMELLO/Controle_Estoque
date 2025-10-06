@@ -12,9 +12,9 @@ def criar_janela_contagem_produtos():
 
     janela_contagem_produtos = tk.Toplevel()
     janela_contagem_produtos.title("Contagem Produtos")
-    janela_contagem_produtos.geometry("1920x1080")
+    janela_contagem_produtos.geometry("1090x600")
 
-    janela_contagem_produtos.state("zoomed")
+    # janela_contagem_produtos.state("zoomed")
 
     # LEITURA DO CSV
     arquivo_csv = "arquivos/PRODUTOS.CSV"  # arquivo recebido da API
@@ -47,19 +47,19 @@ def criar_janela_contagem_produtos():
     canvas.create_window((0, 0), window=frame_tabela, anchor="nw")
 
     # CABEÇALHOS
-    tk.Label(frame_tabela, text="Código", font=("Arial", 15, "bold"), width=15, borderwidth=2, relief="ridge").grid(row=0, column=0)
-    tk.Label(frame_tabela, text="Descrição", font=("Arial", 15, "bold"), width=40, borderwidth=2, relief="ridge").grid(row=0, column=1)
-    tk.Label(frame_tabela, text="Quantidade", font=("Arial", 15, "bold"), width=15, borderwidth=2, relief="ridge").grid(row=0, column=2)
+    tk.Label(frame_tabela, text="Código", font=("Arial", 18, "bold"), width=15, borderwidth=2, relief="ridge").grid(row=0, column=0)
+    tk.Label(frame_tabela, text="Descrição", font=("Arial", 18, "bold"), width=40, borderwidth=2, relief="ridge").grid(row=0, column=1)
+    tk.Label(frame_tabela, text="Quantidade", font=("Arial", 18, "bold"), width=15, borderwidth=2, relief="ridge").grid(row=0, column=2)
 
     # LISTA PARA ARMAZENAR AS ENTRADAS DE QUANTIDADES
     entradas_quantidade = []
 
     # EXIBE DADOS
     for i, linha in df.iterrows():
-        tk.Label(frame_tabela, text=linha["Codigo"], width=15).grid(row=i+1, column=0)
-        tk.Label(frame_tabela, text=linha["DescriÃ§Ã£o"], width=40, anchor="w").grid(row=i+1, column=1)
+        tk.Label(frame_tabela, text=linha["Codigo"], font=("Arial", 12), width=15).grid(row=i+1, column=0)
+        tk.Label(frame_tabela, text=linha["DescriÃ§Ã£o"], font=("Arial", 12), width=40, anchor="w").grid(row=i+1, column=1)
         
-        entrada = tk.Entry(frame_tabela, width=15, justify="center")
+        entrada = tk.Entry(frame_tabela, font=("Arial", 12), width=15, justify="center")
         if not linha["Saldo Atual"]:
             entrada.insert(0, 0)
         entrada.insert(0, linha["Saldo Atual"])
@@ -81,7 +81,7 @@ def criar_janela_contagem_produtos():
         messagebox.showinfo("Sucesso", "Alterações salvas com sucesso!")
 
     # BOTÃO SALVAR
-    botao_salvar = tk.Button(janela_contagem_produtos, text="Salvar alterações", command=salvar, bg="green", fg="white", font=("Arial", 12, "bold"))
+    botao_salvar = tk.Button(janela_contagem_produtos, text="Salvar alterações", font=("Arial", 15, "bold"), command=salvar)
     botao_salvar.pack(pady=10)
 
     # HABILA ROLAGEM COM O MOUSE
