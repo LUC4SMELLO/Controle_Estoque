@@ -13,8 +13,7 @@ def criar_botao_inventario(janela_pai):
 
     botao_contagem_produtos_inventario = tk.Button(janela_pai, text="Contagem Produtos", width=16, font=("Arial", 10, "bold"), command=criar_janela_contagem_produtos)
     botao_contagem_doces_inventario = tk.Button(janela_pai, text="Contagem Doces", width=15, font=("Arial", 10, "bold"))
-    botao_ajustar_diferencas_inventario = tk.Button(janela_pai, text="Ajustar Diferenças", width=15, font=("Arial", 10, "bold"))
     botao_comparar_estoque_inventario = tk.Button(janela_pai, text="Comparar Estoque", width=15, font=("Arial", 10, "bold"))
 
     state.botoes_principais["inventario"] = botao_inventario
-    state.botoes_submenus["inventario"] = [botao_contagem_produtos_inventario, botao_contagem_doces_inventario, botao_ajustar_diferencas_inventario, botao_comparar_estoque_inventario,]
+    state.botoes_submenus["inventario"] = [botao_contagem_produtos_inventario, botao_contagem_doces_inventario, botao_comparar_estoque_inventario,]
