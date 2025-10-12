@@ -17,17 +17,13 @@ def criar_janela_contagem_produtos():
     # janela_contagem_produtos.state("zoomed")
 
     # LEITURA DO CSV
-    arquivo_csv = "arquivos/PRODUTOS.CSV"  # arquivo recebido da API
+    arquivo_csv = "arquivos/contagem_estoque.csv"  # arquivo recebido da API
 
     df = pd.read_csv(arquivo_csv,
-                     header=0,
-                     delimiter=";",
-                     encoding="ISO-8859-1",
+                     sep=",",
                      index_col=False
                     )
     
-    df["Saldo Atual"] = df["Saldo Atual"].str.strip()
-
 
     # FRAME ROLÁVEL
     frame_container = tk.Frame(janela_contagem_produtos)
@@ -56,13 +52,13 @@ def criar_janela_contagem_produtos():
 
     # EXIBE DADOS
     for i, linha in df.iterrows():
-        tk.Label(frame_tabela, text=linha["Codigo"], font=("Arial", 12), width=15).grid(row=i+1, column=0)
-        tk.Label(frame_tabela, text=linha["DescriÃ§Ã£o"], font=("Arial", 12), width=40, anchor="w").grid(row=i+1, column=1)
+        tk.Label(frame_tabela, text=linha["codigo"], font=("Arial", 12), width=15).grid(row=i+1, column=0)
+        tk.Label(frame_tabela, text=linha["nome"], font=("Arial", 12), width=40, anchor="w").grid(row=i+1, column=1)
         
         entrada = tk.Entry(frame_tabela, font=("Arial", 12), width=15, justify="center")
-        if not linha["Saldo Atual"]:
+        if not linha["quantidade"]:
             entrada.insert(0, 0)
-        entrada.insert(0, linha["Saldo Atual"])
+        entrada.insert(0, linha["quantidade"])
         entrada.grid(row=i+1, column=2)
         entradas_quantidade.append(entrada)
 
@@ -77,8 +73,9 @@ def criar_janela_contagem_produtos():
                 janela_contagem_produtos.focus_set()
                 return None
             
-        df.to_csv(arquivo_csv, sep=";", index=False)
+        df.to_csv(arquivo_csv, sep=",", index=False)
         messagebox.showinfo("Sucesso", "Alterações salvas com sucesso!")
+        janela_contagem_produtos.focus_set()
 
     # BOTÃO SALVAR
     botao_salvar = tk.Button(janela_contagem_produtos, text="Salvar alterações", font=("Arial", 15, "bold"), command=salvar)

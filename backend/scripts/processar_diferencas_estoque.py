@@ -4,7 +4,8 @@ import pandas as pd
 
 contagem = pd.read_csv("arquivos/contagem_estoque.csv")
 
-contagem.rename(columns={"quantidade": "quantidade_contada"}, inplace=True)
+contagem.rename(columns={"codigo": "codigo_produto",
+                         "quantidade": "quantidade_contada"}, inplace=True)
 
 contagem["quantidade_contada"] = pd.to_numeric(
     contagem["quantidade_contada"], errors="coerce"
