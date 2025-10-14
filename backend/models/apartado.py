@@ -19,8 +19,7 @@ class Apartado():
 
         cursor.execute(
         """
-        INSERT INTO TabelaApartados (
-        data,
+        INSERT INTO TabelaApartados (data,
         codigo_produto,
         quantidade,
         motivo
@@ -34,6 +33,9 @@ class Apartado():
                 self.motivo
             )
         )
+
+        conexao.commit()
+        conexao.close()
 
     @staticmethod
     def excluir_apartado(data, codigo_produto, quantidade):
