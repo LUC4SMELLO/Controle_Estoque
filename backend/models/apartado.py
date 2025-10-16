@@ -19,8 +19,7 @@ class Apartado():
 
         cursor.execute(
         """
-        INSERT INTO TabelaApartados (
-        data,
+        INSERT INTO TabelaApartados (data,
         codigo_produto,
         quantidade,
         motivo
