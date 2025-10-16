@@ -35,6 +35,9 @@ class Apartado():
             )
         )
 
+        conexao.commit()
+        conexao.close()
+
     @staticmethod
     def excluir_apartado(data, codigo_produto, quantidade):
 
