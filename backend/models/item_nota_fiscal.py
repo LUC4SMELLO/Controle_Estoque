@@ -5,6 +5,9 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from database.banco_dados_itens_nota import conectar_banco_de_dados_itens_nota_fiscal
 
+from backend.constantes.bancos_dados import TABELA_ITENS_NOTA_FISCAL
+
+
 class ItemNotaFiscal:
     def __init__(
         self,
@@ -32,8 +35,8 @@ class ItemNotaFiscal:
         cursor = conexao.cursor()
 
         cursor.execute(
-        """
-        INSERT INTO TabelaItensNotaFiscal (data_entrada,
+        f"""
+        INSERT INTO {TABELA_ITENS_NOTA_FISCAL} (data_entrada,
         numero_nota_fiscal,
         codigo_fornecedor,
         codigo_produto,
@@ -64,8 +67,8 @@ class ItemNotaFiscal:
             cursor = conexao.cursor()
 
             cursor.execute(
-            """
-            SELECT * FROM TabelaItensNotaFiscal
+            f"""
+            SELECT * FROM {TABELA_ITENS_NOTA_FISCAL}
             WHERE numero_nota_fiscal = ? AND codigo_produto = ?
             """, (numero_nota_fiscal, codigo_produto)
             )
