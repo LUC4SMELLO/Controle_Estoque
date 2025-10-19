@@ -6,11 +6,29 @@ from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 
 from backend.binds.configuracao_binds import configurar_binds
 
+from backend.controladores.apartado.historico_apartado import buscar_historico_apartados_back
+
 
 def criar_janela_historico_apartados():
 
     def buscar_apartados_gui():
-        pass
+
+        data = entry_data.get().strip()
+        codigo_produto = entry_codigo_produto.get().strip()
+        motivo = entry_motivo.get().strip()
+
+        resultado = buscar_historico_apartados_back(data, codigo_produto, motivo)
+
+        for item in treeview_apartados.get_children():
+            treeview_apartados.delete(item)
+
+        for linha in resultado:
+            treeview_apartados.insert("", "end", values=linha)
+
+        if not resultado:
+            messagebox.showinfo("Aviso", "Não Há Apartados a Serem Listado.")
+            entry_data.focus_set()
+            return None
 
 
     janela_historico_apartar = tk.Toplevel()
@@ -54,7 +72,7 @@ def criar_janela_historico_apartados():
     style = ttk.Style()
     style.configure("Treeview.Heading", font=("Arial", 10, "bold"))
 
-    colunas = ("data", "codigo_produto", "descricao", "quantidade", "motivo")
+    colunas = ("data", "codigo_produto", "quantidade", "motivo")
     treeview_apartados = ttk.Treeview(
         janela_historico_apartar,
         columns=colunas,
@@ -68,13 +86,13 @@ def criar_janela_historico_apartados():
 
     treeview_apartados.heading("data", text="DATA", anchor="center")
     treeview_apartados.heading("codigo_produto", text="CÓDIGO PRODUTO", anchor="center")
-    treeview_apartados.heading("descricao", text="DESCRIÇÃO", anchor="center")
+    # treeview_apartados.heading("descricao", text="DESCRIÇÃO", anchor="center")
     treeview_apartados.heading("quantidade", text="QUANTIDADE", anchor="center")
     treeview_apartados.heading("motivo", text="MOTIVO", anchor="center")
 
     treeview_apartados.column("data", width=120, anchor="center")
     treeview_apartados.column("codigo_produto", width=160, anchor="center")
-    treeview_apartados.column("descricao", width=220, anchor="center")
+    # treeview_apartados.column("descricao", width=220, anchor="center")
     treeview_apartados.column("quantidade", width=120, anchor="center")
     treeview_apartados.column("motivo", width=120, anchor="center")
     # endregion
