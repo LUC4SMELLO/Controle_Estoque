@@ -55,28 +55,28 @@ def criar_janela_historico_apartados():
     style.configure("Treeview.Heading", font=("Arial", 10, "bold"))
 
     colunas = ("data", "codigo_produto", "descricao", "quantidade", "motivo")
-    treeview_nota_fiscal = ttk.Treeview(
+    treeview_apartados = ttk.Treeview(
         janela_historico_apartar,
         columns=colunas,
         show="headings",
         height=12,
         yscrollcommand=scrollbar_vertical.set
     )
-    treeview_nota_fiscal.place(x=20, y=110, width=1035, height=270)
+    treeview_apartados.place(x=20, y=110, width=1035, height=270)
 
-    scrollbar_vertical.config(command=treeview_nota_fiscal.yview)
+    scrollbar_vertical.config(command=treeview_apartados.yview)
 
-    treeview_nota_fiscal.heading("data", text="DATA", anchor="center")
-    treeview_nota_fiscal.heading("codigo_produto", text="CÓDIGO PRODUTO", anchor="center")
-    treeview_nota_fiscal.heading("descricao", text="DESCRIÇÃO", anchor="center")
-    treeview_nota_fiscal.heading("quantidade", text="QUANTIDADE", anchor="center")
-    treeview_nota_fiscal.heading("motivo", text="MOTIVO", anchor="center")
+    treeview_apartados.heading("data", text="DATA", anchor="center")
+    treeview_apartados.heading("codigo_produto", text="CÓDIGO PRODUTO", anchor="center")
+    treeview_apartados.heading("descricao", text="DESCRIÇÃO", anchor="center")
+    treeview_apartados.heading("quantidade", text="QUANTIDADE", anchor="center")
+    treeview_apartados.heading("motivo", text="MOTIVO", anchor="center")
 
-    treeview_nota_fiscal.column("data", width=120, anchor="center")
-    treeview_nota_fiscal.column("codigo_produto", width=160, anchor="center")
-    treeview_nota_fiscal.column("descricao", width=220, anchor="center")
-    treeview_nota_fiscal.column("quantidade", width=120, anchor="center")
-    treeview_nota_fiscal.column("motivo", width=120, anchor="center")
+    treeview_apartados.column("data", width=120, anchor="center")
+    treeview_apartados.column("codigo_produto", width=160, anchor="center")
+    treeview_apartados.column("descricao", width=220, anchor="center")
+    treeview_apartados.column("quantidade", width=120, anchor="center")
+    treeview_apartados.column("motivo", width=120, anchor="center")
     # endregion
 
     linha_horizontal_inferior = tk.Frame(janela_historico_apartar, background="silver", width=1100, height=5)
