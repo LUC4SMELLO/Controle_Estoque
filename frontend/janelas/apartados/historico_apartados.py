@@ -31,9 +31,15 @@ def criar_janela_historico_apartados():
     entry_codigo_produto = tk.Entry(janela_historico_apartar, width=10, font=ENTRY)
     entry_codigo_produto.place(x=260, y=20)
 
+    label_motivo = tk.Label(janela_historico_apartar, text="Motivo:", font=LABEL)
+    label_motivo.place(x=350, y=20)
+
+    entry_motivo = tk.Entry(janela_historico_apartar, width=49, font=ENTRY)
+    entry_motivo.place(x=405, y=20)
+
 
     botao_buscar_apartados = tk.Button(janela_historico_apartar, text="Buscar", font=BOTAO, command=buscar_apartados_gui)
-    botao_buscar_apartados.place(x=345, y=17)
+    botao_buscar_apartados.place(x=800, y=17)
 
 
     linha_horizontal_superior = tk.Frame(janela_historico_apartar, background="silver", width=1100, height=5)
