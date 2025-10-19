@@ -5,6 +5,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from database.banco_dados_fornecedores import conectar_banco_de_dados_fornecedores
 
+from backend.constantes.bancos_dados import TABELA_FORNECEDORES
+
 class Fornecedor:
     def __init__(
             self,
@@ -39,8 +41,8 @@ class Fornecedor:
         cursor = conexao.cursor()
 
         cursor.execute(
-        """
-        INSERT INTO TabelaFornecedores (codigo_fornecedor,
+        f"""
+        INSERT INTO {TABELA_FORNECEDORES} (codigo_fornecedor,
         razao_social,
         nome_fantasia,
         fornecedor_ativo,
@@ -77,8 +79,8 @@ class Fornecedor:
         cursor = conexao.cursor()
 
         cursor.execute(
-        """
-        UPDATE TabelaFornecedores
+        f"""
+        UPDATE {TABELA_FORNECEDORES}
         SET razao_social = ?,
         nome_fantasia = ?,
         fornecedor_ativo = ?,
@@ -115,8 +117,8 @@ class Fornecedor:
         cursor = conexao.cursor()
 
         cursor.execute(
-        """
-        DELETE FROM TabelaFornecedores
+        f"""
+        DELETE FROM {TABELA_FORNECEDORES}
         WHERE codigo_fornecedor = ?
         """, (codigo_fornecedor,)
         )
@@ -131,8 +133,8 @@ class Fornecedor:
             cursor = conexao.cursor()
 
             cursor.execute(
-            """
-            SELECT * FROM TabelaFornecedores
+            f"""
+            SELECT * FROM {TABELA_FORNECEDORES}
             WHERE codigo_fornecedor = ?
             """, (codigo_fornecedor,)
             )
@@ -154,8 +156,8 @@ class Fornecedor:
             cursor = conexao.cursor()
 
             cursor.execute(
-            """
-            SELECT * FROM TabelaFornecedores
+            f"""
+            SELECT * FROM {TABELA_FORNECEDORES}
             WHERE cnpj = ?
             """, (cnpj_fornecedor,)
             )
