@@ -14,7 +14,7 @@ from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 from backend.validadores.produtos.formulario_produto import validar_formulario_produto
 
 from backend.controladores.produto.cadastrar_controlador import cadastrar_produto_back
-from servicos.servico_produtos import produto_exite
+from servicos.servico_produtos import produto_existe
 
 from backend.binds.configuracao_binds import configurar_binds
 
@@ -22,7 +22,7 @@ def criar_janela_cadastrar_produto():
 
     def cadastrar_produto_gui():
         
-        valido, mensagem = produto_exite(entry_codigo_produto_cadastrar.get().strip())
+        valido, mensagem = produto_existe(entry_codigo_produto_cadastrar.get().strip())
         if valido:
             messagebox.showerror("Erro", mensagem)
             entry_codigo_produto_cadastrar.focus_set()
