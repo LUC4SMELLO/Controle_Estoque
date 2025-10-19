@@ -5,8 +5,13 @@ def buscar_historico_apartados_back(data="", codigo_produto="", motivo=""):
     conexao = conectar_banco_dados_apartados()
     cursor = conexao.cursor()
 
+    cursor.execute("ATTACH DATABASE 'TabelaProdutos.db' AS TabelaProdutos")
+
     consulta_sql = """
-    SELECT data, codigo_produto, quantidade, motivo FROM TabelaApartados WHERE 1=1
+    SELECT ap.data, ap.codigo_produto, p.descricao, ap.quantidade, ap.motivo
+    FROM TabelaApartados AS ap
+    INNER JOIN TabelaProdutos AS p
+    ON ap.codigo_produto = p.codigo_produto
     """
     parametros = []
 

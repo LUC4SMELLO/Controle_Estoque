@@ -72,7 +72,7 @@ def criar_janela_historico_apartados():
     style = ttk.Style()
     style.configure("Treeview.Heading", font=("Arial", 10, "bold"))
 
-    colunas = ("data", "codigo_produto", "quantidade", "motivo")
+    colunas = ("data", "codigo_produto", "descricao", "quantidade", "motivo")
     treeview_apartados = ttk.Treeview(
         janela_historico_apartar,
         columns=colunas,
@@ -86,13 +86,13 @@ def criar_janela_historico_apartados():
 
     treeview_apartados.heading("data", text="DATA", anchor="center")
     treeview_apartados.heading("codigo_produto", text="CÓDIGO PRODUTO", anchor="center")
-    # treeview_apartados.heading("descricao", text="DESCRIÇÃO", anchor="center")
+    treeview_apartados.heading("descricao", text="DESCRIÇÃO", anchor="center")
     treeview_apartados.heading("quantidade", text="QUANTIDADE", anchor="center")
     treeview_apartados.heading("motivo", text="MOTIVO", anchor="center")
 
     treeview_apartados.column("data", width=120, anchor="center")
     treeview_apartados.column("codigo_produto", width=160, anchor="center")
-    # treeview_apartados.column("descricao", width=220, anchor="center")
+    treeview_apartados.column("descricao", width=220, anchor="center")
     treeview_apartados.column("quantidade", width=120, anchor="center")
     treeview_apartados.column("motivo", width=120, anchor="center")
     # endregion
