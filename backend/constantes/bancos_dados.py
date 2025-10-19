@@ -6,3 +6,6 @@ TABELA_FORNECEDORES = "fornecedores"
 
 BANCO_DADOS_ITENS_NOTA_FISCAL = "itens_notas_fiscais.db"
 TABELA_ITENS_NOTA_FISCAL = "itens_notas_fiscais"
+
+BANCO_DADOS_NOTA_FISCAL = "nota_fiscais.db"
+TABELA_NOTAS_FISCAL = "notas_fiscais"

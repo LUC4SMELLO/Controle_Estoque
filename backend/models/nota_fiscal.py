@@ -5,6 +5,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from database.banco_dados_nota_fiscal import conectar_banco_de_dados_nota_fiscal
 
+from backend.constantes.bancos_dados import TABELA_NOTAS_FISCAL
+
 
 class NotaFiscal:
     def __init__(self, numero_nota_fiscal, codigo_fornecedor, data_entrada):
@@ -18,8 +20,8 @@ class NotaFiscal:
         cursor = conexao.cursor()
 
         cursor.execute(
-        """
-        INSERT INTO TabelaNotaFiscal (numero_nota_fiscal,
+        f"""
+        INSERT INTO {TABELA_NOTAS_FISCAL} (numero_nota_fiscal,
         codigo_fornecedor,
         data_entrada)
         VALUES (?, ?, ?)
@@ -37,8 +39,8 @@ class NotaFiscal:
         cursor = conexao.cursor()
 
         cursor.execute(
-        """
-        DELETE * FROM TabelaNotaFiscal
+        f"""
+        DELETE * FROM {TABELA_NOTAS_FISCAL}
         WHERE numero_nota_fiscal = ?
         """,
             (numero_nota_fiscal,)
@@ -54,8 +56,8 @@ class NotaFiscal:
             cursor = conexao.cursor()
 
             cursor.execute(
-            """
-            SELECT * FROM TabelaNotaFiscal
+            f"""
+            SELECT * FROM {TABELA_NOTAS_FISCAL}
             WHERE numero_nota_fiscal = ?
             """,
                 (numero_nota_fiscal,)
