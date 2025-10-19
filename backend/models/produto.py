@@ -5,6 +5,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from database.banco_dados_produtos import conectar_banco_de_dados_produtos
 
+from backend.constantes.bancos_dados import TABELA_PRODUTOS
+
 
 class Produto:
     def __init__(
@@ -43,8 +45,8 @@ class Produto:
         cursor = conexao.cursor()
 
         cursor.execute(
-        """
-        INSERT INTO TabelaProdutos (codigo_produto,
+        f"""
+        INSERT INTO {TABELA_PRODUTOS} (codigo_produto,
         descricao,
         subdescricao,
         produto_ativo,
@@ -85,8 +87,8 @@ class Produto:
         cursor = conexao.cursor()
 
         cursor.execute(
-        """
-        UPDATE TabelaProdutos
+        f"""
+        UPDATE {TABELA_PRODUTOS}
         SET descricao = ?,
         subdescricao = ?,
         produto_ativo = ?,
@@ -125,8 +127,8 @@ class Produto:
         cursor = conexao.cursor()
 
         cursor.execute(
-        """
-        DELETE FROM TabelaProdutos
+        f"""
+        DELETE FROM {TABELA_PRODUTOS}
         WHERE codigo_produto = ?
         """, (codigo_produto,)
         )
@@ -141,8 +143,8 @@ class Produto:
             cursor = conexao.cursor()
 
             cursor.execute(
-            """
-            SELECT * FROM TabelaProdutos
+            f"""
+            SELECT * FROM {TABELA_PRODUTOS}
             WHERE codigo_produto = ?
             """, (codigo_produto,)
             )
@@ -164,8 +166,8 @@ class Produto:
         cursor = conexao.cursor()
 
         cursor.execute(
-        """
-        UPDATE TabelaProdutos
+        f"""
+        UPDATE {TABELA_PRODUTOS}
         SET quantidade_estoque = ?
         WHERE codigo_produto = ?
         """, (self.quantidade_estoque, self.codigo_produto)
@@ -182,8 +184,8 @@ class Produto:
         cursor = conexao.cursor()
 
         cursor.execute(
-        """
-        UPDATE TabelaProdutos
+        f"""
+        UPDATE {TABELA_PRODUTOS}
         SET quantidade_estoque = ?
         WHERE codigo_produto = ?
         """, (self.quantidade_estoque, self.codigo_produto)
@@ -198,8 +200,8 @@ class Produto:
         cursor = conexao.cursor()
 
         cursor.execute(
-        """
-        SELECT * FROM TabelaProdutos
+        f"""
+        SELECT * FROM {TABELA_PRODUTOS}
         """
         )
 
