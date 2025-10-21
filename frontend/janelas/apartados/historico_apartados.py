@@ -8,6 +8,8 @@ from backend.binds.configuracao_binds import configurar_binds
 
 from backend.controladores.apartado.historico_apartado import buscar_historico_apartados_back
 
+from backend.validadores.apartado.validar_historico_apartados import validar_historico
+
 
 def criar_janela_historico_apartados():
 
@@ -16,6 +18,12 @@ def criar_janela_historico_apartados():
         data = entry_data.get().strip()
         codigo_produto = entry_codigo_produto.get().strip()
         motivo = entry_motivo.get().strip()
+
+        valido, mensagem = validar_historico(data, codigo_produto)
+        if not valido:
+            messagebox.showerror("Erro", mensagem)
+            entry_data.focus_set()
+            return False
 
         resultado = buscar_historico_apartados_back(data, codigo_produto, motivo)
 
@@ -28,6 +36,11 @@ def criar_janela_historico_apartados():
         if not resultado:
             messagebox.showinfo("Aviso", "Não Há Apartados a Serem Listado.")
             entry_data.focus_set()
+
+            entry_data.delete(0, tk.END)
+            entry_codigo_produto.delete(0, tk.END)
+            entry_motivo.delete(0, tk.END)
+
             return None
 
 
@@ -103,8 +116,8 @@ def criar_janela_historico_apartados():
 
 
 
-    lista_entrys = [entry_data, entry_codigo_produto, botao_buscar_apartados]
+    lista_entrys = [entry_data, entry_codigo_produto, entry_motivo, botao_buscar_apartados]
     
-    acoes_intermediarias = [None, None, None]
+    acoes_intermediarias = [None, None, None, None]
 
-    configurar_binds(lista_entrys, acoes_intermediarias)
+    configurar_binds(lista_entrys, acoes_intermediarias, ultima_acao=buscar_apartados_gui)
