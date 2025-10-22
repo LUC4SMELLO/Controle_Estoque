@@ -1,6 +1,22 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
+from tkcalendar import DateEntry
+
+from backend.constantes.date_entry import (
+    BACKGROUND,
+    FOREGROUND,
+    HEADERSBACKGROUD,
+    HEADERSFOREGROUD,
+    NORMALBACKGROUND,
+    NORMALFOREGROUND,
+    WEEKENDBACKGROUND,
+    WEEKENDFOREGROUND,
+    SELECTBACKGROUND,
+    SELECTFOREGROUND,
+    BORDERCOLOR,
+    BORDERWIDTH
+)
 
 from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 
@@ -53,24 +69,42 @@ def criar_janela_historico_apartados():
     label_data = tk.Label(janela_historico_apartar, text="Data:", font=LABEL)
     label_data.place(x=20, y=20)
 
-    entry_data = tk.Entry(janela_historico_apartar, width=10, font=ENTRY)
+    entry_data = DateEntry(
+        janela_historico_apartar,
+        justify = "center", 
+        font = ENTRY,
+        background        = BACKGROUND,          # Background color of the entry field
+        foreground        = FOREGROUND,          # Text color in the entry field
+        headersbackground = HEADERSBACKGROUD,    # Background color of the month/year headers in the calendar popup
+        headersforeground = HEADERSFOREGROUD,    # Text color of the month/year headers
+        normalbackground  = NORMALBACKGROUND,    # Background color of normal days in the calendar popup
+        normalforeground  = NORMALFOREGROUND,    # Text color of normal days
+        weekendbackground = WEEKENDBACKGROUND,   # Background color of weekend days
+        weekendforeground = WEEKENDFOREGROUND,   # Text color of weekend days
+        selectbackground  = SELECTBACKGROUND,    # Background color of the selected day
+        selectforeground  = SELECTFOREGROUND,    # Text color of the selected day
+        bordercolor       = BORDERCOLOR,         # Border color of the calendar popup
+        borderwidth       = BORDERWIDTH,
+        selectmode = 'day',
+        date_pattern = 'dd/mm/yyyy')
+    
     entry_data.place(x=60, y=20)
 
     label_codigo_produto = tk.Label(janela_historico_apartar, text="Código Produto:", font=LABEL)
-    label_codigo_produto.place(x=150, y=20)
+    label_codigo_produto.place(x=175, y=20)
 
     entry_codigo_produto = tk.Entry(janela_historico_apartar, width=10, font=ENTRY)
-    entry_codigo_produto.place(x=260, y=20)
+    entry_codigo_produto.place(x=285, y=20)
 
     label_motivo = tk.Label(janela_historico_apartar, text="Motivo:", font=LABEL)
-    label_motivo.place(x=350, y=20)
+    label_motivo.place(x=370, y=20)
 
     entry_motivo = tk.Entry(janela_historico_apartar, width=49, font=ENTRY)
-    entry_motivo.place(x=405, y=20)
+    entry_motivo.place(x=425, y=20)
 
 
     botao_buscar_apartados = tk.Button(janela_historico_apartar, text="Buscar", font=BOTAO, command=buscar_apartados_gui)
-    botao_buscar_apartados.place(x=800, y=17)
+    botao_buscar_apartados.place(x=820, y=16)
 
 
     linha_horizontal_superior = tk.Frame(janela_historico_apartar, background="silver", width=1100, height=5)
