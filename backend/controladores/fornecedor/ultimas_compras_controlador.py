@@ -2,6 +2,8 @@ from backend.models.item_nota_fiscal import ItemNotaFiscal
 
 from database.banco_dados_itens_nota import conectar_banco_de_dados_itens_nota_fiscal
 
+from backend.constantes.bancos_dados import TABELA_ITENS_NOTA_FISCAL
+
 def retornar_ultimas_compras_fornecedor(codigo_fornecedor):
 
     try:
@@ -9,8 +11,8 @@ def retornar_ultimas_compras_fornecedor(codigo_fornecedor):
         cursor = conexao.cursor()
 
         cursor.execute(
-        """
-        SELECT * FROM TabelaItensNotaFiscal
+        f"""
+        SELECT * FROM {TABELA_ITENS_NOTA_FISCAL}
         WHERE codigo_fornecedor = ?
         """, (codigo_fornecedor,)
         )
