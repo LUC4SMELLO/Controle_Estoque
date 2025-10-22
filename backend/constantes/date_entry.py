@@ -1,0 +1,12 @@
+BACKGROUND = "grey31",            # Background color of the entry field
+FOREGROUND = "White",             # Text color in the entry field
+HEADERSBACKGROUD = "Silver"      # Background color of the month/year headers in the calendar popup
+HEADERSFOREGROUD = "Black",      # Text color of the month/year headers
+NORMALBACKGROUND = "GhostWhite", # Background color of normal days in the calendar popup
+NORMALFOREGROUND = "Black",      # Text color of normal days
+WEEKENDBACKGROUND = "Gray",      # Background color of weekend days
+WEEKENDFOREGROUND = "White",     # Text color of weekend days
+SELECTBACKGROUND = "FireBrick",  # Background color of the selected day
+SELECTFOREGROUND = "White",      # Text color of the selected day           
+BORDERCOLOR = "Black",           # Border color of the calendar popup
+BORDERWIDTH = 2
