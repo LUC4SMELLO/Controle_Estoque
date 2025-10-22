@@ -2,6 +2,24 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 
+from tkcalendar import DateEntry
+
+from backend.constantes.date_entry import (
+    BACKGROUND,
+    FOREGROUND,
+    HEADERSBACKGROUD,
+    HEADERSFOREGROUD,
+    NORMALBACKGROUND,
+    NORMALFOREGROUND,
+    WEEKENDBACKGROUND,
+    WEEKENDFOREGROUND,
+    SELECTBACKGROUND,
+    SELECTFOREGROUND,
+    BORDERCOLOR,
+    BORDERWIDTH
+)
+
+
 from backend.validadores.estoque.formulario_entrada_saida import validar_formulario_entrada_saida_estoque
 
 from backend.controladores.estoque.entrada_controlador import entrada_produto_back
@@ -61,7 +79,25 @@ def criar_janela_entrada_produtos():
     label_data_entrada = tk.Label(janela_entrada_produtos, text="Data Entrada:", font=LABEL)
     label_data_entrada.place(x=26, y=10)
 
-    entry_data_entrada = tk.Entry(janela_entrada_produtos, width=10, font=ENTRY)
+    entry_data_entrada = DateEntry(
+        janela_entrada_produtos,
+        justify = "center", 
+        font = ENTRY,
+        background        = BACKGROUND,          # Background color of the entry field
+        foreground        = FOREGROUND,          # Text color in the entry field
+        headersbackground = HEADERSBACKGROUD,    # Background color of the month/year headers in the calendar popup
+        headersforeground = HEADERSFOREGROUD,    # Text color of the month/year headers
+        normalbackground  = NORMALBACKGROUND,    # Background color of normal days in the calendar popup
+        normalforeground  = NORMALFOREGROUND,    # Text color of normal days
+        weekendbackground = WEEKENDBACKGROUND,   # Background color of weekend days
+        weekendforeground = WEEKENDFOREGROUND,   # Text color of weekend days
+        selectbackground  = SELECTBACKGROUND,    # Background color of the selected day
+        selectforeground  = SELECTFOREGROUND,    # Text color of the selected day
+        bordercolor       = BORDERCOLOR,         # Border color of the calendar popup
+        borderwidth       = BORDERWIDTH,
+        selectmode = 'day',
+        date_pattern = 'dd/mm/yyyy')
+    
     entry_data_entrada.place(x=120, y=10)
 
     label_codigo_produto = tk.Label(janela_entrada_produtos, text="Código Produto:", font=LABEL)
