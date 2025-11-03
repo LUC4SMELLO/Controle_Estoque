@@ -6,7 +6,22 @@ from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 
 from backend.binds.configuracao_binds import configurar_binds
 
+from backend.scripts.processar_pendencias_estoque import processar_pendencias
+
 def criar_janela_historico_pendencias():
+
+    def buscar_pendencias_gui():
+
+        pendencias = processar_pendencias()
+
+        for item in treeview_pendencias.get_children():
+            treeview_pendencias.delete(item)
+
+        for i, linha in pendencias.iterrows():
+            treeview_pendencias.insert("", "end", values=list(linha))
+
+
+
 
     janela_historico_pendencias = tk.Toplevel()
     janela_historico_pendencias.title("Histórico Pendências")
@@ -20,9 +35,8 @@ def criar_janela_historico_pendencias():
     entry_cupom.place(x=75, y=20)
 
 
-
-    
-
+    botao_buscar_pendencias = tk.Button(janela_historico_pendencias, text="Buscar", font=BOTAO, command=buscar_pendencias_gui)
+    botao_buscar_pendencias.place(x=300, y=20)
 
     linha_horizontal_superior = tk.Frame(janela_historico_pendencias, background="silver", width=1100, height=5)
     linha_horizontal_superior.place(x=0, y=80)
@@ -71,3 +85,5 @@ def criar_janela_historico_pendencias():
 
     linha_horizontal_inferior = tk.Frame(janela_historico_pendencias, background="silver", width=1100, height=5)
     linha_horizontal_inferior.place(x=0, y=550)
+
+
