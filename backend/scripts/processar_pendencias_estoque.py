@@ -6,10 +6,20 @@ def processar_pendencias():
         "arquivos/CONTROLE OPERACIONAL  - OUT25.xlsm",
         sheet_name="Estoque1",
         header=4,
-        usecols=['Cupom', 'CLIENTE', 'DT.OC.', 'RAZÃO SOCIAL', 'CIDADE', 'DIA',
-        'VENDEDOR', 'PROD 1', 'QUANT 1', 'PROD 2', 'QUANT 2', 'PROD 3',
-        'QUANT 3', 'PROD 4', 'QUANT 4', 'PROD 5', 'QUANT 5', 'PROD 6',
-        'QUANT 6', 'Cup.Orig', 'STATUS'])
+        usecols=['Cupom', 'CLIENTE', 'DT.OC.', 'RAZÃO SOCIAL', 'CIDADE',
+        'VENDEDOR', 'PROD 1', 'QUANT 1', 'Cup.Orig', 'STATUS'])
+        
+    dados["Cupom"] = dados["Cupom"].astype(str)
+    dados["DT.OC."] = dados["DT.OC."].astype(str)
+    dados["RAZÃO SOCIAL"] = dados["RAZÃO SOCIAL"].astype(str)
+    dados["CIDADE"] = dados["CIDADE"].astype(str)
+    dados["VENDEDOR"] = dados["VENDEDOR"].astype(str)
+    dados["PROD 1"] = dados["PROD 1"].astype(str)
+    dados["Cup.Orig"] = dados["Cup.Orig"].astype(str)
+    dados["STATUS"] = dados["STATUS"].astype(str)
+
+    dados["QUANT 1"] = pd.to_numeric(dados["QUANT 1"], errors="coerce")
+    dados["QUANT 1"] = dados["QUANT 1"].fillna(0).astype(int).abs()
 
 
     pendencias = dados[(dados['STATUS'] == 'ENTREGA PENDENTE') & (dados['Cup.Orig'] == 'P')]
