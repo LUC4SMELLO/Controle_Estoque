@@ -12,3 +12,6 @@ TABELA_NOTAS_FISCAL = "notas_fiscais"
 
 BANCO_DADOS_APARTADOS = "apartados.db"
 TABELA_APARTADOS = "apartados"
+
+BANCO_DADOS_PENDENCIAS = "pendencias.db"
+TABELA_PENDENCIAS = "pendencias"
