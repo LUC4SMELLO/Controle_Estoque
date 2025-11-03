@@ -26,6 +26,3 @@ def criar_tabela_nota_fiscal():
 
     conexao.commit()
     conexao.close()
-
-
-criar_tabela_nota_fiscal()
