@@ -16,7 +16,7 @@ def apartar_back(data, codigo_produto, quantidade, motivo):
             O motivo do apartado.
 
     Returns
-    ----------
+    -------
         None
     """
 

@@ -12,7 +12,7 @@ def configurar_binds(entries: list, acoes_intermediarias=None, ultima_acao=None)
             Última ação a ser executada.
 
     Returns
-    ----------
+    -------
         None
     """
     total = len(entries)
