@@ -1,6 +1,23 @@
 from database.banco_dados_apartados import conectar_banco_dados_apartados
 
 def buscar_historico_apartados_back(data="", codigo_produto="", motivo=""):
+    """
+    Busca os apartados no banco de dados com base nos filtros.
+
+    Parameters
+    ----------
+        data
+            Data do apartado.
+        codigo_produto
+            Código do produto.
+        motivo
+            Motivo do apartado.
+
+
+    Returns
+    -------
+        Resultado da busca.
+    """
 
     conexao = conectar_banco_dados_apartados()
     cursor = conexao.cursor()
