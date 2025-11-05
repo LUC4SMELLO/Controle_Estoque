@@ -17,6 +17,18 @@ from backend.models.item_nota_fiscal import ItemNotaFiscal
 import xml.etree.ElementTree as ET
 
 def buscar_nota_fiscal_back():
+    """
+    Abre a caixa do explorador de arquivos para selecionar o xml de uma nota fiscal.
+
+    Parameters
+    ----------
+        None
+
+    Returns
+    -------
+        Todos os produtos encontrados no xml da nota fiscal.
+    """
+
     # Esconde a janela principal do Tkinter, já que a usaremos apenas para o filedialog
     root = tk.Tk()
     root.withdraw() 
@@ -128,6 +140,18 @@ def buscar_nota_fiscal_back():
         return []
 
 def data_entrada_atual():
+    """
+    Busca a data atual da entrada.
+
+    Parameters
+    ----------
+        None
+
+
+    Returns
+    -------
+        A data atual.
+    """
 
     data_agora = datetime.now()
     data_formatada = data_agora.strftime("%d/%m/%Y")
