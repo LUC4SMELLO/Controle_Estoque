@@ -6,7 +6,7 @@ def processar_pendencias():
         "arquivos/CONTROLE OPERACIONAL  - OUT25.xlsm",
         sheet_name="Estoque1",
         header=4,
-        usecols=['Cupom', 'CLIENTE', 'DT.OC.', 'RAZÃO SOCIAL', 'CIDADE',
+        usecols=['Cupom', 'DT.OC.', 'CLIENTE', 'RAZÃO SOCIAL', 'CIDADE',
         'VENDEDOR', 'PROD 1', 'QUANT 1', 'Cup.Orig', 'STATUS'])
         
     dados["Cupom"] = dados["Cupom"].astype(str)
@@ -23,5 +23,17 @@ def processar_pendencias():
 
 
     pendencias = dados[(dados['STATUS'] == 'ENTREGA PENDENTE') & (dados['Cup.Orig'] == 'P')]
+
+    pendencias = pendencias[[
+        'Cupom',
+        'DT.OC.',
+        'CLIENTE',
+        'RAZÃO SOCIAL',
+        'CIDADE',
+        'VENDEDOR',
+        'PROD 1',
+        'QUANT 1',
+        'Cup.Orig',
+        'STATUS']]
 
     return pendencias
