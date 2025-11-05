@@ -1,10 +1,19 @@
 def configurar_binds(entries: list, acoes_intermediarias=None, ultima_acao=None):
     """
-    Aplica binds para navegar com Enter, e executar ações intermediárias.
+    Configura as binds das entrys.
 
-    :param entries: lista de Entry widgets
-    :param acoes_intermediarias: lista de funções a executar antes de passar para o próximo Entry
-    :param on_last_enter: função a chamar ao pressionar Enter no último Entry
+    Parameters
+    ----------
+        entries
+            Uma lista com todas as entries.
+        acoes_intermediarias
+            Uma lista de ações intermediarias (caso existam).
+        ultima_acao
+            Última ação a ser executada.
+
+    Returns
+    ----------
+        None
     """
     total = len(entries)
     acoes_intermediarias = acoes_intermediarias or [None] * total
