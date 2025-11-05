@@ -1,7 +1,5 @@
 import pandas as pd
 
-import pandas as pd
-
 contagem = pd.read_csv("arquivos/contagem_estoque.csv")
 
 contagem.rename(columns={"codigo": "codigo_produto",
