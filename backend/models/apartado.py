@@ -7,14 +7,45 @@ from database.banco_dados_apartados import conectar_banco_dados_apartados
 
 from backend.constantes.bancos_dados import TABELA_APARTADOS
 
-class Apartado():
+class Apartado:
+    """
+    Representa um apartado.
+
+    Attributes
+    ----------
+        data
+            A data do apartado.
+        codigo_produto
+            O código do produto.
+        quantidade
+            A quantidade apartada.
+        motivo
+            O motivo do apartado.
+    """
+
     def __init__(self, data, codigo_produto, quantidade, motivo):
+        """
+        Inicializa um novo apartado.
+
+        Parameters
+        ----------
+            data    
+                A data do apartado.
+            codigo_produto
+                O código do produto.
+            quantidade
+                A quantidade apartada.
+            motivo
+                O motivo do apartado.
+        """
+
         self.data = data
         self.codigo_produto = codigo_produto
         self.quantidade = quantidade
         self.motivo = motivo
     
     def inserir_apartado(self):
+        """Insere um novo apartado no banco de dados."""
 
         conexao = conectar_banco_dados_apartados()
         cursor = conexao.cursor()
@@ -41,6 +72,21 @@ class Apartado():
 
     @staticmethod
     def excluir_apartado(data, codigo_produto, quantidade):
+        """
+        Exclui um apartado do banco de dados.
+
+        Parameters
+        ----------
+            data    
+                A data do apartado.
+            codigo_produto
+                O código do produto.
+            quantidade
+                A quantidade apartada.
+        Returns
+        -------
+            None
+        """
 
         conexao = conectar_banco_dados_apartados()
         cursor = conexao.cursor()
@@ -57,6 +103,21 @@ class Apartado():
     
     @staticmethod
     def buscar_apartado(data, codigo_produto, quantidade):
+        """
+        Busca um apartado no banco de dados.
+
+        Parameters
+        ----------
+            data    
+                A data do apartado.
+            codigo_produto
+                O código do produto.
+            quantidade
+                A quantidade apartada.
+        Returns
+        -------
+            Se encontrado retorna seus dados, caso contrário retorna Falso.
+        """
 
         try:
             conexao = conectar_banco_dados_apartados()
@@ -78,5 +139,3 @@ class Apartado():
     
         except TypeError:
                 return False
-
-
