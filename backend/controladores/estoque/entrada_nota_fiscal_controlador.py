@@ -159,6 +159,22 @@ def data_entrada_atual():
     return data_formatada
 
 def verificar_produtos_da_nota_fiscal(nota_fiscal):
+    """
+    Verifica se os produtos da nota fiscal existem no sistema.
+
+    Parameters
+    ----------
+        nota_fiscal
+            A nota fiscal a ser verificada.
+
+
+    Returns
+    -------
+        bool
+            Verdadeiro se todos os produtos existem, Falso caso contrário.
+        mensagem
+            Mensagem informando status da validação.
+    """
 
     produtos_nao_encontrados = ""
 
@@ -174,12 +190,40 @@ def verificar_produtos_da_nota_fiscal(nota_fiscal):
     return True, "Todos os Produtos Foram Encontrados."
 
 def entrada_produto_nota_fiscal_back(nota_fiscal):
+    """
+    Da entrada na quantidade em estoque de algum produto no banco de dados. <br>
+    Com base na nota fiscal.
+
+    Parameters
+    ----------
+        nota_fiscal
+            A nota fiscal.
+
+    Returns
+    -------
+        None
+    """
 
     for produto_dict in nota_fiscal:
         entrada_produto_back(produto_dict["codigo_produto"], produto_dict["quantidade"])
     
 def buscar_fornecedor_pelo_cnpj_back(cnpj):
+    """
+    Verifica se o fornecedor existe no banco de dados.
 
+    Parameters
+    ----------
+        cnpj
+            O CNPJ do fornecedor.
+
+    Returns
+    -------
+        bool
+            Verdadeiro se existe, Falso caso contrário.
+        resultado
+            Caso seja verdadeiro, retorna os dados do fornecedor. Caso contrário, retorna uma mensagem.
+    """
+    
     if not cnpj.strip():
         return False, "Preencha o Código do Fornecedor."
     
@@ -191,6 +235,21 @@ def buscar_fornecedor_pelo_cnpj_back(cnpj):
     return True, resultado
 
 def nota_fiscal_ja_importada(numero_nota_fiscal):
+    """
+    Verifica se a nota fiscal já foi importada.
+
+    Parameters
+    ----------
+        numero_nota_fiscal
+            O número nota fiscal.
+
+    Returns
+    -------
+        bool
+            Verdadeiro caso já tenha sido importada, Falso caso contrário.
+        mensagem
+            Mensagem informando status da verificação.
+    """
 
     nota_importada = NotaFiscal.buscar_nota_fiscal_por_numero(numero_nota_fiscal)
 
@@ -200,6 +259,25 @@ def nota_fiscal_ja_importada(numero_nota_fiscal):
     return True, "Nota Importada Com Sucesso!"
     
 def salvar_nota_fiscal_back(numero_nota_fiscal, codigo_fornecedor, data_entrada):
+    """
+    Salva a nota fiscal no banco de dados.
+
+    Parameters
+    ----------
+        numero_nota_fiscal
+            O número nota fiscal.
+        codigo_fornecedor
+            O código do fornecedor.
+        data_entrada
+            A data em que a nota está sendo registrada.
+
+    Returns
+    -------
+        bool
+            Verdadeiro se o processo deu certo, Falso caso contrário.
+        mensagem
+            Mensagem informando a situação do processo.
+    """
 
     resultado, mensagem = nota_fiscal_ja_importada(numero_nota_fiscal)
     if not resultado:
@@ -219,7 +297,34 @@ def salvar_item_nota_fiscal_back(
         descricao,
         quantidade,
         preco_unitario,
-        valor_total,):
+        valor_total,
+    ):
+    """
+    Salva cada item da nota fiscal no banco de dados.
+
+    Parameters
+    ----------
+        data_entrada
+            A data em que a nota está sendo registrada.
+        numero_nota_fiscal
+            O número da nota fiscal.
+        codigo_fornecedor
+            O código do fornecedor.
+        codigo_produto
+            O código do produto.
+        descricao
+            A descrição do produto.
+        quantidade
+            A quantidade do produto.
+        preco_unitario
+            O preço unitário pago pelo produto.
+        valor_total
+            O valor total pago pelo produto.
+
+    Returns
+    -------
+        None
+    """
     
     novo_item_nota_fiscal = ItemNotaFiscal(
         data_entrada,
@@ -233,4 +338,3 @@ def salvar_item_nota_fiscal_back(
         )
     
     novo_item_nota_fiscal.salvar_item_nota_fiscal()
-    
