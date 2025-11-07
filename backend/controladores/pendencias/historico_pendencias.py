@@ -3,26 +3,35 @@ from database.banco_dados_pendencias import conectar_banco_de_dados_pendencias
 from backend.constantes.bancos_dados import TABELA_PENDENCIAS
 
 def buscar_historico_pendencias_back(
-        cupom,
-        data_ocorrencia,
-        codigo_cliente,
-        razao_social,
-        cidade,
-        vendedor,
-        codigo_produto,
-        quantidade
+        cupom="",
+        data_ocorrencia="",
+        codigo_cliente="",
+        razao_social="",
+        cidade="",
+        vendedor="",
+        codigo_produto="",
+        quantidade=""
     ):
 
     conexao = conectar_banco_de_dados_pendencias()
     cursor = conexao.cursor()
 
     consulta_sql = f"""
-    SELECT * FROM {TABELA_PENDENCIAS}
+    SELECT cupom,
+    data_ocorrencia,
+    codigo_cliente,
+    razao_social,
+    cidade,
+    vendedor,
+    codigo_produto,
+    quantidade
+    FROM {TABELA_PENDENCIAS}
+    WHERE 1=1
     """
     parametros = []
 
     if cupom:
-        consulta_sql += "AND cupom = ? "
+        consulta_sql += " AND cupom = ?"
         parametros.append(cupom)
 
     if data_ocorrencia:
@@ -50,7 +59,7 @@ def buscar_historico_pendencias_back(
         parametros.append(codigo_produto)
 
     if quantidade:
-        consulta_sql += " quantidade = ?"
+        consulta_sql += " AND quantidade = ?"
         parametros.append(quantidade)
 
 
