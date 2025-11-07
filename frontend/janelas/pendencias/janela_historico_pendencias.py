@@ -8,17 +8,42 @@ from backend.binds.configuracao_binds import configurar_binds
 
 from backend.scripts.processar_pendencias_estoque import processar_pendencias
 
+from backend.controladores.pendencias.historico_pendencias import buscar_historico_pendencias_back
+
 def criar_janela_historico_pendencias():
 
     def buscar_pendencias_gui():
 
-        pendencias = processar_pendencias()
+        cupom = entry_cupom.get()
+        cliente = entry_cliente.get()
+        data_ocorrencia = entry_data_ocorrencia.get()
+        razao_social = entry_razao_social.get()
+        cidade = entry_cidade.get()
+        vendedor = entry_vendedor.get()
+        codigo_produto = entry_codigo_produto.get()
+        quantidade = entry_quantidade.get()
+
+        resultado = buscar_historico_pendencias_back(
+            cupom,
+            cliente,
+            data_ocorrencia,
+            razao_social,
+            cidade,
+            vendedor,
+            codigo_produto,
+            quantidade
+        )
+
+        if not resultado:
+            messagebox.showinfo("Aviso", "Não Há Pendências a Serem Listadas.")
+            entry_cupom.focus_set()
+            return None
 
         for item in treeview_pendencias.get_children():
             treeview_pendencias.delete(item)
 
-        for i, linha in pendencias.iterrows():
-            treeview_pendencias.insert("", "end", values=list(linha))
+        for i in resultado:
+            treeview_pendencias.insert("", "end", values=i)
 
 
 
