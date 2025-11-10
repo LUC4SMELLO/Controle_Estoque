@@ -1,9 +1,13 @@
 import pandas as pd
 
+from database.banco_dados_pendencias import conectar_banco_de_dados_pendencias
+
+from backend.constantes.bancos_dados import TABELA_PENDENCIAS
+
 def processar_pendencias():
 
     dados = pd.read_excel(
-        "arquivos/CONTROLE OPERACIONAL  - OUT25.xlsm",
+        "arquivos/CONTROLE OPERACIONAL  - NOV25.xlsm",
         sheet_name="Estoque1",
         header=4,
         usecols=['Cupom', 'DT.OC.', 'CLIENTE', 'RAZÃO SOCIAL', 'CIDADE',
@@ -36,4 +40,39 @@ def processar_pendencias():
         'Cup.Orig',
         'STATUS']]
 
-    return pendencias
+    conexao = conectar_banco_de_dados_pendencias()
+    cursor = conexao.cursor()
+
+
+    cursor.execute(f"DELETE FROM {TABELA_PENDENCIAS}")
+
+
+    for i, linha in pendencias.iterrows():
+        cursor.execute(
+        f"""
+        INSERT INTO {TABELA_PENDENCIAS} (
+        cupom,
+        data_ocorrencia,
+        codigo_cliente,
+        razao_social,
+        cidade,
+        vendedor,
+        codigo_produto,
+        quantidade
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+            (
+                linha["Cupom"],
+                linha["DT.OC."],
+                linha["CLIENTE"],
+                linha["RAZÃO SOCIAL"],
+                linha["CIDADE"],
+                linha["VENDEDOR"],
+                linha["PROD 1"],
+                linha["QUANT 1"],
+            )
+        )
+
+    conexao.commit()
+    conexao.close()
