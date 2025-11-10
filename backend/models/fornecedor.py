@@ -8,6 +8,35 @@ from database.banco_dados_fornecedores import conectar_banco_de_dados_fornecedor
 from backend.constantes.bancos_dados import TABELA_FORNECEDORES
 
 class Fornecedor:
+    """
+    Representa um fornecedor.
+
+    Attributes
+    ----------
+        codigo_fornecedor
+            O código do fornecedor.
+        razao_social
+            A razão social do fornecedor.
+        nome_fantasia
+            O nome fantasia do fornecedor.
+        fornecedor_ativo
+            Se o fornecedor está ativo ou não.
+        cnpj
+            O CNPJ do fornecedor.
+        inscricao_estadual
+            A inscrição estadual do fornecedor.
+        logradouro
+            O nome da rua.
+        bairro
+            O nome do bairro.
+        cidade
+            O nome da cidade.
+        cep
+            O número CEP.
+        estado
+            A sigla do estado.
+    """
+        
     def __init__(
             self,
             codigo_fornecedor,
@@ -22,7 +51,37 @@ class Fornecedor:
             cep,
             estado,
 
-    ):
+    ):  
+        """
+        Inicializa um novo fornecedor.
+
+        Parameters
+        ----------
+            codigo_fornecedor
+                O código do fornecedor.
+            razao_social
+                A razão social do fornecedor.
+            nome_fantasia
+                O nome fantasia do fornecedor.
+            fornecedor_ativo
+                Se o fornecedor está ativo ou não.
+            cnpj
+                O CNPJ do fornecedor.
+            inscricao_estadual
+                A inscrição estadual do fornecedor.
+            logradouro
+                O nome da rua.
+            bairro
+                O nome do bairro.
+            cidade
+                O nome da cidade.
+            cep
+                O número CEP.
+            estado
+                A sigla do estado.
+        """
+        
+
         self.codigo_fornecedor = codigo_fornecedor
         self.razao_social = razao_social
         self.nome_fantasia = nome_fantasia
@@ -36,6 +95,7 @@ class Fornecedor:
         self.estado = estado
 
     def salvar_fornecedor(self):
+        """Insere um novo fornecedor no banco de dados."""
 
         conexao = conectar_banco_de_dados_fornecedores()
         cursor = conexao.cursor()
@@ -74,6 +134,18 @@ class Fornecedor:
         conexao.close()
 
     def atualizar_fornecedor(self):
+        """
+        Atualiza informações de um fornecedor no banco de dados.
+
+        Parameters
+        ----------
+            self
+                A instância do objeto.
+        
+        Returns
+        -------
+            None
+        """
 
         conexao = conectar_banco_de_dados_fornecedores()
         cursor = conexao.cursor()
@@ -113,6 +185,19 @@ class Fornecedor:
 
     @staticmethod
     def excluir_fornecedor(codigo_fornecedor):
+        """
+        Exclui um fornecedor do banco de dados.
+
+        Parameters
+        ----------
+            codigo_fornecedor
+                O código do fornecedor.
+    
+        Returns
+        -------
+            None
+        """
+                
         conexao = conectar_banco_de_dados_fornecedores()
         cursor = conexao.cursor()
 
@@ -128,6 +213,18 @@ class Fornecedor:
 
     @staticmethod
     def buscar_fornecedor_pelo_codigo(codigo_fornecedor):
+        """
+        Busca um fornecedor pelo código no banco de dados.
+
+        Parameters
+        ----------
+            codigo_fornecedor
+                O código do fornecedor.
+        Returns
+        -------
+            Se encontrado retorna seus dados, caso contrário retorna Falso.
+        """
+
         try:
             conexao = conectar_banco_de_dados_fornecedores()
             cursor = conexao.cursor()
@@ -151,6 +248,18 @@ class Fornecedor:
         
     @staticmethod
     def buscar_fornecedor_pelo_cnpj(cnpj_fornecedor):
+        """
+        Busca um fornecedor pelo cnpj no banco de dados.
+
+        Parameters
+        ----------
+            cnpj_fornecedor
+                O cnpj do fornecedor.
+        Returns
+        -------
+            Se encontrado retorna seus dados, caso contrário retorna Falso.
+        """
+                
         try:
             conexao = conectar_banco_de_dados_fornecedores()
             cursor = conexao.cursor()
