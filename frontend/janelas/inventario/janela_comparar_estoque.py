@@ -5,12 +5,12 @@ from backend.constantes.fontes import LABEL, ENTRY, BOTAO
 
 from backend.binds.configuracao_binds import configurar_binds
 
-from backend.scripts.processar_diferencas_estoque import diferencas_estoque
+from backend.scripts.processar_diferencas_estoque import processar_diferencas
 
 
 def criar_janela_comparar_estoque(): 
 
-    comparacao = diferencas_estoque()
+    comparacao = processar_diferencas()
 
     janela_comparar_estoque = tk.Toplevel()
     janela_comparar_estoque.title("Comparar Estoque")

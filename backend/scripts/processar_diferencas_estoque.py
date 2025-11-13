@@ -1,6 +1,6 @@
 import pandas as pd
 
-def diferencas_estoque():
+def processar_diferencas():
     
     contagem = pd.read_csv("arquivos/contagem_estoque.csv")
 
